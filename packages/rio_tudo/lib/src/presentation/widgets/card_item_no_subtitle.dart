@@ -8,8 +8,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 // ignore: must_be_immutable
 class CardItemNoSubtitle extends StatefulWidget {
-  String? urlRedirect;
-  CardItemNoSubtitle({super.key, this.urlRedirect});
+  CardItemNoSubtitle({super.key});
 
   @override
   State<CardItemNoSubtitle> createState() => _CardItemNoSubtitleState();
@@ -52,7 +51,7 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
                 child: Row(
                   children: [
                     ButtonShare(
-                      onTapShare: null,
+                      //onTapShare: null,
                     ),
                     const SizedBox(
                       width: 10,
@@ -66,7 +65,7 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    openUrl(urlString: widget.urlRedirect!);
+                    openUrl(urlString: 'https://instagram.com/');
                   },
                   child: Container(
                     padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),

@@ -25,7 +25,8 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
         indexScreen: widget.indexBottomNavigator,
       ),
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: DesignSystemPaletterColorApp.secondaryColor),
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: DesignSystemPaletterColorApp.secondaryColorWhite),
         surfaceTintColor: Colors.transparent,
         title: Text(
           LabelsApp.titleAppBar,

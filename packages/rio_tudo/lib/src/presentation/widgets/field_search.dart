@@ -17,22 +17,33 @@ class _FieldSearchState extends State<FieldSearch> {
     return Container(
         width: MediaQuery.of(context).size.width,
         height: 50,
-        padding: const EdgeInsets.only(left: DesignSystemPaddingApp.pd10),
         decoration: BoxDecoration(
             color: DesignSystemPaletterColorApp.secondaryColorWhite,
-            border: Border.all(width: 4, color: DesignSystemPaletterColorApp.secondaryColor),
+            border: Border.all(
+                width: 4, color: DesignSystemPaletterColorApp.secondaryColor),
             borderRadius: const BorderRadius.all(Radius.circular(20))),
         child: TypeAheadField(
             textFieldConfiguration: TextFieldConfiguration(
               autofillHints: ["AutoFillHints 1", "AutoFillHints 2"],
               autofocus: true,
-              style: const TextStyle(color: DesignSystemPaletterColorApp.fontColorDefault, fontSize: 14),
+              style: const TextStyle(
+                  decorationThickness: 0,
+                  color: DesignSystemPaletterColorApp.fontColorDefault,
+                  fontSize: 18),
               decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(
+                      left: DesignSystemPaddingApp.pd12,
+                      top: DesignSystemPaddingApp.pd4,
+                      bottom: DesignSystemPaddingApp.pd4),
                   suffixIcon: const Icon(Icons.search),
                   suffixIconColor: DesignSystemPaletterColorApp.secondaryColor,
                   border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
                   hintText: LabelsApp.hintTextSearch,
-                  hintStyle: const TextStyle(color: DesignSystemPaletterColorApp.fontColorHintText, fontSize: 16)),
+                  hintStyle: const TextStyle(
+                      color: DesignSystemPaletterColorApp.fontColorHintText,
+                      fontSize: 16)),
             ),
             suggestionsCallback: (value) {
               return teste.toList();
