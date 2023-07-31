@@ -30,6 +30,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  config:
+    path: packages/config
+  design_system:
+    path: packages/design_system
+  rio_tudo:
+    path: packages/rio_tudo
+  
 
 
   # The following adds the Cupertino Icons font to your application.
