@@ -31,7 +31,7 @@ class _InfluencersScreenState extends State<InfluencersScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    CardItemNoSubtitle(urlRedirect: 'https://instagram.com/ianoliveira.dev'),
+                    CardItemNoSubtitle(),
                     CardItemNoSubtitle(),
                     CardItemNoSubtitle(),
                     CardItemNoSubtitle(),

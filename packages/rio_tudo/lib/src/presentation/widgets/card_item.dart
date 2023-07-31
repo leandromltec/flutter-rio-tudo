@@ -57,10 +57,7 @@ class _CardItemState extends State<CardItem> {
                           padding: EdgeInsets.only(right: DesignSystemPaddingApp.pd10),
                           child: Row(
                             children: [
-                              ButtonShare(onTapShare: () {
-                                shareItem(
-                                      textShare: 'https://www.teste.com/');
-                              }),
+                              ButtonShare(),
                               SizedBox(
                                 width: 10,
                               ),
