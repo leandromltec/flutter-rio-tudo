@@ -26,11 +26,13 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        iconTheme: const IconThemeData(color: DesignSystemPaletterColorApp.secondaryColorWhite),
+        iconTheme: const IconThemeData(
+            color: DesignSystemPaletterColorApp.secondaryColorWhite),
         surfaceTintColor: Colors.transparent,
         title: Text(
           LabelsApp.titleAppBar,
-          style:  const TextStyle(color: DesignSystemPaletterColorApp.fontPrimaryColor),
+          style: const TextStyle(
+              color: DesignSystemPaletterColorApp.fontPrimaryColor),
         ),
         actions: [
           IconButton(

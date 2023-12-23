@@ -20,7 +20,8 @@ class _CategorySearchScreenState extends State<CategorySearchScreen> {
       widgetScreen: Column(
         children: [
           const Padding(
-              padding: EdgeInsets.all(DesignSystemPaddingApp.pd10), child: FieldSearch()),
+              padding: EdgeInsets.all(DesignSystemPaddingApp.pd10),
+              child: FieldSearch()),
           BaseContent(
             widgetContent: Column(children: [
               Row(
@@ -62,13 +63,15 @@ class _CategorySearchScreenState extends State<CategorySearchScreen> {
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(
-        margin:
-            const EdgeInsets.only(left: DesignSystemPaddingApp.pd24, top: DesignSystemPaddingApp.pd10),
+        margin: const EdgeInsets.only(
+            left: DesignSystemPaddingApp.pd24,
+            top: DesignSystemPaddingApp.pd10),
         child: widgetChild);
   }
 
   Widget _containerButton({required Widget widgetChild}) {
     return Container(
-        margin: const EdgeInsets.only(right: DesignSystemPaddingApp.pd10), child: widgetChild);
+        margin: const EdgeInsets.only(right: DesignSystemPaddingApp.pd10),
+        child: widgetChild);
   }
 }
