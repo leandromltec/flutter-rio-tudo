@@ -2,7 +2,6 @@ import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-
 import '../widgets/widgets.dart';
 import 'base_screen.dart';
 
@@ -23,11 +22,17 @@ class _InfluencersScreenState extends State<InfluencersScreen> {
           Padding(
             padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
             child: Text(
-             LabelsApp.influencersText,).textTopPage(),
+              LabelsApp.influencersText,
+            ).textTopPage(),
           ),
-          BaseContent(widgetContent:  Container(
+          BaseContent(
+            widgetContent: Container(
               width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.fromLTRB(DesignSystemPaddingApp.pd10, DesignSystemPaddingApp.pd6, DesignSystemPaddingApp.pd10, DesignSystemPaddingApp.pd4),
+              padding: const EdgeInsets.fromLTRB(
+                  DesignSystemPaddingApp.pd10,
+                  DesignSystemPaddingApp.pd6,
+                  DesignSystemPaddingApp.pd10,
+                  DesignSystemPaddingApp.pd4),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -36,17 +41,16 @@ class _InfluencersScreenState extends State<InfluencersScreen> {
                     CardItemNoSubtitle(),
                     CardItemNoSubtitle(),
                     CardItemNoSubtitle(),
-                     CardItemNoSubtitle(),
-                      CardItemNoSubtitle(),
-                       CardItemNoSubtitle(),
+                    CardItemNoSubtitle(),
+                    CardItemNoSubtitle(),
+                    CardItemNoSubtitle(),
                   ],
                 ),
               ),
-            ),)
-          
+            ),
+          )
         ],
       ),
     );
   }
-
 }

@@ -4,11 +4,15 @@ import 'package:config/config.dart';
 import 'package:config/src/service_locator/injector_getit.dart';
 import 'package:flutter/material.dart';
 
-import 'package:rio_tudo/src/presentation/pages/pages.dart';
+import 'presentation/screen/screens.dart';
+import 'core/factories/screens/screens_factories.dart';
 
 class RioTudoSetupModule implements SetupGetItInterface {
   @override
-  FutureOr<void> loadServices(InjectorGetIt injectorGetIt) => [];
+  FutureOr<void> loadServices(InjectorGetIt injectorGetIt) async {
+    injectorGetIt
+        .registerLazySingleton<HomeScreenPresenter>(makeHomePresenter());
+  }
 
   @override
   List<Widget>? providers(InjectorGetIt injectorGetIt) => [];
@@ -16,7 +20,7 @@ class RioTudoSetupModule implements SetupGetItInterface {
   @override
   Map<String, WidgetBuilder>? routes() {
     return {
-      RoutesApp.HomeScreen: (BuildContext context) => HomeScreen(),
+      RoutesApp.HomeScreen: (BuildContext context) => makeHomeHomeScreen(),
       RoutesApp.InfluencerScreen: (BuildContext context) => InfluencersScreen(),
       RoutesApp.FavoriteScreen: (BuildContext context) => FavoriteScreen(),
       RoutesApp.InfoScreen: (BuildContext context) => InfoScreen(),

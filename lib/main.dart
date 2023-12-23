@@ -92,48 +92,48 @@ class _RioTudoAppState extends State<RioTudoApp> {
   }
 
   void _incomingLinkHandler() {
- // 1
- if (!kIsWeb) {
-   // 2
-   _streamSubscription = uriLinkStream.listen((Uri? uri) {
-     if (!mounted) {
-       return;
-     }
-     debugPrint('Received URI: $uri');
-     setState(() {
-       _currentURI = uri;
-       _err = null;
-     });
-     // 3
-   }, onError: (Object err) {
-     if (!mounted) {
-       return;
-     }
-     debugPrint('Error occurred: $err');
-     setState(() {
-       _currentURI = null;
-       if (err is FormatException) {
-         _err = err;
-       } else {
-         _err = null;
-       }
-     });
-   });
- }
-}
+    // 1
+    if (!kIsWeb) {
+      // 2
+      _streamSubscription = uriLinkStream.listen((Uri? uri) {
+        if (!mounted) {
+          return;
+        }
+        debugPrint('Received URI: $uri');
+        setState(() {
+          _currentURI = uri;
+          _err = null;
+        });
+        // 3
+      }, onError: (Object err) {
+        if (!mounted) {
+          return;
+        }
+        debugPrint('Error occurred: $err');
+        setState(() {
+          _currentURI = null;
+          if (err is FormatException) {
+            _err = err;
+          } else {
+            _err = null;
+          }
+        });
+      });
+    }
+  }
 
-@override
-void initState() {
- super.initState();
- /*initUniLinks();
+  @override
+  void initState() {
+    super.initState();
+    /*initUniLinks();
  _incomingLinkHandler();*/
-}
+  }
 
-@override
-void dispose() {
- _streamSubscription?.cancel();
- super.dispose();
-}
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +144,9 @@ void dispose() {
         //colorScheme: ColorScheme.fromSeed(seedColor: ColorsApp.primaryColor),
         useMaterial3: true,
       ),
-      home: const CategorySearchScreen(),
+      home: HomeScreen(
+        presenterHomeScreen: makeHomePresenter(),
+      ),
     );
   }
 }

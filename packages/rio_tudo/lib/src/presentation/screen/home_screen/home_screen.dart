@@ -1,17 +1,30 @@
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import '../widgets/widgets.dart';
-import 'base_screen.dart';
+import '../../../../rio_tudo.dart';
+import '../../widgets/widgets.dart';
+import '../base_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final HomeScreenPresenter? presenterHomeScreen;
 
+  HomeScreen({this.presenterHomeScreen});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    _loadData();
+    super.initState();
+  }
+
+  _loadData() async {
+    widget.presenterHomeScreen!.init();
+    await widget.presenterHomeScreen!.getListCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(
@@ -19,9 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
       widgetScreen: Column(
         children: [
           Padding(
-              padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
-              child: Text(LabelsApp.homeText).textTopPage(),
-            ),
+            padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
+            child: Text(LabelsApp.homeText).textTopPage(),
+          ),
           BaseContent(
             widgetContent: SingleChildScrollView(
               child: Container(
@@ -37,8 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             titleCategory: LabelsApp.titleLastVisitedTip,
                           )),
                           Container(
-                              margin:
-                                  const EdgeInsets.only(right: DesignSystemPaddingApp.pd10),
+                              margin: const EdgeInsets.only(
+                                  right: DesignSystemPaddingApp.pd10),
                               child: ButtonText(
                                 textButton: LabelsApp.textButtonCleanFilter,
                               ))
@@ -100,16 +113,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(
-        margin:
-            const EdgeInsets.only(left: DesignSystemPaddingApp.pd12, top: DesignSystemPaddingApp.pd6),
+        margin: const EdgeInsets.only(
+            left: DesignSystemPaddingApp.pd12, top: DesignSystemPaddingApp.pd6),
         child: widgetChild);
   }
 
   Widget _containerMenuCategory({required Widget widgetChild}) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(
-          DesignSystemPaddingApp.pd4, DesignSystemPaddingApp.pd6, 0, DesignSystemPaddingApp.pd4),
+      padding: const EdgeInsets.fromLTRB(DesignSystemPaddingApp.pd4,
+          DesignSystemPaddingApp.pd6, 0, DesignSystemPaddingApp.pd4),
       height: 180,
       child: widgetChild,
     );

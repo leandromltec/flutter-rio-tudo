@@ -3,8 +3,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rio_tudo/src/presentation/widgets/widgets.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+//import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher_string.dart';
 
 // ignore: must_be_immutable
 class CardItemNoSubtitle extends StatefulWidget {
@@ -51,8 +51,8 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
                 child: Row(
                   children: [
                     ButtonShare(
-                      //onTapShare: null,
-                    ),
+                        //onTapShare: null,
+                        ),
                     const SizedBox(
                       width: 10,
                     ),
@@ -103,7 +103,7 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
   }
 
   Future<void> openUrl({required String urlString}) async {
-    try {
+    /*try {
       if (await canLaunchUrl(Uri.parse(urlString))) {
         await launchUrl(Uri.parse(urlString),
             mode: LaunchMode.externalApplication);
@@ -111,6 +111,6 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
     } catch (e) {
       await launchUrl(Uri(scheme: 'http', path: urlString),
           mode: LaunchMode.externalApplication);
-    }
+    }*/
   }
 }
