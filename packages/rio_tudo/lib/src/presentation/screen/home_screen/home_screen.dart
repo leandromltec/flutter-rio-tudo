@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(
+      state: widget.presenterHomeScreen!.state,
       indexBottomNavigator: 0,
       widgetScreen: Column(
         children: [
@@ -63,17 +64,29 @@ class _HomeScreenState extends State<HomeScreen> {
                           widgetChild: TitleCategory(
                         titleCategory: 'Vistas',
                       )),
-                      _containerMenuCategory(
-                        widgetChild: MenuCategory(
-                            listItem: null,
-                            context: context,
-                            horizontalOffset: 300,
-                            milliseconds: 1500),
-                      ),
+                      ValueListenableBuilder(
+                          valueListenable: widget
+                              .presenterHomeScreen!.listAllCategoriesNotifier!,
+                          builder: (_, __, ___) {
+                            if (widget.presenterHomeScreen!
+                                    .listAllCategoriesNotifier!.value !=
+                                null) {
+                              return _containerMenuCategory(
+                                widgetChild: MenuCategory(
+                                    listItem: widget.presenterHomeScreen!
+                                        .listAllCategoriesNotifier!.value,
+                                    context: context,
+                                    horizontalOffset: 300,
+                                    milliseconds: 1500),
+                              );
+                            } else {
+                              return SizedBox();
+                            }
+                          }),
                       const SizedBox(
                         height: 12,
                       ),
-                      _containerTitleCategory(
+                      /*_containerTitleCategory(
                           widgetChild: TitleCategory(
                         titleCategory: 'Comida',
                       )),
@@ -94,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             context: context,
                             horizontalOffset: 1200,
                             milliseconds: 1500),
-                      ),
+                      ),*/
                     ]),
               ),
             ),
