@@ -10,3 +10,4 @@ export 'field_search.dart';
 export 'item_category.dart';
 export 'menu_category.dart';
 export 'title_category.dart';
+export 'loading.dart';
