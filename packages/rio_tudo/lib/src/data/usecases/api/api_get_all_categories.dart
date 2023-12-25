@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../domain/entities/category_entity.dart';
+import '../../../domain/entities/entities.dart';
 import '../../../domain/usecases/usecases.dart';
-import '../../models/category_model.dart';
+import '../../models/models.dart';
 
 class ApiGetAllCategories implements GetAllCategories {
   final String baseUrl;
