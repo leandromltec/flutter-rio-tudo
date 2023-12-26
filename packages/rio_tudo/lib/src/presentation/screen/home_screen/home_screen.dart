@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,8 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _getListWidgetsCategorySubCategory(
       {required List<CategoryEntity> listCategory}) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      //mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ...listCategory.map((category) => Column(
               children: [
@@ -121,16 +121,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(
-        margin: const EdgeInsets.only(top: DesignSystemPaddingApp.pd6),
+        alignment: Alignment.centerLeft,
+        margin: const EdgeInsets.only(
+            left: DesignSystemPaddingApp.pd10, top: DesignSystemPaddingApp.pd6),
         child: widgetChild);
   }
 
   Widget _containerSubCategoryMenu({required Widget widgetChild}) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      //width: MediaQuery.of(context).size.width,
+
       padding: const EdgeInsets.fromLTRB(DesignSystemPaddingApp.pd4,
           DesignSystemPaddingApp.pd6, 0, DesignSystemPaddingApp.pd4),
-      height: 180,
+      height: 200,
       child: widgetChild,
     );
   }
