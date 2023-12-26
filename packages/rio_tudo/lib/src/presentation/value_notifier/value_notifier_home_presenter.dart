@@ -1,8 +1,7 @@
 import 'package:flutter/src/foundation/change_notifier.dart';
-
-import 'package:rio_tudo/src/domain/entities/category_entity.dart';
 import 'package:rio_tudo/src/presentation/base_presenter.dart';
 
+import '../../domain/entities/entities.dart';
 import '../../domain/usecases/usecases.dart';
 import '../screen/screens.dart';
 
