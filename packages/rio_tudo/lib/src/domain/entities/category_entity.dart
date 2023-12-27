@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'entities.dart';
 
 class CategoryEntity extends Equatable {
   final String title;

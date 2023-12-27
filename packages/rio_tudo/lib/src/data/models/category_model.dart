@@ -1,4 +1,5 @@
-import '../../domain/entities/category_entity.dart';
+import '../../domain/entities/entities.dart';
+import 'models.dart';
 
 class CategoryModel {
   final String title;
