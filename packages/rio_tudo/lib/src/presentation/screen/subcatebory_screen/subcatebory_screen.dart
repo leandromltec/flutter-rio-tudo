@@ -2,17 +2,21 @@ import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/widgets.dart';
-import 'base_screen.dart';
+import '../../widgets/widgets.dart';
+import '../base_screen.dart';
+import '../screens.dart';
 
-class CategorySearchScreen extends StatefulWidget {
-  const CategorySearchScreen({super.key});
+class SubCategoryScreen extends StatefulWidget {
+  final SubCategoryPresenter? presenterSubCategory;
+
+  // ignore: use_key_in_widget_constructors
+  const SubCategoryScreen({this.presenterSubCategory});
 
   @override
-  State<CategorySearchScreen> createState() => _CategorySearchScreenState();
+  State<SubCategoryScreen> createState() => _SubCategoryScreenState();
 }
 
-class _CategorySearchScreenState extends State<CategorySearchScreen> {
+class _SubCategoryScreenState extends State<SubCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(

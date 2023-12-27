@@ -51,7 +51,7 @@ Future<SetupGetItLoadInterface> _loadSetup() async {
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsApp.primaryColor),
         useMaterial3: true,
       ),
-      home: const CategorySearchScreen(),
+      home: const SubCategoryScreen(),
     );
   }
 }*/

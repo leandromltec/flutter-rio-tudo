@@ -6,7 +6,7 @@ import 'package:rio_tudo/src/presentation/widgets/widgets.dart';
 void main() {
   Future<void> loadPage(WidgetTester tester) async {
     Widget page = const MaterialApp(
-      home: CategorySearchScreen(),
+      home: SubCategoryScreen(),
     );
 
     await tester.pumpWidget(page, Duration(seconds: 1));

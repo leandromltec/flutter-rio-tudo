@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
-
 import 'package:http/http.dart' as http;
 import '../../../domain/entities/category_entity.dart';
 import '../../../domain/usecases/usecases.dart';
@@ -14,7 +12,7 @@ class ApiGetAllCategories implements GetAllCategories {
   @override
   Future<List<CategoryEntity>?> call() async {
     try {
-      final response = await http.get(Uri.parse(baseUrl + 'api/category'));
+      final response = await http.get(Uri.parse(baseUrl));
 
       List<CategoryModel>? listCategoryModel = [];
 

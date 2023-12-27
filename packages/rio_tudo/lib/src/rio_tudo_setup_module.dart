@@ -21,6 +21,8 @@ class RioTudoSetupModule implements SetupGetItInterface {
   Map<String, WidgetBuilder>? routes() {
     return {
       RoutesApp.HomeScreen: (BuildContext context) => makeHomeHomeScreen(),
+      RoutesApp.SubCategoryScreen: (BuildContext context) =>
+          makeSubCategoryScreen(),
       RoutesApp.InfluencerScreen: (BuildContext context) => InfluencersScreen(),
       RoutesApp.FavoriteScreen: (BuildContext context) => FavoriteScreen(),
       RoutesApp.InfoScreen: (BuildContext context) => InfoScreen(),
