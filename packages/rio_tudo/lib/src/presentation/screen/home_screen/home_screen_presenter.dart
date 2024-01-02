@@ -4,6 +4,7 @@ import '../../base_presenter.dart';
 
 abstract class HomeScreenPresenter extends BasePresenter {
   ValueNotifier<List<CategoryEntity>?>? listAllCategoriesNotifier;
+  ValueNotifier<String>? idSubCategorySelected;
 
   Future<List<CategoryEntity>?> getListCategories();
 }

@@ -11,7 +11,10 @@ class FieldSearch extends StatefulWidget {
 }
 
 class _FieldSearchState extends State<FieldSearch> {
-  List<String> teste = ["teste1"];
+  List<String> listDistrict = ["Copacabana", "Ipanema", "Leblon", "Gávea"];
+
+  String? userSelected;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,13 +26,16 @@ class _FieldSearchState extends State<FieldSearch> {
                 width: 4, color: DesignSystemPaletterColorApp.secondaryColor),
             borderRadius: const BorderRadius.all(Radius.circular(20))),
         child: TypeAheadField(
+            noItemsFoundBuilder: (context) => SizedBox(
+                  height: 50,
+                  child: _widgetSuggestion(LabelsApp.textDistrictNofound),
+                ),
+            suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20))),
             textFieldConfiguration: TextFieldConfiguration(
               autofillHints: ["AutoFillHints 1", "AutoFillHints 2"],
-              autofocus: true,
-              style: const TextStyle(
-                  decorationThickness: 0,
-                  color: DesignSystemPaletterColorApp.fontColorDefault,
-                  fontSize: 18),
+              autofocus: false,
+              style: DesignSystemTextStyleApp.textHintSubCategoryScreen,
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(
                       left: DesignSystemPaddingApp.pd12,
@@ -41,16 +47,41 @@ class _FieldSearchState extends State<FieldSearch> {
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   hintText: LabelsApp.hintTextSearch,
-                  hintStyle: const TextStyle(
-                      color: DesignSystemPaletterColorApp.fontColorHintText,
-                      fontSize: 16)),
+                  hintStyle:
+                      DesignSystemTextStyleApp.textHintSubCategoryScreen),
             ),
             suggestionsCallback: (value) {
-              return teste.toList();
+              return getSuggestions(value);
             },
             itemBuilder: (context, String suggestion) {
-              return Container();
+              return _widgetSuggestion(suggestion);
             },
-            onSuggestionSelected: (value) {}));
+            onSuggestionSelected: (suggestion) {
+              setState(() {
+                //_suggestionSelectedControler.text = suggestion;
+              });
+            }));
+  }
+
+  Widget _widgetSuggestion(String suggestion) {
+    return Flexible(
+      child: Padding(
+        padding: const EdgeInsets.only(
+            left: DesignSystemPaddingApp.pd16,
+            top: DesignSystemPaddingApp.pd8,
+            bottom: DesignSystemPaddingApp.pd2),
+        child: Text(suggestion,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: DesignSystemTextStyleApp.textHintSubCategoryScreen),
+      ),
+    );
+  }
+
+  List<String> getSuggestions(String query) {
+    List<String> matches = [];
+    matches.addAll(listDistrict);
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+    return matches;
   }
 }

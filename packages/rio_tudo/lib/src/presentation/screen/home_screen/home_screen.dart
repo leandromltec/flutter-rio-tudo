@@ -26,6 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    widget.presenterHomeScreen!.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(
       indexBottomNavigator: 0,
@@ -57,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ))
                         ],
                       ),
-                      _containerLastTipVisited(widgetChild: CardItem()),
+                      //_containerLastTipVisited(widgetChild: CardItem()),
                       const DividerApp(),
                       _containerTitleCategory(
                           widgetChild: TitleCategory(
@@ -106,9 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _containerLastTipVisited({required Widget widgetChild}) {
     return Container(
-      //padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
-      child: CardItem(),
-    );
+        //padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
+        //child: CardItem(),
+        );
   }
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
