@@ -47,4 +47,9 @@ class DesignSystemTextStyleApp {
 
   static TextStyle textInfoScreen = const TextStyle(
       fontSize: 14, color: DesignSystemPaletterColorApp.primaryColor);
+
+  static TextStyle textHintSubCategoryScreen = const TextStyle(
+      fontSize: 16,
+      color: DesignSystemPaletterColorApp.fontColorHintText,
+      fontWeight: FontWeight.bold);
 }

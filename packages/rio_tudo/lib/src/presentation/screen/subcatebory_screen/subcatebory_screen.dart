@@ -74,9 +74,13 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                         if (widget.presenterSubCategory!
                                 .listItemsSubCategoriesNotifier!.value !=
                             null) {
-                          return _listViewItemsSubCategory(
-                              listItemsSubCategory: widget.presenterSubCategory!
-                                  .listItemsSubCategoriesNotifier!.value!);
+                          return SingleChildScrollView(
+                            child: _listViewItemsSubCategory(
+                                listItemsSubCategory: widget
+                                    .presenterSubCategory!
+                                    .listItemsSubCategoriesNotifier!
+                                    .value!),
+                          );
                         } else {
                           return const SizedBox();
                         }
@@ -110,6 +114,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
       clipBehavior: Clip.none,
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: listItemsSubCategory.length,
       itemBuilder: ((context, index) {
         return AnimationConfiguration.staggeredList(
