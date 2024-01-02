@@ -32,7 +32,7 @@ class DesignSystemTextStyleApp {
 
   static TextStyle subTitleTipCard = const TextStyle(
       color: DesignSystemPaletterColorApp.fontPrimaryColor,
-      fontSize: 12,
+      fontSize: 14,
       fontWeight: FontWeight.bold);
 
   static TextStyle textFavoriteScreen = const TextStyle(
@@ -47,4 +47,9 @@ class DesignSystemTextStyleApp {
 
   static TextStyle textInfoScreen = const TextStyle(
       fontSize: 14, color: DesignSystemPaletterColorApp.primaryColor);
+
+  static TextStyle textHintSubCategoryScreen = const TextStyle(
+      fontSize: 16,
+      color: DesignSystemPaletterColorApp.fontColorHintText,
+      fontWeight: FontWeight.bold);
 }

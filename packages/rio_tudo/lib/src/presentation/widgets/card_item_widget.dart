@@ -50,14 +50,14 @@ class _CardItemState extends State<CardItem> {
                                 DesignSystemPaddingApp.pd10,
                                 DesignSystemPaddingApp.pd10,
                                 DesignSystemPaddingApp.pd6,
-                                DesignSystemPaddingApp.pd10),
+                                DesignSystemPaddingApp.pd6),
                             child: Text(
                               widget.itemSubCategory.titleTip!,
                             ).titleTipCard(),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               right: DesignSystemPaddingApp.pd10),
                           child: Row(
                             children: [
