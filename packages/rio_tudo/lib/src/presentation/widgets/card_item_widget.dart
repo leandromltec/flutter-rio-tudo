@@ -2,11 +2,14 @@ import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../domain/entities/entities.dart';
 import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardItem extends StatefulWidget {
-  const CardItem({super.key});
+  final ItemSubCategoryEntity itemSubCategory;
+
+  const CardItem({required this.itemSubCategory});
 
   @override
   State<CardItem> createState() => _CardItemState();
@@ -47,14 +50,15 @@ class _CardItemState extends State<CardItem> {
                                 DesignSystemPaddingApp.pd10,
                                 DesignSystemPaddingApp.pd10,
                                 DesignSystemPaddingApp.pd6,
-                                DesignSystemPaddingApp.pd10),
+                                DesignSystemPaddingApp.pd6),
                             child: Text(
-                              "Restaurante Caes do Oriente",
+                              widget.itemSubCategory.titleTip!,
                             ).titleTipCard(),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: DesignSystemPaddingApp.pd10),
+                          padding: EdgeInsets.only(
+                              right: DesignSystemPaddingApp.pd10),
                           child: Row(
                             children: [
                               ButtonShare(),
@@ -62,9 +66,7 @@ class _CardItemState extends State<CardItem> {
                                 width: 10,
                               ),
                               ButtonFavorite(
-                                onTapFavorite: () {
-                                  
-                                },
+                                onTapFavorite: () {},
                               ),
                             ],
                           ),
@@ -75,13 +77,14 @@ class _CardItemState extends State<CardItem> {
                     Container(
                       padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
                       width: MediaQuery.of(context).size.width,
-                      child: Text(
-                        "São João de Meriti",
-                      ).subTitleTipCard(),
                       decoration: BoxDecoration(
-                          color: DesignSystemPaletterColorApp.cardColorSubtitle.withOpacity(1),
+                          color: DesignSystemPaletterColorApp.cardColorSubtitle
+                              .withOpacity(1),
                           borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(20))),
+                      child: Text(
+                        widget.itemSubCategory.district!,
+                      ).subTitleTipCard(),
                     )
                   ],
                 ),
