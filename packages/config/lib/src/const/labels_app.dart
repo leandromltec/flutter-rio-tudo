@@ -18,6 +18,7 @@ class LabelsApp {
   //Category Search Screen
   static String textButtonSeeAll = 'Ver todos';
   static String textButtonSeeInstagram = 'Ver Instagram';
+  static String textDistrictNofound = '* Bairro não encontrado';
 
   //Favorite Screen
   static String titleSeeUourFavoriteTips = 'Veja suas dicas favoritas !';
