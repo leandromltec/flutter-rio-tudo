@@ -2,6 +2,7 @@ import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import '../../../../rio_tudo.dart';
+import '../../../domain/entities/entities.dart';
 import '../../widgets/widgets.dart';
 import '../base_screen.dart';
 
@@ -34,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(
+      state: widget.presenterHomeScreen!.state,
       indexBottomNavigator: 0,
       widgetScreen: Column(
         children: [
@@ -47,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,48 +68,53 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       //_containerLastTipVisited(widgetChild: CardItem()),
                       const DividerApp(),
-                      _containerTitleCategory(
-                          widgetChild: TitleCategory(
-                        titleCategory: 'Vistas',
-                      )),
-                      _containerMenuCategory(
-                        widgetChild: MenuCategory(
-                            listItem: null,
-                            context: context,
-                            horizontalOffset: 300,
-                            milliseconds: 1500),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      _containerTitleCategory(
-                          widgetChild: TitleCategory(
-                        titleCategory: 'Comida',
-                      )),
-                      _containerMenuCategory(
-                        widgetChild: MenuCategory(
-                            listItem: null,
-                            context: context,
-                            horizontalOffset: 600,
-                            milliseconds: 1500),
-                      ),
-                      _containerTitleCategory(
-                          widgetChild: TitleCategory(
-                        titleCategory: 'Bares',
-                      )),
-                      _containerMenuCategory(
-                        widgetChild: MenuCategory(
-                            listItem: null,
-                            context: context,
-                            horizontalOffset: 1200,
-                            milliseconds: 1500),
-                      ),
+                      ValueListenableBuilder(
+                          valueListenable: widget
+                              .presenterHomeScreen!.listAllCategoriesNotifier!,
+                          builder: (_, __, ___) {
+                            if (widget.presenterHomeScreen!
+                                    .listAllCategoriesNotifier!.value !=
+                                null) {
+                              return _getListWidgetsCategorySubCategory(
+                                  listCategory: widget.presenterHomeScreen!
+                                      .listAllCategoriesNotifier!.value!);
+                            } else {
+                              return const SizedBox();
+                            }
+                          }),
                     ]),
               ),
             ),
           )
         ],
       ),
+    );
+  }
+
+  Widget _getListWidgetsCategorySubCategory(
+      {required List<CategoryEntity> listCategory}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        ...listCategory.map((category) => Column(
+              children: [
+                _containerTitleCategory(
+                    widgetChild: TitleCategory(
+                  titleCategory: category.title,
+                )),
+                _containerSubCategoryMenu(
+                  widgetChild: SubCategoryMenu(
+                      listItemSubCategory: category.subCategory,
+                      context: context,
+                      horizontalOffset: 300,
+                      milliseconds: 1500),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+              ],
+            )),
+      ],
     );
   }
 
@@ -119,17 +127,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(
+        alignment: Alignment.centerLeft,
         margin: const EdgeInsets.only(
-            left: DesignSystemPaddingApp.pd12, top: DesignSystemPaddingApp.pd6),
+            left: DesignSystemPaddingApp.pd10, top: DesignSystemPaddingApp.pd6),
         child: widgetChild);
   }
 
-  Widget _containerMenuCategory({required Widget widgetChild}) {
+  Widget _containerSubCategoryMenu({required Widget widgetChild}) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      //width: MediaQuery.of(context).size.width,
+
       padding: const EdgeInsets.fromLTRB(DesignSystemPaddingApp.pd4,
           DesignSystemPaddingApp.pd6, 0, DesignSystemPaddingApp.pd4),
-      height: 180,
+      height: 200,
       child: widgetChild,
     );
   }

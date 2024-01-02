@@ -17,13 +17,19 @@ class ValueNotifierHomePresenter implements HomeScreenPresenter {
   ValueNotifier<List<CategoryEntity>?>? listAllCategoriesNotifier;
 
   @override
+  ValueNotifier<String>? idSubCategorySelected;
+
+  @override
   void dispose() {
+    state!.dispose();
     listAllCategoriesNotifier!.dispose();
+    idSubCategorySelected!.dispose();
   }
 
   @override
   void init() {
     state = ValueNotifier(UIInitialState());
+    idSubCategorySelected = ValueNotifier('');
     listAllCategoriesNotifier = ValueNotifier(null);
   }
 

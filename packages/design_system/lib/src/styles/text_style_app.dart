@@ -20,7 +20,7 @@ class DesignSystemTextStyleApp {
       fontWeight: FontWeight.bold);
 
   static TextStyle nameCategory = const TextStyle(
-      fontSize: 12,
+      fontSize: 14,
       color: DesignSystemPaletterColorApp.secondaryColorWhite,
       fontWeight: FontWeight.bold);
 
