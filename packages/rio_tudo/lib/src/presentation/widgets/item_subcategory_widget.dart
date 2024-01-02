@@ -2,9 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import '../screen/screens.dart';
 
 import '../../domain/entities/entities.dart';
 import '../../domain/entities/subcategory_entity.dart';
+import 'package:config/src/service_locator/injector_getit.dart';
 
 class ItemSubCategoryWidget extends StatefulWidget {
   SubCategoryEntity subCategory;
@@ -19,7 +21,13 @@ class _ItemSubCategoryWidgetState extends State<ItemSubCategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        InjectorGetIt.instance
+                .get<HomeScreenPresenter>()
+                .idSubCategorySelected =
+            ValueNotifier(widget.subCategory.idSubCategory);
+        Navigator.of(context).pushNamed(RoutesApp.SubCategoryScreen);
+      },
       child: Card(
         elevation: 0,
         child: Container(
@@ -67,13 +75,13 @@ class _ItemSubCategoryWidgetState extends State<ItemSubCategoryWidget> {
                 padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
                 height: 60,
                 width: MediaQuery.of(context).size.width,
-                child: Text(widget.subCategory.title).titleCategory(),
                 decoration: BoxDecoration(
                     color:
                         DesignSystemPaletterColorApp.cardColor.withOpacity(1),
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20))),
+                child: Text(widget.subCategory.title).titleCategory(),
               )
             ],
           ),
