@@ -118,12 +118,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _containerLastTipVisited({required Widget widgetChild}) {
+  /*Widget _containerLastTipVisited({required Widget widgetChild}) {
     return Container(
-        //padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
-        //child: CardItem(),
-        );
-  }
+      //padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
+      child: CardItem(),
+    );
+  }*/
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(
