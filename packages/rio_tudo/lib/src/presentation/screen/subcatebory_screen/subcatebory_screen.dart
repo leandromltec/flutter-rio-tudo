@@ -36,61 +36,99 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
             .get<HomeScreenPresenter>()
             .idSubCategorySelected!
             .value);
+
+    widget.presenterSubCategory!.loadDistricts();
+  }
+
+  @override
+  void dispose() {
+    widget.presenterHomeScreen!.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BaseScreenWidget(
-      indexBottomNavigator: 4,
-      state: widget.presenterSubCategory!.state,
-      widgetScreen: Column(
-        children: [
-          const Padding(
-              padding: EdgeInsets.all(DesignSystemPaddingApp.pd10),
-              child: FieldSearch()),
-          BaseContent(
-            widgetContent: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
-                child: Column(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _containerTitleCategory(
-                          widgetChild: TitleCategory(
-                        titleCategory: 'Almoço com vista',
-                      )),
-                      _containerButton(
-                          widgetChild: ButtonText(
-                        textButton: LabelsApp.textButtonSeeAll,
-                      )),
-                    ],
+    return ValueListenableBuilder(
+      valueListenable: widget.presenterSubCategory!.state!,
+      builder: (_, __, ___) {
+        return BaseScreenWidget(
+          indexBottomNavigator: 4,
+          state: widget.presenterSubCategory!.state,
+          widgetScreen: Column(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(DesignSystemPaddingApp.pd10),
+                  child: FieldSearch(
+                      presenterSubCategory: widget.presenterSubCategory!)),
+              BaseContent(
+                widgetContent: SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
+                    child: Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _containerTitleCategory(
+                              widgetChild: TitleCategory(
+                            titleCategory: InjectorGetIt.instance
+                                .get<HomeScreenPresenter>()
+                                .titleSubCategorySelected!
+                                .value,
+                          )),
+                          _containerButton(
+                              widgetChild: ButtonText(
+                            textButton: LabelsApp.textButtonSeeAll,
+                            onPressedFunction: () async {
+                              await widget.presenterSubCategory!
+                                  .getItemsSubCategory(
+                                      idSubCategorySelected: InjectorGetIt
+                                          .instance
+                                          .get<HomeScreenPresenter>()
+                                          .idSubCategorySelected!
+                                          .value);
+                            },
+                          )),
+                        ],
+                      ),
+                      ValueListenableBuilder(
+                          valueListenable: widget
+                              .presenterSubCategory!.listDistrictNotifier!,
+                          builder: (_, __, ___) {
+                            return ValueListenableBuilder(
+                                valueListenable: widget.presenterSubCategory!
+                                    .listItemDistrictSelectedNotifier!,
+                                builder: (_, __, ___) {
+                                  List<ItemSubCategoryEntity> listItemsTips =
+                                      widget
+                                          .presenterSubCategory!
+                                          .listItemsSubCategoriesNotifier!
+                                          .value!;
+                                  if (widget
+                                      .presenterSubCategory!
+                                      .listItemDistrictSelectedNotifier!
+                                      .value!
+                                      .isNotEmpty) {
+                                    listItemsTips = widget
+                                        .presenterSubCategory!
+                                        .listItemDistrictSelectedNotifier!
+                                        .value!;
+                                  }
+
+                                  return SingleChildScrollView(
+                                    child: _listViewItemsSubCategory(
+                                        listItemsSubCategory: listItemsTips),
+                                  );
+                                });
+                          }),
+                    ]),
                   ),
-                  ValueListenableBuilder(
-                      valueListenable: widget.presenterSubCategory!
-                          .listItemsSubCategoriesNotifier!,
-                      builder: (_, __, ___) {
-                        if (widget.presenterSubCategory!
-                                .listItemsSubCategoriesNotifier!.value !=
-                            null) {
-                          return SingleChildScrollView(
-                            child: _listViewItemsSubCategory(
-                                listItemsSubCategory: widget
-                                    .presenterSubCategory!
-                                    .listItemsSubCategoriesNotifier!
-                                    .value!),
-                          );
-                        } else {
-                          return const SizedBox();
-                        }
-                      }),
-                ]),
-              ),
-            ),
-          )
-        ],
-      ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -115,13 +153,13 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemCount: listItemsSubCategory.length,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: ((context, index) {
         return AnimationConfiguration.staggeredList(
           position: index,
-          duration: Duration(milliseconds: 1500),
+          duration: const Duration(milliseconds: 1000),
           child: SlideAnimation(
-            verticalOffset: 300,
+            verticalOffset: 200,
             child: FadeInAnimation(
               child: CardItem(
                 itemSubCategory: listItemsSubCategory[index],

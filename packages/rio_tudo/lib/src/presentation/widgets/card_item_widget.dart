@@ -46,6 +46,7 @@ class _CardItemState extends State<CardItem> {
                       children: [
                         Expanded(
                           child: Container(
+                            height: 60,
                             padding: const EdgeInsets.fromLTRB(
                                 DesignSystemPaddingApp.pd10,
                                 DesignSystemPaddingApp.pd10,
@@ -62,7 +63,7 @@ class _CardItemState extends State<CardItem> {
                           child: Row(
                             children: [
                               ButtonShare(),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               ButtonFavorite(
@@ -77,14 +78,14 @@ class _CardItemState extends State<CardItem> {
                     Container(
                       padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
                       width: MediaQuery.of(context).size.width,
-                      child: Text(
-                        widget.itemSubCategory.district!,
-                      ).subTitleTipCard(),
                       decoration: BoxDecoration(
                           color: DesignSystemPaletterColorApp.cardColorSubtitle
                               .withOpacity(1),
                           borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(20))),
+                      child: Text(
+                        widget.itemSubCategory.district!,
+                      ).subTitleTipCard(),
                     )
                   ],
                 ),
@@ -92,9 +93,9 @@ class _CardItemState extends State<CardItem> {
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: DesignSystemPaletterColorApp.cardColorButtonLink,
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
                           bottomRight: Radius.circular(20))),
                   width: 80,
@@ -105,7 +106,8 @@ class _CardItemState extends State<CardItem> {
                       SvgPicture.asset(
                         'assets/images/icons/icon_instagram.svg',
                         semanticsLabel: LabelsApp.labelInstagram,
-                        color: Colors.white,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.white, BlendMode.srcIn),
                         width: 40,
                         height: 40,
                       ),
