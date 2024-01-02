@@ -3,6 +3,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../domain/entities/entities.dart';
+import '../../domain/entities/entities.dart';
 import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -57,7 +58,7 @@ class _CardItemState extends State<CardItem> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               right: DesignSystemPaddingApp.pd10),
                           child: Row(
                             children: [
@@ -77,14 +78,12 @@ class _CardItemState extends State<CardItem> {
                     Container(
                       padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: DesignSystemPaletterColorApp.cardColorSubtitle
-                              .withOpacity(1),
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(20))),
                       child: Text(
                         widget.itemSubCategory.district!,
                       ).subTitleTipCard(),
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(20))),
                     )
                   ],
                 ),
