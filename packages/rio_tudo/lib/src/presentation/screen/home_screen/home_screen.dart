@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ))
                         ],
                       ),
-                      _containerLastTipVisited(widgetChild: CardItem()),
+                      //_containerLastTipVisited(widgetChild: CardItem()),
                       const DividerApp(),
                       ValueListenableBuilder(
                           valueListenable: widget
@@ -112,12 +112,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _containerLastTipVisited({required Widget widgetChild}) {
+  /*Widget _containerLastTipVisited({required Widget widgetChild}) {
     return Container(
       //padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
       child: CardItem(),
     );
-  }
+  }*/
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(
