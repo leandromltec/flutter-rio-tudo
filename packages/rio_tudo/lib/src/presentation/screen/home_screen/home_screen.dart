@@ -34,60 +34,66 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScreenWidget(
-      state: widget.presenterHomeScreen!.state,
-      indexBottomNavigator: 0,
-      widgetScreen: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
-            child: Text(LabelsApp.homeText).textTopPage(),
-          ),
-          BaseContent(
-            widgetContent: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          _containerTitleCategory(
-                              widgetChild: TitleCategory(
-                            titleCategory: LabelsApp.titleLastVisitedTip,
-                          )),
-                          Container(
-                              margin: const EdgeInsets.only(
-                                  right: DesignSystemPaddingApp.pd10),
-                              child: ButtonText(
-                                textButton: LabelsApp.textButtonCleanFilter,
-                              ))
-                        ],
-                      ),
-                      //_containerLastTipVisited(widgetChild: CardItem()),
-                      const DividerApp(),
-                      ValueListenableBuilder(
-                          valueListenable: widget
-                              .presenterHomeScreen!.listAllCategoriesNotifier!,
-                          builder: (_, __, ___) {
-                            if (widget.presenterHomeScreen!
-                                    .listAllCategoriesNotifier!.value !=
-                                null) {
-                              return _getListWidgetsCategorySubCategory(
-                                  listCategory: widget.presenterHomeScreen!
-                                      .listAllCategoriesNotifier!.value!);
-                            } else {
-                              return const SizedBox();
-                            }
-                          }),
-                    ]),
+    return ValueListenableBuilder(
+      valueListenable: widget.presenterHomeScreen!.state!,
+      builder: (_, __, ___) {
+        return BaseScreenWidget(
+          state: widget.presenterHomeScreen!.state,
+          indexBottomNavigator: 0,
+          widgetScreen: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
+                child: Text(LabelsApp.homeText).textTopPage(),
               ),
-            ),
-          )
-        ],
-      ),
+              BaseContent(
+                widgetContent: SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _containerTitleCategory(
+                                  widgetChild: TitleCategory(
+                                titleCategory: LabelsApp.titleLastVisitedTip,
+                              )),
+                              Container(
+                                  margin: const EdgeInsets.only(
+                                      right: DesignSystemPaddingApp.pd10),
+                                  child: ButtonText(
+                                    textButton: LabelsApp.textButtonCleanFilter,
+                                    onPressedFunction: () {},
+                                  ))
+                            ],
+                          ),
+                          //_containerLastTipVisited(widgetChild: CardItem()),
+                          const DividerApp(),
+                          ValueListenableBuilder(
+                              valueListenable: widget.presenterHomeScreen!
+                                  .listAllCategoriesNotifier!,
+                              builder: (_, __, ___) {
+                                if (widget.presenterHomeScreen!
+                                        .listAllCategoriesNotifier!.value !=
+                                    null) {
+                                  return _getListWidgetsCategorySubCategory(
+                                      listCategory: widget.presenterHomeScreen!
+                                          .listAllCategoriesNotifier!.value!);
+                                } else {
+                                  return const SizedBox();
+                                }
+                              }),
+                        ]),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 

@@ -17,6 +17,9 @@ class ValueNotifierHomePresenter implements HomeScreenPresenter {
   ValueNotifier<List<CategoryEntity>?>? listAllCategoriesNotifier;
 
   @override
+  ValueNotifier<String>? titleSubCategorySelected;
+
+  @override
   ValueNotifier<String>? idSubCategorySelected;
 
   @override
@@ -30,6 +33,7 @@ class ValueNotifierHomePresenter implements HomeScreenPresenter {
   void init() {
     state = ValueNotifier(UIInitialState());
     idSubCategorySelected = ValueNotifier('');
+    titleSubCategorySelected = ValueNotifier('');
     listAllCategoriesNotifier = ValueNotifier(null);
   }
 

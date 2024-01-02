@@ -26,6 +26,11 @@ class _ItemSubCategoryWidgetState extends State<ItemSubCategoryWidget> {
                 .get<HomeScreenPresenter>()
                 .idSubCategorySelected =
             ValueNotifier(widget.subCategory.idSubCategory);
+
+        InjectorGetIt.instance
+            .get<HomeScreenPresenter>()
+            .titleSubCategorySelected = ValueNotifier(widget.subCategory.title);
+
         Navigator.of(context).pushNamed(RoutesApp.SubCategoryScreen);
       },
       child: Card(

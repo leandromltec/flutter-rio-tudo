@@ -34,7 +34,7 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: widget.state is UILoadingState
+      bottomNavigationBar: widget.state!.value is UILoadingState
           ? null
           : BottomNavigationBarApp(
               indexScreen: widget.indexBottomNavigator,
@@ -65,7 +65,7 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
       body: Container(
           width: MediaQuery.of(context).size.width,
           color: DesignSystemPaletterColorApp.primaryColor,
-          child: widget.state is UILoadingState
+          child: widget.state!.value is UILoadingState
               ? LoadingWidget()
               : widget.widgetScreen),
     );
