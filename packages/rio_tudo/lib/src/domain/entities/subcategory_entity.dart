@@ -2,13 +2,15 @@ import 'package:equatable/equatable.dart';
 import 'entities.dart';
 
 class SubCategoryEntity extends Equatable {
-  final String? subCategory;
-  final String? idSubCategory;
-  final List<ItemSubCategoryEntity>? listItemSubCategory;
+  final String title;
+  final String urlImage;
+  final String idSubCategory;
 
   const SubCategoryEntity(
-      {this.subCategory, this.idSubCategory, this.listItemSubCategory});
+      {required this.title,
+      required this.urlImage,
+      required this.idSubCategory});
 
   @override
-  List<Object?> get props => [subCategory, idSubCategory, listItemSubCategory];
+  List<Object?> get props => [title, urlImage, idSubCategory];
 }

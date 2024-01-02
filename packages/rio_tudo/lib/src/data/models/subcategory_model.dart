@@ -1,26 +1,22 @@
 import '../../domain/entities/entities.dart';
-import 'models.dart';
 
 class SubCategoryModel {
-  String? subCategory;
-  String? idSubCategory;
-  List<ItemSubCategoryModel>? listItemSubCategory;
+  final String title;
+  final String urlImage;
+  final String idSubCategory;
 
-  SubCategoryModel(
-      {this.subCategory, this.idSubCategory, this.listItemSubCategory});
+  const SubCategoryModel(
+      {required this.title,
+      required this.urlImage,
+      required this.idSubCategory});
 
   factory SubCategoryModel.fromJson(Map<String, dynamic> map) {
     return SubCategoryModel(
-        subCategory: map['subCategory'],
-        idSubCategory: map['idSubCategory'],
-        listItemSubCategory: (map['subCategories'] as List)
-            .map((e) => ItemSubCategoryModel.fromJson(e))
-            .toList());
+        title: map['title'],
+        urlImage: map['urlImage'],
+        idSubCategory: map['idSubCategory']);
   }
 
   SubCategoryEntity toEntity() => SubCategoryEntity(
-      subCategory: subCategory,
-      idSubCategory: idSubCategory,
-      listItemSubCategory:
-          listItemSubCategory!.map((e) => e.toEntity()).toList());
+      title: title, urlImage: urlImage, idSubCategory: idSubCategory);
 }

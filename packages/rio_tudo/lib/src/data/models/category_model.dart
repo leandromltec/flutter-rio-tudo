@@ -3,21 +3,20 @@ import 'models.dart';
 
 class CategoryModel {
   final String title;
-  final String urlImage;
-  final String idSubCategory;
+  final List<SubCategoryModel> subCategory;
 
-  const CategoryModel(
-      {required this.title,
-      required this.urlImage,
-      required this.idSubCategory});
+  const CategoryModel({required this.title, required this.subCategory});
 
   factory CategoryModel.fromJson(Map<String, dynamic> map) {
     return CategoryModel(
         title: map['title'],
-        urlImage: map['urlImage'],
-        idSubCategory: map['idSubCategory']);
+        subCategory: (map['subCategory'] as List)
+            .map((e) => SubCategoryModel.fromJson(e))
+            .toList());
   }
 
   CategoryEntity toEntity() => CategoryEntity(
-      title: title, urlImage: urlImage, idSubCategory: idSubCategory);
+      title: title,
+      subCategory:
+          (subCategory).map<SubCategoryEntity>((e) => e.toEntity()).toList());
 }

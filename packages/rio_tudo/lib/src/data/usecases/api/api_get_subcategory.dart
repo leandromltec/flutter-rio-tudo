@@ -2,25 +2,31 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:rio_tudo/src/data/models/models.dart';
-import '../../../domain/entities/subcategory_entity.dart';
+import '../../../domain/entities/entities.dart';
 import '../../../domain/usecases/usecases.dart';
 
-class ApiGetSubCategory implements GetSubCategory {
+class ApiGetSubCategory implements GetSubCategoryItems {
   final String baseUrl;
 
   ApiGetSubCategory({required this.baseUrl});
 
   @override
-  Future<SubCategoryEntity?>? call(GetSubCategoryParams? params) async {
+  Future<List<ItemSubCategoryEntity>?> call(
+      GetSubCategoryParams? params) async {
     try {
       final response =
           await http.get(Uri.parse(baseUrl + params!.idSubCategory));
 
-      SubCategoryModel? subCategoryModel;
+      List<ItemSubCategoryModel>? listItemSubCategoryModel;
 
-      subCategoryModel = SubCategoryModel.fromJson((jsonDecode(response.body)));
+      listItemSubCategoryModel =
+          (jsonDecode(response.body)['itemSubCategories'] as List)
+              .map((e) => ItemSubCategoryModel.fromJson(e))
+              .toList();
 
-      return subCategoryModel.toEntity();
+      return listItemSubCategoryModel
+          .map<ItemSubCategoryEntity>((e) => e.toEntity())
+          .toList();
     } catch (error) {
       print(error);
     }

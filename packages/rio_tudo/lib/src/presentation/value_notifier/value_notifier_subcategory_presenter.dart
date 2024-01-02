@@ -1,22 +1,18 @@
 import 'package:flutter/src/foundation/change_notifier.dart';
 
 import 'package:rio_tudo/src/domain/entities/item_subcategory_entity.dart';
-
-import '../../domain/usecases/usecases.dart';
 import '../base_presenter.dart';
-import '../../domain/entities/subcategory_entity.dart';
+import '../../domain/usecases/usecases.dart';
 import '../screen/screens.dart';
 
 class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
-  GetSubCategory getSubCategorySelected;
+  GetSubCategoryItems getItemsSubCategorySelected;
 
-  ValueNotifierSubCategoryPresenter({required this.getSubCategorySelected});
+  ValueNotifierSubCategoryPresenter(
+      {required this.getItemsSubCategorySelected});
 
   @override
   ValueNotifier<List<ItemSubCategoryEntity>?>? listItemsSubCategoriesNotifier;
-
-  @override
-  ValueNotifier<SubCategoryEntity?>? subCategoryNotifier;
 
   @override
   ValueNotifier<UIState>? state;
@@ -26,26 +22,22 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   @override
   void init() {
     state = ValueNotifier(UIInitialState());
-    subCategoryNotifier = ValueNotifier(const SubCategoryEntity(
-        idSubCategory: null, subCategory: null, listItemSubCategory: null));
     listItemsSubCategoriesNotifier = ValueNotifier(null);
   }
 
   @override
-  Future<SubCategoryEntity?> getSubCategory(
+  Future<List<ItemSubCategoryEntity>?> getItemsSubCategory(
       {required String idSubCategorySelected}) async {
     try {
       state!.value = UILoadingState();
 
-      subCategoryNotifier!.value = await getSubCategorySelected(
+      listItemsSubCategoriesNotifier!.value = await getItemsSubCategorySelected(
           GetSubCategoryParams(idSubCategory: idSubCategorySelected));
 
-      listItemsSubCategoriesNotifier!.value =
-          subCategoryNotifier!.value!.listItemSubCategory;
+      state!.value =
+          UISucessState('Items da Subcategoria carregada com sucesso !');
 
-      state!.value = UISucessState('Subcategoria carregada com sucesso !');
-
-      return subCategoryNotifier!.value;
+      return listItemsSubCategoriesNotifier!.value;
     } catch (error) {
       state!.value = UIErrorState('errorMessage');
     }

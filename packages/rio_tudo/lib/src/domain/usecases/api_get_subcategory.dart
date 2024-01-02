@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 import '../entities/entities.dart';
 
-abstract class GetSubCategory {
-  Future<SubCategoryEntity?>? call(GetSubCategoryParams? params);
+abstract class GetSubCategoryItems {
+  Future<List<ItemSubCategoryEntity>?> call(GetSubCategoryParams? params);
 }
 
 class GetSubCategoryParams extends Equatable {
