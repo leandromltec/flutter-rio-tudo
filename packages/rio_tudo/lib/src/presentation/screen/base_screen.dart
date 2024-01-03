@@ -39,29 +39,31 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
           : BottomNavigationBarApp(
               indexScreen: widget.indexBottomNavigator,
             ),
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: const IconThemeData(
-            color: DesignSystemPaletterColorApp.secondaryColorWhite),
-        surfaceTintColor: Colors.transparent,
-        title: Text(
-          LabelsApp.titleAppBar,
-          style: const TextStyle(
-              color: DesignSystemPaletterColorApp.fontPrimaryColor),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RoutesApp.InfoScreen);
-              },
-              icon: const Icon(
-                Icons.info,
-                color: DesignSystemPaletterColorApp.secondaryColorWhite,
-                size: 30,
-              ))
-        ],
-        backgroundColor: DesignSystemPaletterColorApp.primaryColor,
-      ),
+      appBar: widget.state!.value is UILoadingState
+          ? null
+          : AppBar(
+              centerTitle: true,
+              iconTheme: const IconThemeData(
+                  color: DesignSystemPaletterColorApp.secondaryColorWhite),
+              surfaceTintColor: Colors.transparent,
+              title: Text(
+                LabelsApp.titleAppBar,
+                style: const TextStyle(
+                    color: DesignSystemPaletterColorApp.fontPrimaryColor),
+              ),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, RoutesApp.InfoScreen);
+                    },
+                    icon: const Icon(
+                      Icons.info,
+                      color: DesignSystemPaletterColorApp.secondaryColorWhite,
+                      size: 30,
+                    ))
+              ],
+              backgroundColor: DesignSystemPaletterColorApp.primaryColor,
+            ),
       body: Container(
           width: MediaQuery.of(context).size.width,
           color: DesignSystemPaletterColorApp.primaryColor,

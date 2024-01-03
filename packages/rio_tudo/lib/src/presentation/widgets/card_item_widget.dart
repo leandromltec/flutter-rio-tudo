@@ -21,7 +21,11 @@ class _CardItemState extends State<CardItem> {
     return Card(
       elevation: 0,
       child: Container(
-          margin: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+          margin: const EdgeInsets.fromLTRB(
+              DesignSystemPaddingApp.pd8,
+              DesignSystemPaddingApp.pd4,
+              DesignSystemPaddingApp.pd8,
+              DesignSystemPaddingApp.pd8),
           width: MediaQuery.of(context).size.width,
           height: 100,
           decoration: BoxDecoration(
@@ -78,10 +82,10 @@ class _CardItemState extends State<CardItem> {
                     Container(
                       padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: DesignSystemPaletterColorApp.cardColorSubtitle
-                              .withOpacity(1),
-                          borderRadius: const BorderRadius.only(
+                      decoration: const BoxDecoration(
+                          color: DesignSystemPaletterColorApp
+                              .cardColorSubtitleGray,
+                          borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20))),
                       child: Text(
                         widget.itemSubCategory.district!,

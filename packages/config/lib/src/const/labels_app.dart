@@ -19,6 +19,8 @@ class LabelsApp {
   static String textButtonSeeAll = 'Ver todos';
   static String textButtonSeeInstagram = 'Ver Instagram';
   static String textDistrictNofound = '* Bairro não encontrado';
+  static String textOrderDistric =
+      '* Ordenadas por ordem alfabética crescente pelo nome do bairro';
 
   //Favorite Screen
   static String titleSeeUourFavoriteTips = 'Veja suas dicas favoritas !';
