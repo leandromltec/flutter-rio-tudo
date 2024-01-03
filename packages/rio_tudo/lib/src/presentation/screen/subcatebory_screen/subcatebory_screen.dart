@@ -63,8 +63,12 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
               BaseContent(
                 widgetContent: SingleChildScrollView(
                   child: Container(
-                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
+                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd16),
                     child: Column(children: [
+                      _containerTextTop(),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,10 +136,26 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
     );
   }
 
+  Widget _containerTextTop() {
+    return Container(
+      padding: const EdgeInsets.all(
+        DesignSystemPaddingApp.pd8,
+      ),
+      decoration: BoxDecoration(
+          color: DesignSystemPaletterColorApp.primaryColor,
+          borderRadius: BorderRadius.circular(20)),
+      child: Text(
+        LabelsApp.textOrderDistric,
+        style: const TextStyle(
+            fontSize: 12, color: DesignSystemPaletterColorApp.secondaryColor),
+      ),
+    );
+  }
+
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(
         margin: const EdgeInsets.only(
-            left: DesignSystemPaddingApp.pd24,
+            left: DesignSystemPaddingApp.pd10,
             top: DesignSystemPaddingApp.pd10),
         child: widgetChild);
   }

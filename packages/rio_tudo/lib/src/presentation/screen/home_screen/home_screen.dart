@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               BaseContent(
                 widgetContent: SingleChildScrollView(
                   child: Container(
-                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd8),
+                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd16),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,

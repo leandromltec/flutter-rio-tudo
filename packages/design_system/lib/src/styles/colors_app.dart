@@ -25,6 +25,7 @@ class DesignSystemPaletterColorApp {
   //Card Colors
   static const cardColor = DesignSystemColorApp(0Xffe85d04);
   static const cardColorSubtitle = DesignSystemColorApp(0Xfff57c00);
+  static const cardColorSubtitleGray = DesignSystemColorApp(0Xff303030);
   static const cardColorButtonLink = DesignSystemColorApp(0Xff8c34be);
   static const cardColorNoSubtitle = DesignSystemColorApp(0Xfffb8500);
   static const cardColorButtonLinkNoSubtitle = DesignSystemColorApp(0Xffdb2266);
