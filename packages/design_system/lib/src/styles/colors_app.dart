@@ -30,4 +30,5 @@ class DesignSystemPaletterColorApp {
   static const cardColorNoSubtitle = DesignSystemColorApp(0Xfffb8500);
   static const cardColorButtonLinkNoSubtitle = DesignSystemColorApp(0Xffdb2266);
   static const fontCardColorSubtitle = DesignSystemColorApp(0Xfff8f9fa);
+  static const cardColorFavoriteButton = DesignSystemColorApp(0Xff880e4f);
 }

@@ -7,6 +7,7 @@ abstract class SubCategoryPresenter extends BasePresenter {
   ValueNotifier<List<ItemSubCategoryEntity>?>? listItemsSubCategoriesNotifier;
   ValueNotifier<List<String>?>? listDistrictNotifier;
   ValueNotifier<List<ItemSubCategoryEntity>?>? listItemDistrictSelectedNotifier;
+  ValueNotifier<bool>? isFavoriteNotifier;
 
   Future<List<ItemSubCategoryEntity>?> getItemsSubCategory(
       {required String idSubCategorySelected});

@@ -55,7 +55,6 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
           indexBottomNavigator: 4,
           state: widget.presenterSubCategory!.state,
           widgetScreen: Column(
-            
             children: [
               Padding(
                   padding: const EdgeInsets.all(DesignSystemPaddingApp.pd10),
@@ -66,70 +65,72 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(DesignSystemPaddingApp.pd16),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                      _containerTextTop(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _containerTitleCategory(
-                              widgetChild: TitleCategory(
-                            titleCategory: InjectorGetIt.instance
-                                .get<HomeScreenPresenter>()
-                                .titleSubCategorySelected!
-                                .value,
-                          )),
-                          _containerButton(
-                              widgetChild: ButtonText(
-                            textButton: LabelsApp.textButtonSeeAll,
-                            onPressedFunction: () async {
-                              await widget.presenterSubCategory!
-                                  .getItemsSubCategory(
-                                      idSubCategorySelected: InjectorGetIt
-                                          .instance
-                                          .get<HomeScreenPresenter>()
-                                          .idSubCategorySelected!
-                                          .value);
-                            },
-                          )),
-                        ],
-                      ),
-                      ValueListenableBuilder(
-                          valueListenable: widget
-                              .presenterSubCategory!.listDistrictNotifier!,
-                          builder: (_, __, ___) {
-                            return ValueListenableBuilder(
-                                valueListenable: widget.presenterSubCategory!
-                                    .listItemDistrictSelectedNotifier!,
-                                builder: (_, __, ___) {
-                                  List<ItemSubCategoryEntity> listItemsTips =
-                                      widget
-                                          .presenterSubCategory!
-                                          .listItemsSubCategoriesNotifier!
-                                          .value!;
-                                  if (widget
-                                      .presenterSubCategory!
-                                      .listItemDistrictSelectedNotifier!
-                                      .value!
-                                      .isNotEmpty) {
-                                    listItemsTips = widget
+                          _containerTextTop(),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _containerTitleCategory(
+                                  widgetChild: TitleCategory(
+                                titleCategory: InjectorGetIt.instance
+                                    .get<HomeScreenPresenter>()
+                                    .titleSubCategorySelected!
+                                    .value,
+                              )),
+                              _containerButton(
+                                  widgetChild: ButtonText(
+                                textButton: LabelsApp.textButtonSeeAll,
+                                onPressedFunction: () async {
+                                  await widget.presenterSubCategory!
+                                      .getItemsSubCategory(
+                                          idSubCategorySelected: InjectorGetIt
+                                              .instance
+                                              .get<HomeScreenPresenter>()
+                                              .idSubCategorySelected!
+                                              .value);
+                                },
+                              )),
+                            ],
+                          ),
+                          ValueListenableBuilder(
+                              valueListenable: widget
+                                  .presenterSubCategory!.listDistrictNotifier!,
+                              builder: (_, __, ___) {
+                                return ValueListenableBuilder(
+                                    valueListenable: widget
                                         .presenterSubCategory!
-                                        .listItemDistrictSelectedNotifier!
-                                        .value!;
-                                  }
+                                        .listItemDistrictSelectedNotifier!,
+                                    builder: (_, __, ___) {
+                                      List<ItemSubCategoryEntity>
+                                          listItemsTips = widget
+                                              .presenterSubCategory!
+                                              .listItemsSubCategoriesNotifier!
+                                              .value!;
+                                      if (widget
+                                          .presenterSubCategory!
+                                          .listItemDistrictSelectedNotifier!
+                                          .value!
+                                          .isNotEmpty) {
+                                        listItemsTips = widget
+                                            .presenterSubCategory!
+                                            .listItemDistrictSelectedNotifier!
+                                            .value!;
+                                      }
 
-                                  return SingleChildScrollView(
-                                    child: _listViewItemsSubCategory(
-                                        listItemsSubCategory: listItemsTips),
-                                  );
-                                });
-                          }),
-                    ]),
+                                      return SingleChildScrollView(
+                                        child: _listViewItemsSubCategory(
+                                            listItemsSubCategory:
+                                                listItemsTips),
+                                      );
+                                    });
+                              }),
+                        ]),
                   ),
                 ),
               )
@@ -187,6 +188,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
             verticalOffset: 200,
             child: FadeInAnimation(
               child: CardItem(
+                presenterSubCategory: widget.presenterSubCategory,
                 itemSubCategory: listItemsSubCategory[index],
               ),
             ),
