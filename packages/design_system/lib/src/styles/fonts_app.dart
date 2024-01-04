@@ -47,6 +47,10 @@ extension TextExtension on Text {
     return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.subTitleTipCard);
   }
 
+  Text textButtonSeeInstagram({TextStyle? style}) {
+    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.textButtonSeeInstagram);
+  }
+
   Text textFavoriteScreen({TextStyle? style}) {
     return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.textFavoriteScreen);
   }

@@ -102,7 +102,7 @@ class _CardItemState extends State<CardItem> {
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
                           bottomRight: Radius.circular(20))),
-                  width: 80,
+                  width: 100,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +118,7 @@ class _CardItemState extends State<CardItem> {
                       Text(
                         LabelsApp.textButtonSeeInstagram,
                         textAlign: TextAlign.center,
-                      ).subTitleTipCard(),
+                      ).textButtonSeeInstagram(),
                     ],
                   ),
                 ),

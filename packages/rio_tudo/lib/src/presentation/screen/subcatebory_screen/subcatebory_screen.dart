@@ -55,6 +55,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
           indexBottomNavigator: 4,
           state: widget.presenterSubCategory!.state,
           widgetScreen: Column(
+            
             children: [
               Padding(
                   padding: const EdgeInsets.all(DesignSystemPaddingApp.pd10),
@@ -64,7 +65,10 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                 widgetContent: SingleChildScrollView(
                   child: Container(
                     padding: const EdgeInsets.all(DesignSystemPaddingApp.pd16),
-                    child: Column(children: [
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                       _containerTextTop(),
                       const SizedBox(
                         height: 10,
@@ -138,8 +142,9 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
 
   Widget _containerTextTop() {
     return Container(
+      margin: const EdgeInsets.only(left: DesignSystemPaddingApp.pd10),
       padding: const EdgeInsets.all(
-        DesignSystemPaddingApp.pd8,
+        DesignSystemPaddingApp.pd10,
       ),
       decoration: BoxDecoration(
           color: DesignSystemPaletterColorApp.primaryColor,

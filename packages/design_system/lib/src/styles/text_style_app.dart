@@ -35,6 +35,11 @@ class DesignSystemTextStyleApp {
       fontSize: 14,
       fontWeight: FontWeight.bold);
 
+      static TextStyle textButtonSeeInstagram = const TextStyle(
+      color: DesignSystemPaletterColorApp.fontPrimaryColor,
+      fontSize: 12,
+      fontWeight: FontWeight.bold);
+
   static TextStyle textFavoriteScreen = const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.bold,

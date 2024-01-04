@@ -33,7 +33,11 @@ class _FieldSearchState extends State<FieldSearch> {
                       color: DesignSystemPaletterColorApp.secondaryColor),
                   borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: TypeAheadField(
-                  noItemsFoundBuilder: (context) => SizedBox(
+                  noItemsFoundBuilder: (context) => Container(
+                        margin:
+                            const EdgeInsets.all(DesignSystemPaddingApp.pd4),
+                        padding: const EdgeInsets.only(
+                            left: DesignSystemPaddingApp.pd4),
                         height: 50,
                         child: _widgetSuggestion(LabelsApp.textDistrictNofound),
                       ),
@@ -75,15 +79,12 @@ class _FieldSearchState extends State<FieldSearch> {
   }
 
   Widget _widgetSuggestion(String suggestion) {
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.only(
-            left: DesignSystemPaddingApp.pd16,
-            top: DesignSystemPaddingApp.pd8,
-            bottom: DesignSystemPaddingApp.pd2),
+    return Container(
+      margin: const EdgeInsets.all(DesignSystemPaddingApp.pd6),
+      padding: const EdgeInsets.only(left: DesignSystemPaddingApp.pd10),
+      child: Flexible(
         child: Text(suggestion,
             maxLines: 1,
-            overflow: TextOverflow.ellipsis,
             style: DesignSystemTextStyleApp.textHintSubCategoryScreen),
       ),
     );
