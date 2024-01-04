@@ -88,9 +88,9 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
                           height: 40,
                         ),
                         Text(
-                          LabelsApp.textButtonSeeInstagram,
-                          textAlign: TextAlign.center,
-                        ).subTitleTipCard(),
+                        LabelsApp.textButtonSeeInstagram,
+                        textAlign: TextAlign.center,
+                      ).textButtonSeeInstagram(),
                       ],
                     ),
                   ),
