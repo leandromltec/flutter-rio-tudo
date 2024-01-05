@@ -29,6 +29,8 @@ class LabelsApp {
   static String textTouchThe = 'favorita toque no ';
   static String textNumberFavorites =
       'Você pode adicionar até 10 dicas favoritas';
+  static String textAddFavorite = 'Adicionado aos favoritos com sucesso !';
+  static String textRemovedFavorite = 'Removido dos favoritos com sucesso !';
 
   static String labelInstagram = 'Instagram';
 

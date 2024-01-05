@@ -2,14 +2,16 @@ import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../rio_tudo.dart';
 import '../../domain/entities/entities.dart';
 import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardItem extends StatefulWidget {
+  final SubCategoryPresenter? presenterSubCategory;
   final ItemSubCategoryEntity itemSubCategory;
 
-  const CardItem({required this.itemSubCategory});
+  const CardItem({required this.itemSubCategory, this.presenterSubCategory});
 
   @override
   State<CardItem> createState() => _CardItemState();
@@ -70,9 +72,32 @@ class _CardItemState extends State<CardItem> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              ButtonFavorite(
-                                onTapFavorite: () {},
-                              ),
+                              ValueListenableBuilder(
+                                  valueListenable: widget.presenterSubCategory!
+                                      .isFavoriteNotifier!,
+                                  builder: (_, __, ___) {
+                                    return ButtonFavorite(
+                                      onTapFavorite: () {
+                                        widget.presenterSubCategory!
+                                                .isFavoriteNotifier!.value =
+                                            !widget.presenterSubCategory!
+                                                .isFavoriteNotifier!.value;
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                duration: const Duration(
+                                                    milliseconds: 2000),
+                                                content: Text(widget
+                                                        .presenterSubCategory!
+                                                        .isFavoriteNotifier!
+                                                        .value
+                                                    ? LabelsApp.textAddFavorite
+                                                    : LabelsApp
+                                                        .textRemovedFavorite)));
+                                      },
+                                      isFavorite: widget.presenterSubCategory!
+                                          .isFavoriteNotifier!.value,
+                                    );
+                                  })
                             ],
                           ),
                         ),
