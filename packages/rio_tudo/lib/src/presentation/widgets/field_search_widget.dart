@@ -7,9 +7,11 @@ import '../../../rio_tudo.dart';
 
 class FieldSearch extends StatefulWidget {
   final SubCategoryPresenter presenterSubCategory;
+  SuggestionsBoxController? suggestionBoxController;
 
   // ignore: use_key_in_widget_constructors
-  const FieldSearch({required this.presenterSubCategory});
+  FieldSearch(
+      {required this.presenterSubCategory, this.suggestionBoxController});
 
   @override
   State<FieldSearch> createState() => _FieldSearchState();
@@ -17,6 +19,7 @@ class FieldSearch extends StatefulWidget {
 
 class _FieldSearchState extends State<FieldSearch> {
   String? userSelected;
+  final TextEditingController _typeAheadController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +36,19 @@ class _FieldSearchState extends State<FieldSearch> {
                       color: DesignSystemPaletterColorApp.secondaryColor),
                   borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: TypeAheadField(
-                  noItemsFoundBuilder: (context) => Container(
-                        margin:
-                            const EdgeInsets.all(DesignSystemPaddingApp.pd4),
-                        padding: const EdgeInsets.only(
-                            left: DesignSystemPaddingApp.pd4),
-                        height: 50,
+                  suggestionsBoxController: widget.suggestionBoxController,
+                  hideSuggestionsOnKeyboardHide: true,
+                  noItemsFoundBuilder: (context) => SizedBox(
+                        height: 40,
                         child: _widgetSuggestion(LabelsApp.textDistrictNofound),
                       ),
                   suggestionsBoxDecoration: const SuggestionsBoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   textFieldConfiguration: TextFieldConfiguration(
+                    onSubmitted: (value) {
+                      print("foi");
+                    },
+                    controller: _typeAheadController,
                     autofillHints: ["AutoFillHints 1", "AutoFillHints 2"],
                     autofocus: false,
                     style: DesignSystemTextStyleApp.textHintSubCategoryScreen,
@@ -63,17 +68,32 @@ class _FieldSearchState extends State<FieldSearch> {
                             DesignSystemTextStyleApp.textHintSubCategoryScreen),
                   ),
                   suggestionsCallback: (value) {
-                    return getSuggestions(value);
+                    List<String> listSuggestions = [];
+                    bool isSelectedSuggestion = widget.presenterSubCategory
+                            .suggestionSelectedNotifier!.value ==
+                        value;
+
+                    if (isSelectedSuggestion) {
+                      listSuggestions = getSuggestions("");
+                    }
+
+                    if (!isSelectedSuggestion && value.length >= 3) {
+                      listSuggestions = getSuggestions(value);
+                    } else {
+                      listSuggestions = getSuggestions("");
+                    }
+                    return listSuggestions;
                   },
                   itemBuilder: (context, String suggestion) {
                     return _widgetSuggestion(suggestion);
                   },
                   onSuggestionSelected: (suggestion) {
+                    _typeAheadController.text = suggestion;
+
+                    widget.presenterSubCategory.suggestionSelectedNotifier!
+                        .value = suggestion;
                     widget.presenterSubCategory.getItemsSubCategoryByDistrict(
                         districtSelected: suggestion);
-                    setState(() {
-                      //_suggestionSelectedControler.text = suggestion;
-                    });
                   }));
         });
   }
@@ -92,7 +112,7 @@ class _FieldSearchState extends State<FieldSearch> {
 
   List<String> getSuggestions(String query) {
     List<String> matches = [];
-    matches.addAll(widget.presenterSubCategory!.listDistrictNotifier!.value!);
+    matches.addAll(widget.presenterSubCategory.listDistrictNotifier!.value!);
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }

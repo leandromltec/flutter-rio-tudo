@@ -27,12 +27,16 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   ValueNotifier<bool>? isFavoriteNotifier;
 
   @override
+  ValueNotifier<String>? suggestionSelectedNotifier;
+
+  @override
   void dispose() {
     state!.dispose();
     listItemsSubCategoriesNotifier!.dispose();
     listDistrictNotifier!.dispose();
     listItemDistrictSelectedNotifier!.dispose();
     isFavoriteNotifier!.dispose();
+    suggestionSelectedNotifier!.dispose();
   }
 
   @override
@@ -42,6 +46,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
     listItemDistrictSelectedNotifier = ValueNotifier(null);
     listDistrictNotifier = ValueNotifier(null);
     isFavoriteNotifier = ValueNotifier(false);
+    suggestionSelectedNotifier = ValueNotifier('');
   }
 
   @override

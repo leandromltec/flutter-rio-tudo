@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:config/src/service_locator/injector_getit.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import '../../../domain/entities/entities.dart';
 import '../../widgets/widgets.dart';
 import '../base_screen.dart';
@@ -48,93 +49,103 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SuggestionsBoxController suggestionBoxController =
+        SuggestionsBoxController();
+
     return ValueListenableBuilder(
       valueListenable: widget.presenterSubCategory!.state!,
       builder: (_, __, ___) {
-        return BaseScreenWidget(
-          indexBottomNavigator: 4,
-          state: widget.presenterSubCategory!.state,
-          widgetScreen: Column(
-            children: [
-              Padding(
-                  padding: const EdgeInsets.all(DesignSystemPaddingApp.pd10),
-                  child: FieldSearch(
-                      presenterSubCategory: widget.presenterSubCategory!)),
-              BaseContent(
-                widgetContent: SingleChildScrollView(
-                  child: Container(
-                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd16),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _containerTextTop(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _containerTitleCategory(
-                                  widgetChild: TitleCategory(
-                                titleCategory: InjectorGetIt.instance
-                                    .get<HomeScreenPresenter>()
-                                    .titleSubCategorySelected!
-                                    .value,
-                              )),
-                              _containerButton(
-                                  widgetChild: ButtonText(
-                                textButton: LabelsApp.textButtonSeeAll,
-                                onPressedFunction: () async {
-                                  await widget.presenterSubCategory!
-                                      .getItemsSubCategory(
-                                          idSubCategorySelected: InjectorGetIt
-                                              .instance
-                                              .get<HomeScreenPresenter>()
-                                              .idSubCategorySelected!
-                                              .value);
-                                },
-                              )),
-                            ],
-                          ),
-                          ValueListenableBuilder(
-                              valueListenable: widget
-                                  .presenterSubCategory!.listDistrictNotifier!,
-                              builder: (_, __, ___) {
-                                return ValueListenableBuilder(
-                                    valueListenable: widget
-                                        .presenterSubCategory!
-                                        .listItemDistrictSelectedNotifier!,
-                                    builder: (_, __, ___) {
-                                      List<ItemSubCategoryEntity>
-                                          listItemsTips = widget
-                                              .presenterSubCategory!
-                                              .listItemsSubCategoriesNotifier!
-                                              .value!;
-                                      if (widget
+        return GestureDetector(
+          onTap: () {
+            suggestionBoxController.close();
+          },
+          child: BaseScreenWidget(
+            indexBottomNavigator: 4,
+            state: widget.presenterSubCategory!.state,
+            widgetScreen: Column(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd10),
+                    child: FieldSearch(
+                        suggestionBoxController: suggestionBoxController,
+                        presenterSubCategory: widget.presenterSubCategory!)),
+                BaseContent(
+                  widgetContent: SingleChildScrollView(
+                    child: Container(
+                      padding:
+                          const EdgeInsets.all(DesignSystemPaddingApp.pd16),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _containerTextTop(),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _containerTitleCategory(
+                                    widgetChild: TitleCategory(
+                                  titleCategory: InjectorGetIt.instance
+                                      .get<HomeScreenPresenter>()
+                                      .titleSubCategorySelected!
+                                      .value,
+                                )),
+                                _containerButton(
+                                    widgetChild: ButtonText(
+                                  textButton: LabelsApp.textButtonSeeAll,
+                                  onPressedFunction: () async {
+                                    await widget.presenterSubCategory!
+                                        .getItemsSubCategory(
+                                            idSubCategorySelected: InjectorGetIt
+                                                .instance
+                                                .get<HomeScreenPresenter>()
+                                                .idSubCategorySelected!
+                                                .value);
+                                  },
+                                )),
+                              ],
+                            ),
+                            ValueListenableBuilder(
+                                valueListenable: widget.presenterSubCategory!
+                                    .listDistrictNotifier!,
+                                builder: (_, __, ___) {
+                                  return ValueListenableBuilder(
+                                      valueListenable: widget
                                           .presenterSubCategory!
-                                          .listItemDistrictSelectedNotifier!
-                                          .value!
-                                          .isNotEmpty) {
-                                        listItemsTips = widget
+                                          .listItemDistrictSelectedNotifier!,
+                                      builder: (_, __, ___) {
+                                        List<ItemSubCategoryEntity>
+                                            listItemsTips = widget
+                                                .presenterSubCategory!
+                                                .listItemsSubCategoriesNotifier!
+                                                .value!;
+                                        if (widget
                                             .presenterSubCategory!
                                             .listItemDistrictSelectedNotifier!
-                                            .value!;
-                                      }
+                                            .value!
+                                            .isNotEmpty) {
+                                          listItemsTips = widget
+                                              .presenterSubCategory!
+                                              .listItemDistrictSelectedNotifier!
+                                              .value!;
+                                        }
 
-                                      return SingleChildScrollView(
-                                        child: _listViewItemsSubCategory(
-                                            listItemsSubCategory:
-                                                listItemsTips),
-                                      );
-                                    });
-                              }),
-                        ]),
+                                        return SingleChildScrollView(
+                                          child: _listViewItemsSubCategory(
+                                              listItemsSubCategory:
+                                                  listItemsTips),
+                                        );
+                                      });
+                                }),
+                          ]),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         );
       },
