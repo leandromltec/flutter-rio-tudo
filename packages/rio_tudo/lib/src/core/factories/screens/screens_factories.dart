@@ -4,3 +4,5 @@ export 'influencer_screen_factory.dart';
 export 'influencer_screen_presenter_factory.dart';
 export 'subcategory_screen_factory.dart';
 export 'subcategory_screen_presenter_factory.dart';
+export 'info_screen_factory.dart';
+export 'info_screen_presenter_factory.dart';
