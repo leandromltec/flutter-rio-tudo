@@ -23,7 +23,8 @@ class RioTudoSetupModule implements SetupGetItInterface {
       RoutesApp.HomeScreen: (BuildContext context) => makeHomeHomeScreen(),
       RoutesApp.SubCategoryScreen: (BuildContext context) =>
           makeSubCategoryScreen(),
-      RoutesApp.InfluencerScreen: (BuildContext context) => InfluencersScreen(),
+      RoutesApp.InfluencerScreen: (BuildContext context) =>
+          makeInfluencerScreen(),
       RoutesApp.FavoriteScreen: (BuildContext context) => FavoriteScreen(),
       RoutesApp.InfoScreen: (BuildContext context) => InfoScreen(),
     };
