@@ -4,4 +4,6 @@ class Urls {
   static const endPointSubCategory = '';
 
   static const endPointInfluencers = '';
+
+  static const endPointInfo = '';
 }

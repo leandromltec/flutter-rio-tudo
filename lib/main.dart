@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rio_tudo/rio_tudo.dart';
 import 'dart:async';
-import 'dart:io';
-
 import 'package:uni_links/uni_links.dart';
 
 bool _initialURILinkHandled = false;

@@ -22,6 +22,8 @@ class LabelsApp {
   static String textOrderDistric =
       '* Ordenadas por ordem alfabética crescente\n  pelo nome do bairro';
 
+  static String titleListImages = 'Créditos das imagens usadas neste app';
+
   //Favorite Screen
   static String titleSeeUourFavoriteTips = 'Veja suas dicas favoritas !';
   static String textNoTipAsAavorite = '* Nenhuma dica favorita ';
