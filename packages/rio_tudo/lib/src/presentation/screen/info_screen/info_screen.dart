@@ -188,8 +188,8 @@ class _InfoScreenState extends State<InfoScreen> {
               width: 10,
             ),
             GestureDetector(
-                onTap: () {
-                  Clipboard.setData(const ClipboardData(text: 'contato'))
+                onTap: () async {
+                  await Clipboard.setData(const ClipboardData(text: 'contato'))
                       .then((value) => {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(info.textSnackBarContact!)))
