@@ -72,7 +72,7 @@ class _CardItemState extends State<CardItem> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              ValueListenableBuilder(
+                              /*ValueListenableBuilder(
                                   valueListenable: widget.presenterSubCategory!
                                       .isFavoriteNotifier!,
                                   builder: (_, __, ___) {
@@ -97,7 +97,7 @@ class _CardItemState extends State<CardItem> {
                                       isFavorite: widget.presenterSubCategory!
                                           .isFavoriteNotifier!.value,
                                     );
-                                  })
+                                  })*/
                             ],
                           ),
                         ),

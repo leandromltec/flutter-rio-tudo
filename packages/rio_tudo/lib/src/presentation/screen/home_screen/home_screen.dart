@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ))
                             ],
                           ),
-                          //_containerLastTipVisited(widgetChild: CardItem()),
+                          _containerLastTipVisited(),
                           const DividerApp(),
                           ValueListenableBuilder(
                               valueListenable: widget.presenterHomeScreen!
@@ -124,12 +124,19 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /*Widget _containerLastTipVisited({required Widget widgetChild}) {
+  Widget _containerLastTipVisited() {
+    ItemSubCategoryEntity? itemSubCategory = ItemSubCategoryEntity();
+    itemSubCategory!.district = 'Ipanema';
+    itemSubCategory.titleTip = 'Ultimo visitado';
+    itemSubCategory.urlInstagram = 'url';
+
     return Container(
       //padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
-      child: CardItem(),
+      child: CardItem(
+        itemSubCategory: itemSubCategory,
+      ),
     );
-  }*/
+  }
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(

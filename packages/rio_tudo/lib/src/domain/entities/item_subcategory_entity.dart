@@ -1,12 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class ItemSubCategoryEntity extends Equatable {
-  final String? titleTip;
-  final String? district;
-  final String? urlInstagram;
+  String? titleTip;
+  String? district;
+  String? urlInstagram;
 
-  const ItemSubCategoryEntity(
-      {this.titleTip, this.district, this.urlInstagram});
+  ItemSubCategoryEntity({this.titleTip, this.district, this.urlInstagram});
 
   @override
   List<Object?> get props => [titleTip, district, urlInstagram];
