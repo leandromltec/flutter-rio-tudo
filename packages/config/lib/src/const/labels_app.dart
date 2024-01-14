@@ -26,8 +26,6 @@ class LabelsApp {
 
   //Favorite Screen
   static String titleSeeUourFavoriteTips = 'Veja suas dicas favoritas !';
-  static String textNoTipAsAavorite = '* Nenhuma dica favorita ';
-  static String textAsFavorite = 'Para adicionar uma dica como';
   static String textTouchThe = 'favorita toque no ';
   static String textNumberFavorites =
       'Você pode adicionar até 10 dicas favoritas';
