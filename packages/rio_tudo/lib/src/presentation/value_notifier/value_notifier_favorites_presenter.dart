@@ -1,3 +1,4 @@
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/entities.dart';
@@ -35,9 +36,10 @@ class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
 
       favoritesNotifier!.value = await getFavorites();
 
-      state!.value = UISucessState('Favoritos carregado com sucesso');
+      state!.value = UISucessState(LabelsApp.sucessMessageFavorites);
     } catch (error) {
-      state!.value = UIErrorState('errorMessage');
+      state!.value =
+          UIErrorState(LabelsApp.errorMessageFavorites, TypeUsecase.favorites);
     }
   }
 }

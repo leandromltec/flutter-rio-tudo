@@ -32,13 +32,16 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
   _loadData() async {
     widget.presenterSubCategory!.init();
 
-    await widget.presenterSubCategory!.getItemsSubCategory(
-        idSubCategorySelected: InjectorGetIt.instance
-            .get<HomeScreenPresenter>()
-            .idSubCategorySelected!
-            .value);
+    List<ItemSubCategoryEntity>? listSubCategory =
+        await widget.presenterSubCategory!.getItemsSubCategory(
+            idSubCategorySelected: InjectorGetIt.instance
+                .get<HomeScreenPresenter>()
+                .idSubCategorySelected!
+                .value);
 
-    widget.presenterSubCategory!.loadDistricts();
+    if (listSubCategory != null) {
+      widget.presenterSubCategory!.loadDistricts();
+    }
   }
 
   @override

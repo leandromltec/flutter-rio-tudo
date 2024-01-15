@@ -1,3 +1,4 @@
+import 'package:config/config.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -9,37 +10,40 @@ abstract class BasePresenter {
 }
 
 abstract class UIState extends Equatable {
-  final String description;
+  final String descriptionState;
+  final TypeUsecase? typeUsecaseState;
 
-  const UIState(this.description);
+  const UIState(this.descriptionState, this.typeUsecaseState);
 }
 
 class UIInitialState extends UIState {
-  UIInitialState() : super('');
+  UIInitialState() : super('', null);
 
   @override
-  List<Object> get props => [description];
+  List<Object> get props => [descriptionState];
 }
 
 class UILoadingState extends UIState {
-  UILoadingState() : super('');
+  UILoadingState() : super('', null);
 
   @override
-  List<Object> get props => [description];
+  List<Object> get props => [descriptionState];
 }
 
 class UISucessState extends UIState {
-  UISucessState(String description) : super('');
+  UISucessState(String descriptionState) : super('', null);
 
   @override
-  List<Object> get props => [description];
+  List<Object> get props => [descriptionState];
 }
 
 class UIErrorState extends UIState {
   final String errorMessage;
+  final TypeUsecase typeUsecase;
 
-  UIErrorState(this.errorMessage) : super(errorMessage);
+  UIErrorState(this.errorMessage, this.typeUsecase)
+      : super(errorMessage, typeUsecase);
 
   @override
-  List<Object> get props => [description];
+  List<Object> get props => [descriptionState, typeUsecase];
 }

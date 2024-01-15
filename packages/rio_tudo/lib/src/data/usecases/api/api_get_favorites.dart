@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:config/config.dart';
+
 import '../../../domain/entities/favorites_entity.dart';
 import '../../../domain/usecases/usecases.dart';
 import 'package:http/http.dart' as http;
@@ -13,8 +15,9 @@ class ApiGetFavorites extends GetFavorites {
 
   @override
   Future<FavoritesEntity?>? call() async {
+    var response;
     try {
-      final response = await http.get(Uri.parse(baserUrl));
+      response = await http.get(Uri.parse(baserUrl));
 
       FavoritesModel? favoritesModel;
 
@@ -22,7 +25,7 @@ class ApiGetFavorites extends GetFavorites {
 
       return favoritesModel.toEntity();
     } catch (error) {
-      print(error);
+      ValidateTypeException().typeException(response: response, error: error);
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:rio_tudo/src/domain/entities/info_entity.dart';
 import 'package:rio_tudo/src/domain/usecases/usecases.dart';
@@ -33,11 +34,11 @@ class ValueNotifierInfoPresenter extends InfoPresenter {
 
       infoEntityNotifier!.value = await getInfo();
 
-      state!.value = UISucessState('Informçaões carregadas com sucesso');
+      state!.value = UISucessState(LabelsApp.sucessMessageInfo);
 
       return infoEntityNotifier!.value;
     } catch (error) {
-      print('error');
+      state!.value = UIErrorState(LabelsApp.errorMessageInfo, TypeUsecase.info);
     }
   }
 }
