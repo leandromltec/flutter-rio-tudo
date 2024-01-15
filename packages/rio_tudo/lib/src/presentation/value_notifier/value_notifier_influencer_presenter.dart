@@ -1,3 +1,4 @@
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import '../../domain/usecases/usecases.dart';
 import '../base_presenter.dart';
@@ -34,11 +35,12 @@ class ValueNotifierInfluencerPresenter extends InfluencerPresenter {
 
       listInfluencersNotifier!.value = await getInfluencers();
 
-      state!.value = UISucessState('Influencers carregados com sucesso');
+      state!.value = UISucessState(LabelsApp.sucessMessageInfluencers);
 
       return listInfluencersNotifier!.value;
     } catch (error) {
-      state!.value = UIErrorState('error');
+      state!.value = UIErrorState(
+          LabelsApp.errorMessageInfluencers, TypeUsecase.influencer);
     }
   }
 }

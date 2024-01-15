@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:config/config.dart';
 import 'package:http/http.dart' as http;
 import 'package:rio_tudo/src/data/models/models.dart';
 import '../../../domain/entities/entities.dart';
@@ -13,9 +14,10 @@ class ApiGetSubCategory implements GetSubCategoryItems {
   @override
   Future<List<ItemSubCategoryEntity>?> call(
       GetSubCategoryParams? params) async {
+    var response;
+
     try {
-      final response =
-          await http.get(Uri.parse(baseUrl + params!.idSubCategory));
+      response = await http.get(Uri.parse(baseUrl + params!.idSubCategory));
 
       List<ItemSubCategoryModel>? listItemSubCategoryModel;
 
@@ -28,7 +30,7 @@ class ApiGetSubCategory implements GetSubCategoryItems {
           .map<ItemSubCategoryEntity>((e) => e.toEntity())
           .toList();
     } catch (error) {
-      print(error);
+      ValidateTypeException().typeException(response: response, error: error);
     }
   }
 }

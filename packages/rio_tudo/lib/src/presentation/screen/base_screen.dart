@@ -1,9 +1,7 @@
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rio_tudo/src/presentation/base_presenter.dart';
-
 import '../widgets/widgets.dart';
 
 class BaseScreenWidget extends StatefulWidget {
@@ -22,15 +20,6 @@ class BaseScreenWidget extends StatefulWidget {
 }
 
 class _BaseScreenWidgetState extends State<BaseScreenWidget> {
-  /*@override
-  void initState() {
-    widget.state.addListener(() {
-
-    });
-
-    super.initState();
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,12 +53,27 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
               ],
               backgroundColor: DesignSystemPaletterColorApp.primaryColor,
             ),
-      body: Container(
-          width: MediaQuery.of(context).size.width,
-          color: DesignSystemPaletterColorApp.primaryColor,
-          child: widget.state!.value is UILoadingState
-              ? LoadingWidget()
-              : widget.widgetScreen),
+      body: widget.state!.value is UIErrorState
+          ? ErrorDialog(
+              context: context,
+              messageError: widget.state!.value.descriptionState,
+              onPressedErrorDialog: () {
+                if (widget.state!.value.typeUsecaseState ==
+                    TypeUsecase.favorites) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RoutesApp.HomeScreen, ModalRoute.withName('/'));
+                } else {
+                  Navigator.pushNamedAndRemoveUntil(context,
+                      RoutesApp.FavoriteScreen, ModalRoute.withName('/'));
+                }
+              },
+            )
+          : Container(
+              width: MediaQuery.of(context).size.width,
+              color: DesignSystemPaletterColorApp.primaryColor,
+              child: widget.state!.value is UILoadingState
+                  ? LoadingWidget()
+                  : widget.widgetScreen),
     );
   }
 }

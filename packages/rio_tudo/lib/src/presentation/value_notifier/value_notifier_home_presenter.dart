@@ -1,3 +1,4 @@
+import 'package:config/config.dart';
 import 'package:flutter/src/foundation/change_notifier.dart';
 import 'package:rio_tudo/src/presentation/base_presenter.dart';
 
@@ -44,11 +45,11 @@ class ValueNotifierHomePresenter implements HomeScreenPresenter {
 
       listAllCategoriesNotifier!.value = await getAllCategories();
 
-      state!.value = UISucessState('Lista de Categorias carregada com sucesso');
+      state!.value = UISucessState(LabelsApp.sucessMessageHome);
 
       return listAllCategoriesNotifier!.value!.toList();
     } catch (error) {
-      state!.value = UIErrorState('error');
+      state!.value = UIErrorState(LabelsApp.errorMessageHome, TypeUsecase.home);
     }
   }
 }

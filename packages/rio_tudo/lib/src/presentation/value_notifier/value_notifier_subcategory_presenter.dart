@@ -1,3 +1,4 @@
+import 'package:config/config.dart';
 import 'package:flutter/src/foundation/change_notifier.dart';
 
 import 'package:rio_tudo/src/domain/entities/item_subcategory_entity.dart';
@@ -63,12 +64,12 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
       listItemsSubCategoriesNotifier!.value!
           .sort((a, b) => a.district!.compareTo(b.district!));
 
-      state!.value =
-          UISucessState('Items da Subcategoria carregada com sucesso !');
+      state!.value = UISucessState(LabelsApp.sucessMessageTips);
 
       return listItemsSubCategoriesNotifier!.value;
     } catch (error) {
-      state!.value = UIErrorState('errorMessage');
+      state!.value =
+          UIErrorState(LabelsApp.errorMessageTips, TypeUsecase.subCategory);
     }
   }
 
@@ -84,11 +85,12 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
 
       listDistrictNotifier!.value!.sort((a, b) => a.compareTo(b));
 
-      state!.value = UISucessState('Bairros carregados com sucesso.');
+      state!.value = UISucessState(LabelsApp.sucessMessageDistricts);
 
       return listDistrictNotifier!.value;
     } catch (error) {
-      state!.value = UIErrorState('errorMessage');
+      state!.value = UIErrorState(
+          LabelsApp.errorMessageDistricts, TypeUsecase.subCategory);
     }
   }
 
@@ -103,11 +105,12 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
           .where((subCategory) => subCategory.district == districtSelected)
           .toList();
 
-      state!.value = UISucessState('Dicas carregadas por bairro com sucesso.');
+      state!.value = UISucessState(LabelsApp.sucessMessageFilterDistricts);
 
       return listItemsSubCategoriesNotifier!.value;
     } catch (error) {
-      state!.value = UIErrorState('errorMessage');
+      state!.value = UIErrorState(
+          LabelsApp.errorMessageFilterDistricts, TypeUsecase.subCategory);
     }
   }
 }

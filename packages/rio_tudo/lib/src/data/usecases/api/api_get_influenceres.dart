@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:config/config.dart';
 import 'package:rio_tudo/src/data/models/influencer_model.dart';
 import 'package:rio_tudo/src/domain/entities/influencer_entity.dart';
 
@@ -14,8 +15,9 @@ class ApiGetInfluencers extends GetInfluencers {
 
   @override
   Future<List<InfluencerEntity>?> call() async {
+    var response;
     try {
-      final response = await http.get(Uri.parse(urlBase));
+      response = await http.get(Uri.parse(urlBase));
 
       List<InfluencerModel> listInfluencers = [];
 
@@ -27,7 +29,7 @@ class ApiGetInfluencers extends GetInfluencers {
           .map<InfluencerEntity>((e) => e.toEntity())
           .toList();
     } catch (error) {
-      print(error);
+      ValidateTypeException().typeException(response: response, error: error);
     }
   }
 }

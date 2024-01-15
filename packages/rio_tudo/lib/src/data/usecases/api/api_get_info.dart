@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:config/config.dart';
 import 'package:rio_tudo/src/data/models/info_model.dart';
 
 import '../../../domain/entities/info_entity.dart';
@@ -14,8 +15,10 @@ class ApiGetInfo extends GetInfo {
 
   @override
   Future<InfoEntity?>? call() async {
+    var response;
+
     try {
-      final response = await http.get(Uri.parse(baserUrl));
+      response = await http.get(Uri.parse(baserUrl));
 
       InfoModel? infoModel;
 
@@ -23,7 +26,7 @@ class ApiGetInfo extends GetInfo {
 
       return infoModel.toEntity();
     } catch (error) {
-      print(error);
+      ValidateTypeException().typeException(response: response, error: error);
     }
   }
 }
