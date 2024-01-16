@@ -4,12 +4,33 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "flutter-rio-tudo",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart"
         },
+        {
+          "name": "production rio tudo",
+          "request": "launch",
+          "type": "dart",
+          "program": "lib/main.dart",
+          "args": [
+            "--dart-define-from-file",
+            "env.production.json"
+          ]
+      },
+      {
+        "name": "development rio tudo",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main.dart",
+        "args": [
+          "--dart-define-from-file",
+          "env.development.json"
+        ]
+    },
         {
             "name": "flutter-rio-tudo (profile mode)",
             "request": "launch",
@@ -22,65 +43,6 @@
             "type": "dart",
             "flutterMode": "release"
         },
-        {
-            "name": "config",
-            "cwd": "packages\\config",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "config (profile mode)",
-            "cwd": "packages\\config",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "config (release mode)",
-            "cwd": "packages\\config",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "design_system",
-            "cwd": "packages\\design_system",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "design_system (profile mode)",
-            "cwd": "packages\\design_system",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "design_system (release mode)",
-            "cwd": "packages\\design_system",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "rio_tudo",
-            "cwd": "packages\\rio_tudo",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "rio_tudo (profile mode)",
-            "cwd": "packages\\rio_tudo",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "rio_tudo (release mode)",
-            "cwd": "packages\\rio_tudo",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
+        
     ]
 }

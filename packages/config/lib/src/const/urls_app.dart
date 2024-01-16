@@ -1,11 +1,15 @@
 class Urls {
-  static const endPointCategory = '';
+  static const endPointCategory =
+      String.fromEnvironment('API_ENDPOINT_CATEGORY');
 
-  static const endPointSubCategory = '';
+  static const endPointSubCategory =
+      String.fromEnvironment('API_ENDPOINT_SUBCATEGORY');
 
-  static const endPointInfluencers = '';
+  static const endPointInfluencers =
+      String.fromEnvironment('API_ENDPOINT_INFLUENCERS');
 
-  static const endPointInfo = '';
+  static const endPointInfo = String.fromEnvironment('API_ENDPOINT_INFO');
 
-  static const endPointFavorites = '';
+  static const endPointFavorites =
+      String.fromEnvironment('API_ENDPOINT_FAVORITES');
 }
