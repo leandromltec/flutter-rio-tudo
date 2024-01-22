@@ -71,31 +71,6 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              /*ValueListenableBuilder(
-                                  valueListenable: widget.presenterSubCategory!
-                                      .isFavoriteNotifier!,
-                                  builder: (_, __, ___) {
-                                    return*/
-                              ButtonFavorite(
-                                  onTapFavorite: () {
-                                    /*widget.presenterSubCategory!
-                                                .isFavoriteNotifier!.value =
-                                            !widget.presenterSubCategory!
-                                                .isFavoriteNotifier!.value;
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                                duration: const Duration(
-                                                    milliseconds: 2000),
-                                                content: Text(widget
-                                                        .presenterSubCategory!
-                                                        .isFavoriteNotifier!
-                                                        .value
-                                                    ? LabelsApp.textAddFavorite
-                                                    : LabelsApp
-                                                        .textRemovedFavorite)));*/
-                                  },
-                                  isFavorite: true),
-                              //})
                             ],
                           ),
                         ),

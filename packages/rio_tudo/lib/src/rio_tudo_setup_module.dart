@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:config/config.dart';
 import 'package:config/src/service_locator/injector_getit.dart';
 import 'package:flutter/material.dart';

@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ))
                             ],
                           ),
-                          _containerLastTipVisited(),
+                          //_containerLastTipVisited(),
                           const DividerApp(),
                           ValueListenableBuilder(
                               valueListenable: widget.presenterHomeScreen!
@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _containerLastTipVisited() {
+  /*Widget _containerLastTipVisited() {
     ItemSubCategoryEntity? itemSubCategory = ItemSubCategoryEntity();
     itemSubCategory!.district = 'Ipanema';
     itemSubCategory.titleTip = 'Ultimo visitado';
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
         itemSubCategory: itemSubCategory,
       ),
     );
-  }
+  }*/
 
   Widget _containerTitleCategory({required Widget widgetChild}) {
     return Container(

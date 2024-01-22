@@ -4,9 +4,11 @@ class ItemSubCategoryEntity extends Equatable {
   String? titleTip;
   String? district;
   String? urlInstagram;
+  bool? isFavorite;
 
-  ItemSubCategoryEntity({this.titleTip, this.district, this.urlInstagram});
+  ItemSubCategoryEntity(
+      {this.titleTip, this.district, this.urlInstagram, this.isFavorite});
 
   @override
-  List<Object?> get props => [titleTip, district, urlInstagram];
+  List<Object?> get props => [titleTip, district, urlInstagram, isFavorite];
 }
