@@ -202,7 +202,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
             verticalOffset: 200,
             child: FadeInAnimation(
               child: CardItem(
-                presenterSubCategory: widget.presenterSubCategory,
+                presenter: widget.presenterSubCategory,
                 indexItemSubCategory: index,
               ),
             ),
