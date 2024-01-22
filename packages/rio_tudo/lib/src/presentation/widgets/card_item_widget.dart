@@ -3,15 +3,15 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../rio_tudo.dart';
-import '../../domain/entities/entities.dart';
 import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardItem extends StatefulWidget {
   final SubCategoryPresenter? presenterSubCategory;
-  final ItemSubCategoryEntity itemSubCategory;
+  final int? indexItemSubCategory;
 
-  const CardItem({required this.itemSubCategory, this.presenterSubCategory});
+  const CardItem(
+      {required this.presenterSubCategory, required this.indexItemSubCategory});
 
   @override
   State<CardItem> createState() => _CardItemState();
@@ -59,7 +59,11 @@ class _CardItemState extends State<CardItem> {
                                 DesignSystemPaddingApp.pd6,
                                 DesignSystemPaddingApp.pd6),
                             child: Text(
-                              widget.itemSubCategory.titleTip!,
+                              widget
+                                  .presenterSubCategory!
+                                  .listItemsSubCategoriesNotifier!
+                                  .value![widget.indexItemSubCategory!]
+                                  .titleTip!,
                             ).titleTipCard(),
                           ),
                         ),
@@ -72,32 +76,42 @@ class _CardItemState extends State<CardItem> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              /*ValueListenableBuilder(
-                                  valueListenable: widget.presenterSubCategory!
-                                      .isFavoriteNotifier!,
-                                  builder: (_, __, ___) {
-                                    return ButtonFavorite(
+                              ValueListenableBuilder(
+                                valueListenable: widget.presenterSubCategory!
+                                    .listItemsSubCategoriesNotifier!,
+                                builder: (_, __, ___) {
+                                  return ButtonFavorite(
                                       onTapFavorite: () {
                                         widget.presenterSubCategory!
-                                                .isFavoriteNotifier!.value =
-                                            !widget.presenterSubCategory!
-                                                .isFavoriteNotifier!.value;
+                                            .updateFavoriteSubCategory(
+                                          widget
+                                                  .presenterSubCategory!
+                                                  .listItemsSubCategoriesNotifier!
+                                                  .value![
+                                              widget.indexItemSubCategory!],
+                                        );
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
-                                                duration: const Duration(
-                                                    milliseconds: 2000),
+                                                duration:
+                                                    const Duration(
+                                                        milliseconds: 2000),
                                                 content: Text(widget
                                                         .presenterSubCategory!
-                                                        .isFavoriteNotifier!
-                                                        .value
+                                                        .listItemsSubCategoriesNotifier!
+                                                        .value![widget
+                                                            .indexItemSubCategory!]
+                                                        .isFavorite!
                                                     ? LabelsApp.textAddFavorite
                                                     : LabelsApp
                                                         .textRemovedFavorite)));
                                       },
-                                      isFavorite: widget.presenterSubCategory!
-                                          .isFavoriteNotifier!.value,
-                                    );
-                                  })*/
+                                      isFavorite: widget
+                                          .presenterSubCategory!
+                                          .listItemsSubCategoriesNotifier!
+                                          .value![widget.indexItemSubCategory!]
+                                          .isFavorite!);
+                                },
+                              )
                             ],
                           ),
                         ),
@@ -113,7 +127,11 @@ class _CardItemState extends State<CardItem> {
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20))),
                       child: Text(
-                        widget.itemSubCategory.district!,
+                        widget
+                            .presenterSubCategory!
+                            .listItemsSubCategoriesNotifier!
+                            .value![widget.indexItemSubCategory!]
+                            .district!,
                       ).subTitleTipCard(),
                     )
                   ],
@@ -150,7 +168,6 @@ class _CardItemState extends State<CardItem> {
               )
             ],
           )),
-      //),
     );
   }
 

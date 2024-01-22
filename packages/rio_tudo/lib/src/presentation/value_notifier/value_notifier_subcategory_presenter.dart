@@ -1,16 +1,19 @@
+import 'dart:convert';
+
 import 'package:config/config.dart';
 import 'package:flutter/src/foundation/change_notifier.dart';
-
-import 'package:rio_tudo/src/domain/entities/item_subcategory_entity.dart';
+import '../../domain/entities/entities.dart';
 import '../base_presenter.dart';
 import '../../domain/usecases/usecases.dart';
 import '../screen/screens.dart';
 
 class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   GetSubCategoryItems getItemsSubCategorySelected;
+  SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
 
-  ValueNotifierSubCategoryPresenter(
-      {required this.getItemsSubCategorySelected});
+  ValueNotifierSubCategoryPresenter({
+    required this.getItemsSubCategorySelected,
+  });
 
   @override
   ValueNotifier<List<ItemSubCategoryEntity>?>? listItemsSubCategoriesNotifier;
@@ -25,7 +28,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   ValueNotifier<UIState>? state;
 
   @override
-  ValueNotifier<bool>? isFavoriteNotifier;
+  ValueNotifier<ItemSubCategoryEntity>? itemSubCategoryNotifier;
 
   @override
   ValueNotifier<String>? suggestionSelectedNotifier;
@@ -36,8 +39,8 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
     listItemsSubCategoriesNotifier!.dispose();
     listDistrictNotifier!.dispose();
     listItemDistrictSelectedNotifier!.dispose();
-    isFavoriteNotifier!.dispose();
     suggestionSelectedNotifier!.dispose();
+    itemSubCategoryNotifier!.dispose();
   }
 
   @override
@@ -46,8 +49,14 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
     listItemsSubCategoriesNotifier = ValueNotifier(null);
     listItemDistrictSelectedNotifier = ValueNotifier(null);
     listDistrictNotifier = ValueNotifier(null);
-    isFavoriteNotifier = ValueNotifier(false);
     suggestionSelectedNotifier = ValueNotifier('');
+    itemSubCategoryNotifier = ValueNotifier(ItemSubCategoryEntity(
+        district: null, titleTip: null, urlInstagram: null, isFavorite: false));
+    _loadSharedPreferences();
+  }
+
+  _loadSharedPreferences() async {
+    await _sharedPreference.initializeInstance();
   }
 
   @override
@@ -64,6 +73,25 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
       listItemsSubCategoriesNotifier!.value!
           .sort((a, b) => a.district!.compareTo(b.district!));
 
+      List<String>? listFavorites = getListFavorites();
+
+      for (ItemSubCategoryEntity item
+          in listItemsSubCategoriesNotifier!.value!) {
+        if (listFavorites != null) {
+          final favorite = listFavorites
+              .where((element) => element.contains(item.titleTip!))
+              .isNotEmpty;
+
+          if (favorite == true) {
+            item.isFavorite = true;
+          } else {
+            item.isFavorite = false;
+          }
+        } else {
+          item.isFavorite = false;
+        }
+      }
+
       state!.value = UISucessState(LabelsApp.sucessMessageTips);
 
       return listItemsSubCategoriesNotifier!.value;
@@ -71,6 +99,47 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
       state!.value =
           UIErrorState(LabelsApp.errorMessageTips, TypeUsecase.subCategory);
     }
+  }
+
+  @override
+  void updateFavoriteSubCategory(ItemSubCategoryEntity itemSubCategory) {
+    itemSubCategory.isFavorite = !itemSubCategory.isFavorite!;
+
+    listItemsSubCategoriesNotifier!.notifyListeners();
+
+    Map<String, dynamic> itemSubCategoryMap = {
+      'titleTip': itemSubCategory.titleTip,
+      'district': itemSubCategory.district,
+      'urlInstagram': itemSubCategory.urlInstagram,
+      'isFavorite': itemSubCategory.isFavorite
+    };
+
+    List<String>? listFavorites =
+        _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
+
+    if (itemSubCategory.isFavorite!) {
+      if (listFavorites == null || listFavorites.isEmpty) {
+        listFavorites = [];
+        listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
+        _sharedPreference.setStringList(
+            LabelsApp.nameFavoriteList, listFavorites);
+      } else {
+        listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
+        _sharedPreference.setStringList(
+            LabelsApp.nameFavoriteList, listFavorites);
+      }
+    } else {
+      listFavorites!.removeWhere(
+          (element) => element.contains(itemSubCategoryMap['titleTip']));
+
+      _sharedPreference.setStringList(
+          LabelsApp.nameFavoriteList, listFavorites);
+    }
+  }
+
+  @override
+  List<String>? getListFavorites() {
+    return _sharedPreference.getStringList('listFavoritesSharedPreferences');
   }
 
   @override
