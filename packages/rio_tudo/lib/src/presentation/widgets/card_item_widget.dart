@@ -2,16 +2,18 @@ import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../../rio_tudo.dart';
 import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardItem extends StatefulWidget {
-  final SubCategoryPresenter? presenterSubCategory;
+  bool isFavoritesScreen;
+  final dynamic presenter;
   final int? indexItemSubCategory;
 
-  const CardItem(
-      {required this.presenterSubCategory, required this.indexItemSubCategory});
+  CardItem(
+      {required this.presenter,
+      required this.indexItemSubCategory,
+      this.isFavoritesScreen = false});
 
   @override
   State<CardItem> createState() => _CardItemState();
@@ -60,7 +62,7 @@ class _CardItemState extends State<CardItem> {
                                 DesignSystemPaddingApp.pd6),
                             child: Text(
                               widget
-                                  .presenterSubCategory!
+                                  .presenter!
                                   .listItemsSubCategoriesNotifier!
                                   .value![widget.indexItemSubCategory!]
                                   .titleTip!,
@@ -77,15 +79,15 @@ class _CardItemState extends State<CardItem> {
                                 width: 10,
                               ),
                               ValueListenableBuilder(
-                                valueListenable: widget.presenterSubCategory!
-                                    .listItemsSubCategoriesNotifier!,
+                                valueListenable: widget
+                                    .presenter!.listItemsSubCategoriesNotifier!,
                                 builder: (_, __, ___) {
                                   return ButtonFavorite(
                                       onTapFavorite: () {
-                                        widget.presenterSubCategory!
+                                        widget.presenter!
                                             .updateFavoriteSubCategory(
                                           widget
-                                                  .presenterSubCategory!
+                                                  .presenter!
                                                   .listItemsSubCategoriesNotifier!
                                                   .value![
                                               widget.indexItemSubCategory!],
@@ -96,7 +98,7 @@ class _CardItemState extends State<CardItem> {
                                                     const Duration(
                                                         milliseconds: 2000),
                                                 content: Text(widget
-                                                        .presenterSubCategory!
+                                                        .presenter!
                                                         .listItemsSubCategoriesNotifier!
                                                         .value![widget
                                                             .indexItemSubCategory!]
@@ -106,7 +108,7 @@ class _CardItemState extends State<CardItem> {
                                                         .textRemovedFavorite)));
                                       },
                                       isFavorite: widget
-                                          .presenterSubCategory!
+                                          .presenter!
                                           .listItemsSubCategoriesNotifier!
                                           .value![widget.indexItemSubCategory!]
                                           .isFavorite!);
@@ -127,11 +129,8 @@ class _CardItemState extends State<CardItem> {
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20))),
                       child: Text(
-                        widget
-                            .presenterSubCategory!
-                            .listItemsSubCategoriesNotifier!
-                            .value![widget.indexItemSubCategory!]
-                            .district!,
+                        widget.presenter!.listItemsSubCategoriesNotifier!
+                            .value![widget.indexItemSubCategory!].district!,
                       ).subTitleTipCard(),
                     )
                   ],

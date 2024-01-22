@@ -139,7 +139,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
 
   @override
   List<String>? getListFavorites() {
-    return _sharedPreference.getStringList('listFavoritesSharedPreferences');
+    return _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
   }
 
   @override
