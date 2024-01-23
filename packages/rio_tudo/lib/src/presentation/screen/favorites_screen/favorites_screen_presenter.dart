@@ -10,4 +10,5 @@ abstract class FavoritesPresenter extends BasePresenter {
 
   Future<FavoritesEntity?>? getFavoritesText();
   Future<List<ItemSubCategoryEntity>?>? getListFavorites();
+  Future<void> removeFavorite(ItemSubCategoryEntity itemSubCategory);
 }

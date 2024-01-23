@@ -84,28 +84,22 @@ class _CardItemState extends State<CardItem> {
                                 builder: (_, __, ___) {
                                   return ButtonFavorite(
                                       onTapFavorite: () {
-                                        widget.presenter!
-                                            .updateFavoriteSubCategory(
-                                          widget
+                                        if (widget.isFavoritesScreen) {
+                                          showFavoriteDialogConfirmation(
+                                              context: context,
+                                              titleTip: widget
                                                   .presenter!
                                                   .listItemsSubCategoriesNotifier!
-                                                  .value![
-                                              widget.indexItemSubCategory!],
-                                        );
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                                duration:
-                                                    const Duration(
-                                                        milliseconds: 2000),
-                                                content: Text(widget
-                                                        .presenter!
-                                                        .listItemsSubCategoriesNotifier!
-                                                        .value![widget
-                                                            .indexItemSubCategory!]
-                                                        .isFavorite!
-                                                    ? LabelsApp.textAddFavorite
-                                                    : LabelsApp
-                                                        .textRemovedFavorite)));
+                                                  .value![widget
+                                                      .indexItemSubCategory!]
+                                                  .titleTip,
+                                              onPressedRemoveFavorite: () {
+                                                _removeFavorite();
+                                                Navigator.of(context).pop();
+                                              });
+                                        } else {
+                                          _validateFavorites();
+                                        }
                                       },
                                       isFavorite: widget
                                           .presenter!
@@ -168,6 +162,29 @@ class _CardItemState extends State<CardItem> {
             ],
           )),
     );
+  }
+
+  _removeFavorite() {
+    widget.presenter!.removeFavorite(
+      widget.presenter!.listItemsSubCategoriesNotifier!
+          .value![widget.indexItemSubCategory!],
+    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: const Duration(milliseconds: 2000),
+        content: Text(LabelsApp.textRemovedFavorite)));
+  }
+
+  _validateFavorites() {
+    widget.presenter!.updateFavoriteSubCategory(
+      widget.presenter!.listItemsSubCategoriesNotifier!
+          .value![widget.indexItemSubCategory!],
+    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: const Duration(milliseconds: 2000),
+        content: Text(widget.presenter!.listItemsSubCategoriesNotifier!
+                .value![widget.indexItemSubCategory!].isFavorite!
+            ? LabelsApp.textAddFavorite
+            : LabelsApp.textRemovedFavorite)));
   }
 
   void shareItem({required String textShare}) async {

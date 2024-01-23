@@ -88,7 +88,7 @@ class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
                 .map((e) => ItemSubCategoryModel.fromJson(e))
                 .toList();
 
-        listItemsSubCategoriesNotifier!.value = listItemSubCategoryModel!
+        listItemsSubCategoriesNotifier!.value = listItemSubCategoryModel
             .map<ItemSubCategoryEntity>((e) => e.toEntity())
             .toList();
 
@@ -104,6 +104,40 @@ class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
     } catch (error) {
       state!.value =
           UIErrorState(LabelsApp.errorMessageFavorites, TypeUsecase.favorites);
+    }
+  }
+
+  @override
+  Future<void> removeFavorite(ItemSubCategoryEntity itemSubCategory) async {
+    try {
+      state!.value = UILoadingState();
+
+      itemSubCategory.isFavorite = !itemSubCategory.isFavorite!;
+
+      listItemsSubCategoriesNotifier!.notifyListeners();
+
+      Map<String, dynamic> itemSubCategoryMap = {
+        'titleTip': itemSubCategory.titleTip,
+        'district': itemSubCategory.district,
+        'urlInstagram': itemSubCategory.urlInstagram,
+        'isFavorite': itemSubCategory.isFavorite
+      };
+
+      List<String>? listFavorites =
+          _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
+
+      listFavorites!.removeWhere(
+          (element) => element.contains(itemSubCategoryMap['titleTip']));
+
+      _sharedPreference.setStringList(
+          LabelsApp.nameFavoriteList, listFavorites);
+
+      await getListFavorites();
+
+      state!.value = UISucessState(LabelsApp.sucessMessageFavoritesRemove);
+    } catch (error) {
+      state!.value = UIErrorState(
+          LabelsApp.errorMessageFavoritesRemove, TypeUsecase.favorites);
     }
   }
 }
