@@ -33,6 +33,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       valueListenable: widget.presenterFavorites.state!,
       builder: (_, __, ___) {
         return BaseScreenWidget(
+          isAutomaticallyImplyLeading: false,
           state: widget.presenterFavorites.state!,
           indexBottomNavigator: 2,
           widgetScreen: Column(
@@ -126,6 +127,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 verticalOffset: 200,
                 child: FadeInAnimation(
                   child: CardItem(
+                    isFavoritesScreen: true,
                     presenter: widget.presenterFavorites,
                     indexItemSubCategory: index,
                   ),

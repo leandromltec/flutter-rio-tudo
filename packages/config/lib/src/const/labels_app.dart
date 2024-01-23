@@ -24,6 +24,9 @@ class LabelsApp {
 
   //Favorite
   static String nameFavoriteList = 'listFavoritesSharedPreferences';
+  static String titleDialogFavorite = 'Remover dos Favoritos';
+  static String descriptionDialog = 'Tem certeza que deseja remover ';
+  static String descriptionDialogFinal = ' dos favoritos?';
 
   static String titleListImages = 'Créditos das imagens usadas neste app';
 
@@ -56,6 +59,7 @@ class LabelsApp {
       'Influencers carregados com sucesso.';
   static String sucessMessageInfo = 'Informações carregadas com sucesso.';
   static String sucessMessageFavorites = 'Favoritos carregados com sucesso.';
+  static String sucessMessageFavoritesRemove = 'Favorito removido com sucesso.';
 
   //Error Message
   static String errorMessageHome =
@@ -72,4 +76,6 @@ class LabelsApp {
       'Error ao carregar informações, tente mais tarde novamente.\nVocê pode ver suas dicas favoritas.';
   static String errorMessageFavorites =
       'Error ao carregar suas dicas favoritas, tente mais tarde novamente.';
+  static String errorMessageFavoritesRemove =
+      'Error ao carregar remover dos favoritos, tente mais tarde novamente.';
 }

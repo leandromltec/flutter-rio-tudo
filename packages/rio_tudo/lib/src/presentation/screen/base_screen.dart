@@ -8,12 +8,14 @@ class BaseScreenWidget extends StatefulWidget {
   final Widget widgetScreen;
   final int indexBottomNavigator;
   final ValueNotifier<UIState>? state;
+  final bool isAutomaticallyImplyLeading;
 
   const BaseScreenWidget(
       {super.key,
       this.state,
       required this.widgetScreen,
-      required this.indexBottomNavigator});
+      required this.indexBottomNavigator,
+      this.isAutomaticallyImplyLeading = true});
 
   @override
   State<BaseScreenWidget> createState() => _BaseScreenWidgetState();
@@ -31,6 +33,7 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
       appBar: widget.state!.value is UILoadingState
           ? null
           : AppBar(
+              automaticallyImplyLeading: widget.isAutomaticallyImplyLeading,
               centerTitle: true,
               iconTheme: const IconThemeData(
                   color: DesignSystemPaletterColorApp.secondaryColorWhite),
