@@ -55,6 +55,8 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
     SuggestionsBoxController suggestionBoxController =
         SuggestionsBoxController();
 
+    List<ItemSubCategoryEntity> listItemsTipsFilterDistrict = [];
+
     return ValueListenableBuilder(
       valueListenable: widget.presenterSubCategory!.state!,
       builder: (_, __, ___) {
@@ -100,6 +102,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                     widgetChild: ButtonText(
                                   textButton: LabelsApp.textButtonSeeAll,
                                   onPressedFunction: () async {
+                                    listItemsTipsFilterDistrict = [];
                                     await widget.presenterSubCategory!
                                         .getItemsSubCategory(
                                             idSubCategorySelected: InjectorGetIt
@@ -121,7 +124,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                           .listItemDistrictSelectedNotifier!,
                                       builder: (_, __, ___) {
                                         List<ItemSubCategoryEntity>
-                                            listItemsTips = widget
+                                            listItemsTipsFilterDistrict = widget
                                                 .presenterSubCategory!
                                                 .listItemsSubCategoriesNotifier!
                                                 .value!;
@@ -130,7 +133,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                             .listItemDistrictSelectedNotifier!
                                             .value!
                                             .isNotEmpty) {
-                                          listItemsTips = widget
+                                          listItemsTipsFilterDistrict = widget
                                               .presenterSubCategory!
                                               .listItemDistrictSelectedNotifier!
                                               .value!;
@@ -139,7 +142,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                         return SingleChildScrollView(
                                           child: _listViewItemsSubCategory(
                                               listItemsSubCategory:
-                                                  listItemsTips),
+                                                  listItemsTipsFilterDistrict),
                                         );
                                       });
                                 }),
@@ -202,6 +205,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
             verticalOffset: 200,
             child: FadeInAnimation(
               child: CardItem(
+                listFilterSelectedDistrict: listItemsSubCategory,
                 presenter: widget.presenterSubCategory,
                 indexItemSubCategory: index,
               ),
