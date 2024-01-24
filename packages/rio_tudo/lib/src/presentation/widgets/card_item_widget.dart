@@ -2,6 +2,7 @@ import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../domain/entities/entities.dart';
 import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,11 +10,13 @@ class CardItem extends StatefulWidget {
   bool isFavoritesScreen;
   final dynamic presenter;
   final int? indexItemSubCategory;
+  final List<ItemSubCategoryEntity>? listFilterSelectedDistrict;
 
   CardItem(
       {required this.presenter,
       required this.indexItemSubCategory,
-      this.isFavoritesScreen = false});
+      this.isFavoritesScreen = false,
+      this.listFilterSelectedDistrict});
 
   @override
   State<CardItem> createState() => _CardItemState();
@@ -61,11 +64,7 @@ class _CardItemState extends State<CardItem> {
                                 DesignSystemPaddingApp.pd6,
                                 DesignSystemPaddingApp.pd6),
                             child: Text(
-                              widget
-                                  .presenter!
-                                  .listItemsSubCategoriesNotifier!
-                                  .value![widget.indexItemSubCategory!]
-                                  .titleTip!,
+                              _itemSubcategory().titleTip!,
                             ).titleTipCard(),
                           ),
                         ),
@@ -87,12 +86,8 @@ class _CardItemState extends State<CardItem> {
                                         if (widget.isFavoritesScreen) {
                                           showFavoriteDialogConfirmation(
                                               context: context,
-                                              titleTip: widget
-                                                  .presenter!
-                                                  .listItemsSubCategoriesNotifier!
-                                                  .value![widget
-                                                      .indexItemSubCategory!]
-                                                  .titleTip,
+                                              titleTip:
+                                                  _itemSubcategory().titleTip!,
                                               onPressedRemoveFavorite: () {
                                                 _removeFavorite();
                                                 Navigator.of(context).pop();
@@ -101,11 +96,8 @@ class _CardItemState extends State<CardItem> {
                                           _validateFavorites();
                                         }
                                       },
-                                      isFavorite: widget
-                                          .presenter!
-                                          .listItemsSubCategoriesNotifier!
-                                          .value![widget.indexItemSubCategory!]
-                                          .isFavorite!);
+                                      isFavorite:
+                                          _itemSubcategory().isFavorite!);
                                 },
                               )
                             ],
@@ -123,8 +115,7 @@ class _CardItemState extends State<CardItem> {
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20))),
                       child: Text(
-                        widget.presenter!.listItemsSubCategoriesNotifier!
-                            .value![widget.indexItemSubCategory!].district!,
+                        _itemSubcategory().district!,
                       ).subTitleTipCard(),
                     )
                   ],
@@ -164,10 +155,16 @@ class _CardItemState extends State<CardItem> {
     );
   }
 
+  ItemSubCategoryEntity _itemSubcategory() {
+    return widget.listFilterSelectedDistrict == null
+        ? widget.presenter!.listItemsSubCategoriesNotifier!
+            .value![widget.indexItemSubCategory!]
+        : widget.listFilterSelectedDistrict![widget.indexItemSubCategory!];
+  }
+
   _removeFavorite() {
     widget.presenter!.removeFavorite(
-      widget.presenter!.listItemsSubCategoriesNotifier!
-          .value![widget.indexItemSubCategory!],
+      _itemSubcategory(),
     );
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: const Duration(milliseconds: 2000),
@@ -176,13 +173,11 @@ class _CardItemState extends State<CardItem> {
 
   _validateFavorites() {
     widget.presenter!.updateFavoriteSubCategory(
-      widget.presenter!.listItemsSubCategoriesNotifier!
-          .value![widget.indexItemSubCategory!],
+      _itemSubcategory(),
     );
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: const Duration(milliseconds: 2000),
-        content: Text(widget.presenter!.listItemsSubCategoriesNotifier!
-                .value![widget.indexItemSubCategory!].isFavorite!
+        content: Text(_itemSubcategory().isFavorite!
             ? LabelsApp.textAddFavorite
             : LabelsApp.textRemovedFavorite)));
   }
