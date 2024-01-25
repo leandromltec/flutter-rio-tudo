@@ -12,4 +12,7 @@ class Urls {
 
   static const endPointFavorites =
       String.fromEnvironment('API_ENDPOINT_FAVORITES');
+
+  static const endPointConfigsScreen =
+      String.fromEnvironment('API_ENDPOINT_CONFIGS_SCREEN');
 }

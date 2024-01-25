@@ -9,11 +9,13 @@ import '../screen/screens.dart';
 
 class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   GetSubCategoryItems getItemsSubCategorySelected;
+  GetConfigsScreen getConfigsScreen;
+
   SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
 
-  ValueNotifierSubCategoryPresenter({
-    required this.getItemsSubCategorySelected,
-  });
+  ValueNotifierSubCategoryPresenter(
+      {required this.getItemsSubCategorySelected,
+      required this.getConfigsScreen});
 
   @override
   ValueNotifier<List<ItemSubCategoryEntity>?>? listItemsSubCategoriesNotifier;
@@ -34,6 +36,12 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   ValueNotifier<String>? suggestionSelectedNotifier;
 
   @override
+  ValueNotifier<bool>? isMaxFavoritesNotifier;
+
+  int _maxFavorites = 0;
+  int get maxFavorites => _maxFavorites;
+
+  @override
   void dispose() {
     state!.dispose();
     listItemsSubCategoriesNotifier!.dispose();
@@ -41,6 +49,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
     listItemDistrictSelectedNotifier!.dispose();
     suggestionSelectedNotifier!.dispose();
     itemSubCategoryNotifier!.dispose();
+    isMaxFavoritesNotifier!.dispose();
   }
 
   @override
@@ -52,7 +61,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
     suggestionSelectedNotifier = ValueNotifier('');
     itemSubCategoryNotifier = ValueNotifier(ItemSubCategoryEntity(
         district: null, titleTip: null, urlInstagram: null, isFavorite: false));
-    _loadSharedPreferences();
+    isMaxFavoritesNotifier = ValueNotifier(false);
   }
 
   _loadSharedPreferences() async {
@@ -60,10 +69,35 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   }
 
   @override
+  Future<ConfigsScreenEntity?>? loadMaxFavorites() async {
+    ConfigsScreenEntity? configsScreenEntity;
+
+    try {
+      state!.value = UILoadingState();
+
+      configsScreenEntity = await getConfigsScreen();
+      _maxFavorites = configsScreenEntity!.maxFavorites!;
+
+      state!.value = UISucessState(LabelsApp.sucessMessageFavoriteMax);
+    } catch (error) {
+      _maxFavorites = 10;
+      configsScreenEntity = null;
+
+      state!.value = UISucessState(LabelsApp.errorMessageFavoriteMax);
+    }
+
+    return configsScreenEntity;
+  }
+
+  @override
   Future<List<ItemSubCategoryEntity>?> getItemsSubCategory(
       {required String idSubCategorySelected}) async {
     try {
       state!.value = UILoadingState();
+
+      _loadSharedPreferences();
+
+      //_sharedPreference.clearAll();
 
       listItemDistrictSelectedNotifier!.value = [];
 
@@ -77,7 +111,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
 
       for (ItemSubCategoryEntity item
           in listItemsSubCategoriesNotifier!.value!) {
-        if (listFavorites != null) {
+        if (listFavorites != null && listFavorites.isNotEmpty) {
           final favorite = listFavorites
               .where((element) => element.contains(item.titleTip!))
               .isNotEmpty;
@@ -103,37 +137,51 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
 
   @override
   void updateFavoriteSubCategory(ItemSubCategoryEntity itemSubCategory) {
-    itemSubCategory.isFavorite = !itemSubCategory.isFavorite!;
+    isMaxFavoritesNotifier!.value = false;
 
-    listItemsSubCategoriesNotifier!.notifyListeners();
-
-    Map<String, dynamic> itemSubCategoryMap = {
-      'titleTip': itemSubCategory.titleTip,
-      'district': itemSubCategory.district,
-      'urlInstagram': itemSubCategory.urlInstagram,
-      'isFavorite': itemSubCategory.isFavorite
-    };
+    bool isFavorite = !itemSubCategory.isFavorite!;
 
     List<String>? listFavorites =
         _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
 
-    if (itemSubCategory.isFavorite!) {
-      if (listFavorites == null || listFavorites.isEmpty) {
-        listFavorites = [];
-        listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
-        _sharedPreference.setStringList(
-            LabelsApp.nameFavoriteList, listFavorites);
+    if (isFavorite) {
+      if (listFavorites != null && listFavorites.isNotEmpty) {
+        if (maxFavorites <= listFavorites.length) {
+          isMaxFavoritesNotifier!.value = true;
+        }
+      }
+    }
+
+    if (isMaxFavoritesNotifier!.value != true) {
+      itemSubCategory.isFavorite = !itemSubCategory.isFavorite!;
+
+      listItemsSubCategoriesNotifier!.notifyListeners();
+
+      Map<String, dynamic> itemSubCategoryMap = {
+        'titleTip': itemSubCategory.titleTip,
+        'district': itemSubCategory.district,
+        'urlInstagram': itemSubCategory.urlInstagram,
+        'isFavorite': itemSubCategory.isFavorite
+      };
+
+      if (itemSubCategory.isFavorite!) {
+        if (listFavorites == null || listFavorites.isEmpty) {
+          listFavorites = [];
+          listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
+          _sharedPreference.setStringList(
+              LabelsApp.nameFavoriteList, listFavorites);
+        } else {
+          listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
+          _sharedPreference.setStringList(
+              LabelsApp.nameFavoriteList, listFavorites);
+        }
       } else {
-        listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
+        listFavorites!.removeWhere(
+            (element) => element.contains(itemSubCategoryMap['titleTip']));
+
         _sharedPreference.setStringList(
             LabelsApp.nameFavoriteList, listFavorites);
       }
-    } else {
-      listFavorites!.removeWhere(
-          (element) => element.contains(itemSubCategoryMap['titleTip']));
-
-      _sharedPreference.setStringList(
-          LabelsApp.nameFavoriteList, listFavorites);
     }
   }
 

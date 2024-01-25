@@ -28,6 +28,11 @@ class LabelsApp {
   static String descriptionDialog = 'Tem certeza que deseja remover ';
   static String descriptionDialogFinal = ' dos favoritos?';
 
+//Max Favorite
+  static String titleDialogMaxFavorites = 'Máximo de dicas favoritas';
+  static String descriptionDialogMaxFavorites =
+      'Você atingiu o número máximo de dicas favoritas, toque em Favoritas no menu e remova uma dica para incluir novas. ';
+
   static String titleListImages = 'Créditos das imagens usadas neste app';
 
   //Button Favorite
@@ -43,7 +48,7 @@ class LabelsApp {
   //Bottom Navigation Labels Menu
   static String labelBottomNavigatonHome = 'Home';
   static String labelBottomNavigatonInfluencers = 'Influencers';
-  static String labelBottomNavigatonFavoritos = 'Favoritos';
+  static String labelBottomNavigatonFavoritos = 'Favoritas';
 
   //Dialog
   static String textOps = 'Ops !';
@@ -60,6 +65,8 @@ class LabelsApp {
   static String sucessMessageInfo = 'Informações carregadas com sucesso.';
   static String sucessMessageFavorites = 'Favoritos carregados com sucesso.';
   static String sucessMessageFavoritesRemove = 'Favorito removido com sucesso.';
+  static String sucessMessageFavoriteMax =
+      'Quantidade máxima removida com sucesso.';
 
   //Error Message
   static String errorMessageHome =
@@ -78,4 +85,6 @@ class LabelsApp {
       'Error ao carregar suas dicas favoritas, tente mais tarde novamente.';
   static String errorMessageFavoritesRemove =
       'Error ao carregar remover dos favoritos, tente mais tarde novamente.';
+  static String errorMessageFavoriteMax =
+      'Error ao carregar máximo dos favoritos, quantidade padrão definida como 10.';
 }

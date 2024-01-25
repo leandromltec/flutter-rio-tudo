@@ -12,11 +12,9 @@ import '../screens.dart';
 
 class SubCategoryScreen extends StatefulWidget {
   final SubCategoryPresenter? presenterSubCategory;
-  final HomeScreenPresenter? presenterHomeScreen;
 
   // ignore: use_key_in_widget_constructors
-  const SubCategoryScreen(
-      {this.presenterSubCategory, this.presenterHomeScreen});
+  const SubCategoryScreen({this.presenterSubCategory});
 
   @override
   State<SubCategoryScreen> createState() => _SubCategoryScreenState();
@@ -31,6 +29,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
 
   _loadData() async {
     widget.presenterSubCategory!.init();
+    await widget.presenterSubCategory!.loadMaxFavorites();
 
     List<ItemSubCategoryEntity>? listSubCategory =
         await widget.presenterSubCategory!.getItemsSubCategory(
@@ -46,7 +45,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
 
   @override
   void dispose() {
-    widget.presenterHomeScreen!.dispose();
+    widget.presenterSubCategory!.dispose();
     super.dispose();
   }
 
@@ -205,6 +204,8 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
             verticalOffset: 200,
             child: FadeInAnimation(
               child: CardItem(
+                isMaxFavorites:
+                    widget.presenterSubCategory!.isMaxFavoritesNotifier!.value,
                 listFilterSelectedDistrict: listItemsSubCategory,
                 presenter: widget.presenterSubCategory,
                 indexItemSubCategory: index,
