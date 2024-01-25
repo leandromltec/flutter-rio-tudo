@@ -5,7 +5,7 @@ import 'package:flutter/src/foundation/change_notifier.dart';
 import '../../domain/entities/entities.dart';
 import '../base_presenter.dart';
 import '../../domain/usecases/usecases.dart';
-import '../screen/screens.dart';
+import '../ui/screen/screens.dart';
 
 class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   GetSubCategoryItems getItemsSubCategorySelected;

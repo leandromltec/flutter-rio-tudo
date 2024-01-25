@@ -3,7 +3,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-import '../../../rio_tudo.dart';
+import '../../../../rio_tudo.dart';
 
 class FieldSearch extends StatefulWidget {
   final SubCategoryPresenter presenterSubCategory;

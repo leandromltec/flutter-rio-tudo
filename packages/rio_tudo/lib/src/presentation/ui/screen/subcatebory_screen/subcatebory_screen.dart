@@ -5,7 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:config/src/service_locator/injector_getit.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import '../../../domain/entities/entities.dart';
+import '../../../../domain/entities/entities.dart';
 import '../../widgets/widgets.dart';
 import '../base_screen.dart';
 import '../screens.dart';

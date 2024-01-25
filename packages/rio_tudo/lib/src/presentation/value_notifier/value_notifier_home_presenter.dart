@@ -4,7 +4,7 @@ import 'package:rio_tudo/src/presentation/base_presenter.dart';
 
 import '../../domain/entities/entities.dart';
 import '../../domain/usecases/usecases.dart';
-import '../screen/screens.dart';
+import '../ui/screen/screens.dart';
 
 class ValueNotifierHomePresenter implements HomeScreenPresenter {
   GetAllCategories getAllCategories;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rio_tudo/src/presentation/screen/screens.dart';
-import 'package:rio_tudo/src/presentation/widgets/widgets.dart';
+import 'package:rio_tudo/src/presentation/ui/screen/screens.dart';
+import 'package:rio_tudo/src/presentation/ui/widgets/widgets.dart';
 
 void main() {
   Future<void> loadPage(WidgetTester tester) async {
