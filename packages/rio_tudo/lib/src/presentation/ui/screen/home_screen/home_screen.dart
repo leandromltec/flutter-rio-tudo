@@ -1,8 +1,8 @@
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import '../../../../rio_tudo.dart';
-import '../../../domain/entities/entities.dart';
+import '../../../../../rio_tudo.dart';
+import '../../../../domain/entities/entities.dart';
 import '../../widgets/widgets.dart';
 import '../base_screen.dart';
 

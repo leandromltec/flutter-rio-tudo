@@ -2,10 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import '../screen/screens.dart';
-
-import '../../domain/entities/entities.dart';
-import '../../domain/entities/subcategory_entity.dart';
+import '../../../../rio_tudo.dart';
+import '../../../domain/entities/entities.dart';
+import '../../../domain/entities/subcategory_entity.dart';
 import 'package:config/src/service_locator/injector_getit.dart';
 
 class ItemSubCategoryWidget extends StatefulWidget {

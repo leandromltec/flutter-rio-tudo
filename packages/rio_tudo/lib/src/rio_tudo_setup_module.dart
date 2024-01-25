@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:config/config.dart';
 import 'package:config/src/service_locator/injector_getit.dart';
 import 'package:flutter/material.dart';
-import 'package:rio_tudo/src/core/factories/screens/favorites_screen_factory.dart';
+import 'package:rio_tudo/src/main/factories/screens/favorites_screen_factory.dart';
 
-import 'presentation/screen/screens.dart';
-import 'core/factories/screens/screens_factories.dart';
+import 'presentation/ui/screen/screens.dart';
+import 'main/factories/screens/screens_factories.dart';
 
 class RioTudoSetupModule implements SetupGetItInterface {
   @override

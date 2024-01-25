@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import '../base_screen.dart';
 import '../../widgets/widgets.dart';
 
-import '../../../../rio_tudo.dart';
-import '../../../domain/entities/entities.dart';
+import '../../../../../rio_tudo.dart';
+import '../../../../domain/entities/entities.dart';
 
 class InfoScreen extends StatefulWidget {
   final InfoPresenter presenterInfo;
