@@ -11,6 +11,7 @@ import '../../../rio_tudo.dart';
 
 class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
   GetFavorites getFavorites;
+
   SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
 
   ValueNotifierFavoritesPresenter({required this.getFavorites});
@@ -78,7 +79,9 @@ class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
               .replaceAll(':', '":"')
               .replaceAll(',', '","')
               .replaceAll('" ', '"')
-              .replaceAll(' "', '"'));
+              .replaceAll(' "', '"')
+              .replaceAll('"https"', '"https')
+              .replaceAll('"//', '//'));
         }
 
         List<ItemSubCategoryModel>? listItemSubCategoryModel;

@@ -8,12 +8,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CardItem extends StatefulWidget {
   bool isFavoritesScreen;
+  bool? isMaxFavorites;
   final dynamic presenter;
   final int? indexItemSubCategory;
   final List<ItemSubCategoryEntity>? listFilterSelectedDistrict;
 
   CardItem(
       {required this.presenter,
+      this.isMaxFavorites,
       required this.indexItemSubCategory,
       this.isFavoritesScreen = false,
       this.listFilterSelectedDistrict});
@@ -175,11 +177,16 @@ class _CardItemState extends State<CardItem> {
     widget.presenter!.updateFavoriteSubCategory(
       _itemSubcategory(),
     );
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        duration: const Duration(milliseconds: 2000),
-        content: Text(_itemSubcategory().isFavorite!
-            ? LabelsApp.textAddFavorite
-            : LabelsApp.textRemovedFavorite)));
+
+    if (widget.presenter.isMaxFavoritesNotifier.value) {
+      showMaxFavoritesDialog(context: context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(milliseconds: 2000),
+          content: Text(_itemSubcategory().isFavorite!
+              ? LabelsApp.textAddFavorite
+              : LabelsApp.textRemovedFavorite)));
+    }
   }
 
   void shareItem({required String textShare}) async {
