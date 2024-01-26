@@ -6,6 +6,7 @@ class LabelsApp {
 
   //App
   static String textLoading = 'Carregando...';
+  static String versionApp = 'Versão ';
 
   //Home Screen
   static String titleAppBar = 'Rio Tudo';
