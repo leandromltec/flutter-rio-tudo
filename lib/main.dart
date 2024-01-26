@@ -1,26 +1,30 @@
-import 'package:config/config.dart';
-import 'package:flutter/foundation.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:config/config.dart';
 import 'package:rio_tudo/rio_tudo.dart';
-import 'dart:async';
 import 'package:uni_links/uni_links.dart';
 
-bool _initialURILinkHandled = false;
+//bool _initialURILinkHandled = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  SetupGetItLoadInterface? _modules;
+  SetupGetItLoadInterface? modules;
 
   try {
-    _modules = await _loadSetup();
+    modules = await _loadSetup();
   } catch (e) {}
 
   runApp(RioTudoApp(
-    modules: _modules!,
+    modules: modules!,
   ));
 }
 
@@ -57,17 +61,19 @@ Future<SetupGetItLoadInterface> _loadSetup() async {
 // ...
 
 class RioTudoApp extends StatefulWidget {
-  SetupGetItLoadInterface modules;
-  RioTudoApp({super.key, required this.modules});
+  final SetupGetItLoadInterface modules;
+
+  // ignore: use_key_in_widget_constructors
+  const RioTudoApp({required this.modules});
 
   @override
   State<RioTudoApp> createState() => _RioTudoAppState();
 }
 
 class _RioTudoAppState extends State<RioTudoApp> {
-  Uri? _initialURI;
+  /*Uri? _initialURI;
   Uri? _currentURI;
-  Object? _err;
+  Object? _err;*/
 
   StreamSubscription? _streamSubscription;
 
@@ -77,11 +83,9 @@ class _RioTudoAppState extends State<RioTudoApp> {
       final initialLink = await getInitialUri();
       // Parse the link and warn the user, if it is not correct,
       // but keep in mind it could be `null`.
-      if (initialLink != null) {
-        print("foi");
-      }
+      if (initialLink != null) {}
       setState(() {
-        _initialURI = initialLink;
+        // _initialURI = initialLink;
       });
     } on PlatformException {
       // Handle exception by warning the user their action did not succeed
@@ -89,7 +93,7 @@ class _RioTudoAppState extends State<RioTudoApp> {
     }
   }
 
-  void _incomingLinkHandler() {
+  /*void _incomingLinkHandler() {
     // 1
     if (!kIsWeb) {
       // 2
@@ -118,7 +122,7 @@ class _RioTudoAppState extends State<RioTudoApp> {
         });
       });
     }
-  }
+  }*/
 
   @override
   void initState() {

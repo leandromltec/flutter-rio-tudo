@@ -1,7 +1,12 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
 import '../../../../../rio_tudo.dart';
 import '../../widgets/widgets.dart';
 import '../base_screen.dart';
@@ -9,6 +14,7 @@ import '../base_screen.dart';
 class FavoriteScreen extends StatefulWidget {
   final FavoritesPresenter presenterFavorites;
 
+  // ignore: use_key_in_widget_constructors
   const FavoriteScreen({required this.presenterFavorites});
 
   @override

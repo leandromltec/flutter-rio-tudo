@@ -1,3 +1,6 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 class LabelsApp {
   LabelsApp._();
 
@@ -53,6 +56,7 @@ class LabelsApp {
   //Dialog
   static String textOps = 'Ops !';
   static String btnClose = 'Fechar';
+  static String btnOk = 'OK';
 
   //Sucess Message
   static String sucessMessageHome = 'Home carregada com sucesso.';

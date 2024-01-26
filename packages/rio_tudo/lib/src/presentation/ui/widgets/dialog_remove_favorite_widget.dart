@@ -1,5 +1,9 @@
-import 'package:config/config.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
+
+import 'package:config/config.dart';
 
 Future<void> showFavoriteDialogConfirmation(
     {required BuildContext context,
@@ -19,7 +23,7 @@ Future<void> showFavoriteDialogConfirmation(
         ),
         TextButton(
           onPressed: onPressedRemoveFavorite as Function(),
-          child: const Text('OK'),
+          child: Text(LabelsApp.btnOk),
         ),
       ],
     ),

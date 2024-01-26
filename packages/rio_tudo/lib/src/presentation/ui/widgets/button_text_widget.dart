@@ -1,5 +1,9 @@
-import 'package:design_system/design_system.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
+
+import 'package:design_system/design_system.dart';
 
 class ButtonText extends StatelessWidget {
   final String textButton;

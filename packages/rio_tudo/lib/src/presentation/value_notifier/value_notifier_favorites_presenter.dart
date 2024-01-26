@@ -1,18 +1,23 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'dart:convert';
 
-import 'package:config/config.dart';
 import 'package:flutter/material.dart';
+
+import 'package:config/config.dart';
 import 'package:rio_tudo/src/data/models/models.dart';
 
+import '../../../rio_tudo.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/usecases/usecases.dart';
 import '../base_presenter.dart';
-import '../../../rio_tudo.dart';
 
-class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
+class ValueNotifierFavoritesPresenter extends ChangeNotifier
+    implements FavoritesPresenter {
   GetFavorites getFavorites;
 
-  SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
+  final SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
 
   ValueNotifierFavoritesPresenter({required this.getFavorites});
 
@@ -33,7 +38,7 @@ class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
   }
 
   @override
-  void dispose() {
+  void disposeNotifier() {
     state!.dispose();
     favoritesNotifier!.dispose();
     listItemsSubCategoriesNotifier!.dispose();
@@ -55,6 +60,7 @@ class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
       state!.value =
           UIErrorState(LabelsApp.errorMessageFavorites, TypeUsecase.favorites);
     }
+    return favoritesNotifier!.value;
   }
 
   @override
@@ -108,6 +114,7 @@ class ValueNotifierFavoritesPresenter extends FavoritesPresenter {
       state!.value =
           UIErrorState(LabelsApp.errorMessageFavorites, TypeUsecase.favorites);
     }
+    return listItemsSubCategoriesNotifier!.value;
   }
 
   @override

@@ -1,12 +1,17 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 
 class ErrorDialog extends StatefulWidget {
   final BuildContext? context;
   final String? messageError;
   final Function onPressedErrorDialog;
 
+  // ignore: use_key_in_widget_constructors
   const ErrorDialog(
       {required this.context,
       required this.messageError,

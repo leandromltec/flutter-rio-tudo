@@ -1,7 +1,10 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
-import 'package:rio_tudo/src/presentation/base_presenter.dart';
 
 import '../../../../domain/entities/entities.dart';
+import '../../../base_presenter.dart';
 
 abstract class InfluencerPresenter extends BasePresenter {
   ValueNotifier<List<InfluencerEntity>?>? listInfluencersNotifier;

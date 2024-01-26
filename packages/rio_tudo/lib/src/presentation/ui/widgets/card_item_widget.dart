@@ -1,11 +1,18 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
-import '../../../domain/entities/entities.dart';
-import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
 
+import '../../../domain/entities/entities.dart';
+
+import 'widgets.dart';
+
+// ignore: must_be_immutable
 class CardItem extends StatefulWidget {
   bool isFavoritesScreen;
   bool? isMaxFavorites;
@@ -13,6 +20,7 @@ class CardItem extends StatefulWidget {
   final int? indexItemSubCategory;
   final List<ItemSubCategoryEntity>? listFilterSelectedDistrict;
 
+  // ignore: use_key_in_widget_constructors
   CardItem(
       {required this.presenter,
       this.isMaxFavorites,

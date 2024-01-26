@@ -1,9 +1,18 @@
+/* Desenvolvido por Leandro M. Loureiro */
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+/* Contato - riotudorj@gmail.com */
+/* 2024 - Todos os direitos reservados */
+
 import 'dart:convert';
+
 import 'package:config/config.dart';
-import '../../../domain/entities/entities.dart';
-import '../../../domain/usecases/usecases.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
+import '../../../domain/entities/entities.dart';
+import '../../../domain/usecases/usecases.dart';
 import '../../models/models.dart';
 
 class ApiGetConfigsScreen extends GetConfigsScreen {
@@ -13,7 +22,7 @@ class ApiGetConfigsScreen extends GetConfigsScreen {
 
   @override
   Future<ConfigsScreenEntity?>? call() async {
-    var response;
+    dynamic response;
     try {
       response = await http.get(Uri.parse(baseUrl));
 
@@ -25,6 +34,7 @@ class ApiGetConfigsScreen extends GetConfigsScreen {
       return configsScreenModel.toEntity();
     } catch (error) {
       ValidateTypeException().typeException(response: response, error: error);
+      rethrow;
     }
   }
 }

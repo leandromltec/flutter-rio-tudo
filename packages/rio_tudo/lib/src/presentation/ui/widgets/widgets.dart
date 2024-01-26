@@ -1,3 +1,6 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 export 'base_content_widget.dart';
 export 'bottom_navigation_bar_widget.dart';
 export 'button_favorite_widget.dart';

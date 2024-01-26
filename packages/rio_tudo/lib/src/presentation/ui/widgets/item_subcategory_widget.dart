@@ -1,16 +1,23 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:config/config.dart';
+// ignore: implementation_imports
+import 'package:config/src/service_locator/injector_getit.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
+
 import '../../../../rio_tudo.dart';
 import '../../../domain/entities/entities.dart';
 import '../../../domain/entities/subcategory_entity.dart';
-import 'package:config/src/service_locator/injector_getit.dart';
 
 class ItemSubCategoryWidget extends StatefulWidget {
-  SubCategoryEntity subCategory;
+  final SubCategoryEntity subCategory;
 
-  ItemSubCategoryWidget({required this.subCategory});
+  // ignore: use_key_in_widget_constructors
+  const ItemSubCategoryWidget({required this.subCategory});
 
   @override
   State<ItemSubCategoryWidget> createState() => _ItemSubCategoryWidgetState();

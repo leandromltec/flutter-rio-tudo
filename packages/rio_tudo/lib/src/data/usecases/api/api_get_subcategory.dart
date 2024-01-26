@@ -1,8 +1,14 @@
+/* Desenvolvido por Leandro M. Loureiro */
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'dart:convert';
 
 import 'package:config/config.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:rio_tudo/src/data/models/models.dart';
+
 import '../../../domain/entities/entities.dart';
 import '../../../domain/usecases/usecases.dart';
 
@@ -14,7 +20,7 @@ class ApiGetSubCategory implements GetSubCategoryItems {
   @override
   Future<List<ItemSubCategoryEntity>?> call(
       GetSubCategoryParams? params) async {
-    var response;
+    dynamic response;
 
     try {
       response = await http.get(Uri.parse(baseUrl + params!.idSubCategory));
@@ -31,6 +37,7 @@ class ApiGetSubCategory implements GetSubCategoryItems {
           .toList();
     } catch (error) {
       ValidateTypeException().typeException(response: response, error: error);
+      rethrow;
     }
   }
 }

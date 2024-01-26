@@ -1,11 +1,16 @@
-import 'package:config/config.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
-import 'package:rio_tudo/src/domain/entities/info_entity.dart';
-import 'package:rio_tudo/src/domain/usecases/usecases.dart';
+
+import 'package:config/config.dart';
+
+import '../../domain/entities/entities.dart';
+import '../../domain/usecases/api_get_info_usecase.dart';
 import '../base_presenter.dart';
 import '../ui/screen/screens.dart';
 
-class ValueNotifierInfoPresenter extends InfoPresenter {
+class ValueNotifierInfoPresenter implements InfoPresenter {
   GetInfo getInfo;
 
   ValueNotifierInfoPresenter({required this.getInfo});
@@ -23,8 +28,9 @@ class ValueNotifierInfoPresenter extends InfoPresenter {
   }
 
   @override
-  void dispose() {
+  void disposeNotifier() {
     state!.dispose();
+    infoEntityNotifier!.dispose();
   }
 
   @override
@@ -40,5 +46,6 @@ class ValueNotifierInfoPresenter extends InfoPresenter {
     } catch (error) {
       state!.value = UIErrorState(LabelsApp.errorMessageInfo, TypeUsecase.info);
     }
+    return infoEntityNotifier!.value;
   }
 }

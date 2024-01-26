@@ -14,54 +14,65 @@ extension TextExtension on Text {
         softWrap: softWrap,
         semanticsLabel: semanticsLabel,
         strutStyle: strutStyle,
-        textScaleFactor: textScaleFactor,
         locale: locale,
         style: (this.style ?? defaultStyle)!.merge(style ?? defaultStyle));
   }
 
   Text textTopPage({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.textTopPage);
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.textTopPage);
   }
 
   Text titleCategory({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.titleCategory);
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.titleCategory);
   }
 
-   Text labelBottomNavigator({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.labelBottomNavigator);
+  Text labelBottomNavigator({TextStyle? style}) {
+    return mergeStyle(
+        style: style,
+        defaultStyle: DesignSystemTextStyleApp.labelBottomNavigator);
   }
 
   Text nameCategory({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.nameCategory);
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.nameCategory);
   }
 
   Text textButton({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.textButton);
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.textButton);
   }
 
-   Text titleTipCard({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.titleTipCard);
+  Text titleTipCard({TextStyle? style}) {
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.titleTipCard);
   }
 
-   Text subTitleTipCard({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.subTitleTipCard);
+  Text subTitleTipCard({TextStyle? style}) {
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.subTitleTipCard);
   }
 
   Text textButtonSeeInstagram({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.textButtonSeeInstagram);
+    return mergeStyle(
+        style: style,
+        defaultStyle: DesignSystemTextStyleApp.textButtonSeeInstagram);
   }
 
   Text textFavoriteScreen({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.textFavoriteScreen);
+    return mergeStyle(
+        style: style,
+        defaultStyle: DesignSystemTextStyleApp.textFavoriteScreen);
   }
 
-Text titleInfoScreen({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.titleInfoScreen);}
+  Text titleInfoScreen({TextStyle? style}) {
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.titleInfoScreen);
+  }
 
   Text textInfoScreen({TextStyle? style}) {
-    return mergeStyle(style: style, defaultStyle: DesignSystemTextStyleApp.textInfoScreen);
+    return mergeStyle(
+        style: style, defaultStyle: DesignSystemTextStyleApp.textInfoScreen);
   }
-
-  
-
 }
