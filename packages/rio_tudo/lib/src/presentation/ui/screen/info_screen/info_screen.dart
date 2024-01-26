@@ -10,7 +10,6 @@ import 'package:design_system/design_system.dart';
 import '../../../../../rio_tudo.dart';
 import '../../../../domain/entities/entities.dart';
 import '../../widgets/widgets.dart';
-//import 'package:package_info_plus/package_info_plus.dart';
 import '../base_screen.dart';
 
 class InfoScreen extends StatefulWidget {
@@ -24,33 +23,20 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
-  /*PackageInfo _packageInfo = PackageInfo(
-    appName: 'Unknown',
-    packageName: 'Unknown',
-    version: 'Unknown',
-    buildNumber: 'Unknown',
-    buildSignature: 'Unknown',
-    installerStore: 'Unknown',
-  );*/
+  dynamic _packageInfo;
 
   @override
   void initState() {
     _loadData();
-    //_initPackageInfo();
     super.initState();
   }
 
   _loadData() async {
     widget.presenterInfo.init();
     await widget.presenterInfo.getAllInfo();
-  }
 
-  /*Future<void> _initPackageInfo() async {
-    final info = await PackageInfo.fromPlatform();
-    setState(() {
-      _packageInfo = info;
-    });
-  }*/
+    _packageInfo = await PackageInfoApp().getPackageInfoApp();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +75,13 @@ class _InfoScreenState extends State<InfoScreen> {
                                 if (info.copyRights != null ||
                                     info.copyRights != '')
                                   Text(info.copyRights!).textInfoScreen(),
-                                paddingText(
-                                  doublePadding: 40.0,
-                                  text: Text('Versão: 1.0.0').textInfoScreen(),
-                                ),
+                                if (_packageInfo != null)
+                                  paddingText(
+                                    doublePadding: 40.0,
+                                    text: Text(LabelsApp.versionApp +
+                                            _packageInfo.version)
+                                        .textInfoScreen(),
+                                  ),
                                 if (info.developedBy != null ||
                                     info.developedBy != '')
                                   _infoDeveloper(info),
