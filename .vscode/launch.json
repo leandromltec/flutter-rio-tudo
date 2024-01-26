@@ -35,13 +35,22 @@
             "name": "flutter-rio-tudo (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main.dart",
+            "flutterMode": "profile",
+            "args": [
+              "--dart-define-from-file",
+              "env.production.json"
+            ]
         },
         {
             "name": "flutter-rio-tudo (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": [
+              "--dart-define-from-file",
+              "env.production.json"
+            ]
         },
         
     ]
