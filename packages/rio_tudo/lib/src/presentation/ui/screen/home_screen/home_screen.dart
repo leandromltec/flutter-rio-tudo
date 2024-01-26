@@ -1,6 +1,11 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
+
 import '../../../../../rio_tudo.dart';
 import '../../../../domain/entities/entities.dart';
 import '../../widgets/widgets.dart';
@@ -9,7 +14,9 @@ import '../base_screen.dart';
 class HomeScreen extends StatefulWidget {
   final HomeScreenPresenter? presenterHomeScreen;
 
-  HomeScreen({this.presenterHomeScreen});
+  // ignore: use_key_in_widget_constructors
+  const HomeScreen({this.presenterHomeScreen});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -28,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    widget.presenterHomeScreen!.dispose();
+    widget.presenterHomeScreen!.disposeNotifier();
     super.dispose();
   }
 

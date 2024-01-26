@@ -1,6 +1,8 @@
-import 'package:rio_tudo/src/main/factories/usecases/usecases_factories.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
 import '../../../presentation/value_notifier/value_notifier.dart';
+import '../usecases/usecases_factories.dart';
 
 makeInfluencerPresenter() =>
     ValueNotifierInfluencerPresenter(getInfluencers: makeAllInfluencers());

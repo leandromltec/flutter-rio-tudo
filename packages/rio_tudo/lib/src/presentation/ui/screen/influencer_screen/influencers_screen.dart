@@ -1,16 +1,21 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:rio_tudo/src/domain/entities/entities.dart';
-import '../screens.dart';
 
 import '../../widgets/widgets.dart';
 import '../base_screen.dart';
+import '../screens.dart';
 
 class InfluencersScreen extends StatefulWidget {
   final InfluencerPresenter presenterInfluencer;
 
+  // ignore: use_key_in_widget_constructors
   const InfluencersScreen({required this.presenterInfluencer});
 
   @override
@@ -31,7 +36,7 @@ class _InfluencersScreenState extends State<InfluencersScreen> {
 
   @override
   void dispose() {
-    widget.presenterInfluencer.dispose();
+    widget.presenterInfluencer.disposeNotifier();
     super.dispose();
   }
 

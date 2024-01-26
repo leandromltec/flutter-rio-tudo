@@ -1,11 +1,15 @@
+/* Desenvolvido por Leandro M. Loureiro */
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'dart:convert';
 
 import 'package:config/config.dart';
+// ignore: depend_on_referenced_packages
+import 'package:http/http.dart' as http;
 
 import '../../../domain/entities/favorites_entity.dart';
 import '../../../domain/usecases/usecases.dart';
-import 'package:http/http.dart' as http;
-
 import '../../models/favorites_model.dart';
 
 class ApiGetFavorites extends GetFavorites {
@@ -15,7 +19,7 @@ class ApiGetFavorites extends GetFavorites {
 
   @override
   Future<FavoritesEntity?>? call() async {
-    var response;
+    dynamic response;
     try {
       response = await http.get(Uri.parse(baserUrl));
 
@@ -26,6 +30,7 @@ class ApiGetFavorites extends GetFavorites {
       return favoritesModel.toEntity();
     } catch (error) {
       ValidateTypeException().typeException(response: response, error: error);
+      rethrow;
     }
   }
 }

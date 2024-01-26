@@ -1,10 +1,15 @@
-import 'package:config/config.dart';
-import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
+import 'package:flutter/material.dart';
+
+import 'package:config/config.dart';
+// ignore: implementation_imports
 import 'package:config/src/service_locator/injector_getit.dart';
+import 'package:design_system/design_system.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+
 import '../../../../domain/entities/entities.dart';
 import '../../widgets/widgets.dart';
 import '../base_screen.dart';
@@ -45,17 +50,16 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
 
   @override
   void dispose() {
-    widget.presenterSubCategory!.dispose();
+    widget.presenterSubCategory!.disposeNotifier();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    List<ItemSubCategoryEntity> _listItemsTipsFilterDistrict = [];
+
     SuggestionsBoxController suggestionBoxController =
         SuggestionsBoxController();
-
-    List<ItemSubCategoryEntity> listItemsTipsFilterDistrict = [];
-
     return ValueListenableBuilder(
       valueListenable: widget.presenterSubCategory!.state!,
       builder: (_, __, ___) {
@@ -101,7 +105,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                     widgetChild: ButtonText(
                                   textButton: LabelsApp.textButtonSeeAll,
                                   onPressedFunction: () async {
-                                    listItemsTipsFilterDistrict = [];
+                                    _listItemsTipsFilterDistrict = [];
                                     await widget.presenterSubCategory!
                                         .getItemsSubCategory(
                                             idSubCategorySelected: InjectorGetIt
@@ -123,7 +127,8 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                           .listItemDistrictSelectedNotifier!,
                                       builder: (_, __, ___) {
                                         List<ItemSubCategoryEntity>
-                                            listItemsTipsFilterDistrict = widget
+                                            _listItemsTipsFilterDistrict =
+                                            widget
                                                 .presenterSubCategory!
                                                 .listItemsSubCategoriesNotifier!
                                                 .value!;
@@ -132,7 +137,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                             .listItemDistrictSelectedNotifier!
                                             .value!
                                             .isNotEmpty) {
-                                          listItemsTipsFilterDistrict = widget
+                                          _listItemsTipsFilterDistrict = widget
                                               .presenterSubCategory!
                                               .listItemDistrictSelectedNotifier!
                                               .value!;
@@ -141,7 +146,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                         return SingleChildScrollView(
                                           child: _listViewItemsSubCategory(
                                               listItemsSubCategory:
-                                                  listItemsTipsFilterDistrict),
+                                                  _listItemsTipsFilterDistrict),
                                         );
                                       });
                                 }),

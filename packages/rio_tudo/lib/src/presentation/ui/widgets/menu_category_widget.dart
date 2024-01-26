@@ -1,7 +1,12 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
+
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../domain/entities/entities.dart';
+
 import 'widgets.dart';
 
 /// Caso o parâmetro milliseconds não seja definido, não tera animação

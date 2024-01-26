@@ -1,5 +1,9 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
-import 'package:flutter/src/foundation/change_notifier.dart';
 import 'package:rio_tudo/src/presentation/base_presenter.dart';
 
 import '../../domain/entities/entities.dart';
@@ -24,7 +28,7 @@ class ValueNotifierHomePresenter implements HomeScreenPresenter {
   ValueNotifier<String>? idSubCategorySelected;
 
   @override
-  void dispose() {
+  void disposeNotifier() {
     state!.dispose();
     listAllCategoriesNotifier!.dispose();
     idSubCategorySelected!.dispose();
@@ -51,5 +55,7 @@ class ValueNotifierHomePresenter implements HomeScreenPresenter {
     } catch (error) {
       state!.value = UIErrorState(LabelsApp.errorMessageHome, TypeUsecase.home);
     }
+
+    return listAllCategoriesNotifier!.value;
   }
 }

@@ -1,17 +1,22 @@
-import 'package:config/config.dart';
-import 'package:design_system/design_system.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:package_info_plus/package_info_plus.dart';
-import '../base_screen.dart';
-import '../../widgets/widgets.dart';
+
+import 'package:config/config.dart';
+import 'package:design_system/design_system.dart';
 
 import '../../../../../rio_tudo.dart';
 import '../../../../domain/entities/entities.dart';
+import '../../widgets/widgets.dart';
+//import 'package:package_info_plus/package_info_plus.dart';
+import '../base_screen.dart';
 
 class InfoScreen extends StatefulWidget {
   final InfoPresenter presenterInfo;
 
+  // ignore: use_key_in_widget_constructors
   const InfoScreen({required this.presenterInfo});
 
   @override

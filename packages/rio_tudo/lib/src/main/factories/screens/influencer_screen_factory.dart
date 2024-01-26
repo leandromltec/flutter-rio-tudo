@@ -1,4 +1,8 @@
-import 'influencer_screen_presenter_factory.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'screens_factories.dart';
+
 import '../../../../rio_tudo.dart';
 
 makeInfluencerScreen() => InfluencersScreen(

@@ -1,3 +1,6 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 export 'category_model.dart';
 export 'configs_screen_model.dart';
 export 'item_subcategory_model.dart';

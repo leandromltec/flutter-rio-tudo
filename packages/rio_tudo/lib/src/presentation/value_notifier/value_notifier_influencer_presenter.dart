@@ -1,11 +1,16 @@
-import 'package:config/config.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
+
+import 'package:config/config.dart';
+
+import '../../../rio_tudo.dart';
+import '../../domain/entities/influencer_entity.dart';
 import '../../domain/usecases/usecases.dart';
 import '../base_presenter.dart';
-import '../../domain/entities/influencer_entity.dart';
-import '../../../rio_tudo.dart';
 
-class ValueNotifierInfluencerPresenter extends InfluencerPresenter {
+class ValueNotifierInfluencerPresenter implements InfluencerPresenter {
   GetInfluencers getInfluencers;
 
   ValueNotifierInfluencerPresenter({required this.getInfluencers});
@@ -23,7 +28,7 @@ class ValueNotifierInfluencerPresenter extends InfluencerPresenter {
   }
 
   @override
-  void dispose() {
+  void disposeNotifier() {
     state!.dispose();
     listInfluencersNotifier!.dispose();
   }
@@ -42,5 +47,6 @@ class ValueNotifierInfluencerPresenter extends InfluencerPresenter {
       state!.value = UIErrorState(
           LabelsApp.errorMessageInfluencers, TypeUsecase.influencer);
     }
+    return listInfluencersNotifier!.value;
   }
 }

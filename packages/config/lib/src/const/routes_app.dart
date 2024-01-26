@@ -1,3 +1,4 @@
+// ignore_for_file: constant_identifier_names
 class RoutesApp {
   RoutesApp._();
   static const String HomeScreen = 'home';

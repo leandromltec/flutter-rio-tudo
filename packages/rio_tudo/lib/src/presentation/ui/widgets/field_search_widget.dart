@@ -1,16 +1,20 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import '../../../../rio_tudo.dart';
 
 class FieldSearch extends StatefulWidget {
   final SubCategoryPresenter presenterSubCategory;
-  SuggestionsBoxController? suggestionBoxController;
+  final SuggestionsBoxController? suggestionBoxController;
 
   // ignore: use_key_in_widget_constructors
-  FieldSearch(
+  const FieldSearch(
       {required this.presenterSubCategory, this.suggestionBoxController});
 
   @override
@@ -45,9 +49,7 @@ class _FieldSearchState extends State<FieldSearch> {
                   suggestionsBoxDecoration: const SuggestionsBoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   textFieldConfiguration: TextFieldConfiguration(
-                    onSubmitted: (value) {
-                      print("foi");
-                    },
+                    onSubmitted: (value) {},
                     controller: _typeAheadController,
                     autofillHints: ["AutoFillHints 1", "AutoFillHints 2"],
                     autofocus: false,

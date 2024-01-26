@@ -1,17 +1,23 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
-import 'package:flutter/src/foundation/change_notifier.dart';
+
 import '../../domain/entities/entities.dart';
-import '../base_presenter.dart';
 import '../../domain/usecases/usecases.dart';
+import '../base_presenter.dart';
 import '../ui/screen/screens.dart';
 
-class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
+class ValueNotifierSubCategoryPresenter extends ChangeNotifier
+    implements SubCategoryPresenter {
   GetSubCategoryItems getItemsSubCategorySelected;
   GetConfigsScreen getConfigsScreen;
 
-  SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
+  final SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
 
   ValueNotifierSubCategoryPresenter(
       {required this.getItemsSubCategorySelected,
@@ -42,7 +48,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
   int get maxFavorites => _maxFavorites;
 
   @override
-  void dispose() {
+  void disposeNotifier() {
     state!.dispose();
     listItemsSubCategoriesNotifier!.dispose();
     listDistrictNotifier!.dispose();
@@ -97,8 +103,6 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
 
       _loadSharedPreferences();
 
-      //_sharedPreference.clearAll();
-
       listItemDistrictSelectedNotifier!.value = [];
 
       listItemsSubCategoriesNotifier!.value = await getItemsSubCategorySelected(
@@ -133,6 +137,7 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
       state!.value =
           UIErrorState(LabelsApp.errorMessageTips, TypeUsecase.subCategory);
     }
+    return listItemsSubCategoriesNotifier!.value;
   }
 
   @override
@@ -203,12 +208,11 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
       listDistrictNotifier!.value!.sort((a, b) => a.compareTo(b));
 
       state!.value = UISucessState(LabelsApp.sucessMessageDistricts);
-
-      return listDistrictNotifier!.value;
     } catch (error) {
       state!.value = UIErrorState(
           LabelsApp.errorMessageDistricts, TypeUsecase.subCategory);
     }
+    return listDistrictNotifier!.value;
   }
 
   @override
@@ -223,11 +227,10 @@ class ValueNotifierSubCategoryPresenter implements SubCategoryPresenter {
           .toList();
 
       state!.value = UISucessState(LabelsApp.sucessMessageFilterDistricts);
-
-      return listItemsSubCategoriesNotifier!.value;
     } catch (error) {
       state!.value = UIErrorState(
           LabelsApp.errorMessageFilterDistricts, TypeUsecase.subCategory);
     }
+    return listItemsSubCategoriesNotifier!.value;
   }
 }

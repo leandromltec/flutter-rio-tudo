@@ -1,11 +1,16 @@
-import 'dart:async';
-import 'package:config/config.dart';
-import 'package:config/src/service_locator/injector_getit.dart';
-import 'package:flutter/material.dart';
-import 'package:rio_tudo/src/main/factories/screens/favorites_screen_factory.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
-import 'presentation/ui/screen/screens.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+import 'package:config/config.dart';
+// ignore: implementation_imports
+import 'package:config/src/service_locator/injector_getit.dart';
+
 import 'main/factories/screens/screens_factories.dart';
+import 'presentation/ui/screen/screens.dart';
 
 class RioTudoSetupModule implements SetupGetItInterface {
   @override

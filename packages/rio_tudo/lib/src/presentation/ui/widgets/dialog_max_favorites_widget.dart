@@ -1,5 +1,9 @@
-import 'package:config/config.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
+
+import 'package:config/config.dart';
 
 Future<void> showMaxFavoritesDialog({required BuildContext context}) async {
   return showDialog<void>(

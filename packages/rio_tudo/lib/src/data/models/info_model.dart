@@ -1,6 +1,12 @@
-import 'package:rio_tudo/src/data/models/image_model.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+/* Contato - riotudorj@gmail.com */
+/* 2024 - Todos os direitos reservados */
 
 import '../../domain/entities/entities.dart';
+
+import 'models.dart';
 
 class InfoModel {
   String? titleInfo;

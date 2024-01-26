@@ -1,10 +1,15 @@
-import 'package:design_system/design_system.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
+
+import 'package:design_system/design_system.dart';
 
 class TitleCategory extends StatelessWidget {
   final String titleCategory;
 
-  const TitleCategory({super.key, required this.titleCategory});
+  // ignore: use_key_in_widget_constructors
+  const TitleCategory({required this.titleCategory});
 
   @override
   Widget build(BuildContext context) {

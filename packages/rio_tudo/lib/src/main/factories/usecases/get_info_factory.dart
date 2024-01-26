@@ -1,5 +1,9 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:config/config.dart';
-import 'package:rio_tudo/src/data/usecases/api/api_get_info.dart';
+
+import '../../../data/usecases/api/api.dart';
 
 makeGetInfo() {
   return ApiGetInfo(baserUrl: Urls.endPointInfo);

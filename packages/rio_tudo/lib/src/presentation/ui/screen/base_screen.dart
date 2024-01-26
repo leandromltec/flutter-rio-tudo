@@ -1,7 +1,12 @@
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+import 'package:flutter/material.dart';
+
 import 'package:config/config.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-import 'package:rio_tudo/src/presentation/base_presenter.dart';
+
+import '../../base_presenter.dart';
 import '../widgets/widgets.dart';
 
 class BaseScreenWidget extends StatefulWidget {

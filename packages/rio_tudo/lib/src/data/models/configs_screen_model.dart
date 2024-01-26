@@ -1,3 +1,10 @@
+/* Desenvolvido por Leandro M. Loureiro */
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
+/* Contato - riotudorj@gmail.com */
+/* 2024 - Todos os direitos reservados */
+
 import '../../domain/entities/entities.dart';
 
 class ConfigsScreenModel {

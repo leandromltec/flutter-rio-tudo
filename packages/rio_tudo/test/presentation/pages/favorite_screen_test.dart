@@ -6,7 +6,7 @@ import 'package:rio_tudo/src/presentation/ui/screen/screens.dart';
 void main() {
   Future<void> loadPage(WidgetTester tester) async {
     Widget page = const MaterialApp(
-      home: FavoriteScreen(),
+      home: const FavoriteScreen(),
     );
 
     await tester.pumpWidget(page, Duration(seconds: 1));

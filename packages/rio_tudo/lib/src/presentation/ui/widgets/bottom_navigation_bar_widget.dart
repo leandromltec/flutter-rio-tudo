@@ -1,10 +1,16 @@
-import 'package:config/config.dart';
-import 'package:design_system/design_system.dart';
+/* Github - https://github.com/leandromltec */
+/* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
+
 import 'package:flutter/material.dart';
 
+import 'package:config/config.dart';
+import 'package:design_system/design_system.dart';
+
 class BottomNavigationBarApp extends StatefulWidget {
-  int indexScreen;
-  BottomNavigationBarApp({Key? key, required this.indexScreen}) : super(key: key);
+  final int indexScreen;
+
+  // ignore: use_key_in_widget_constructors
+  const BottomNavigationBarApp({required this.indexScreen});
 
   @override
   State<BottomNavigationBarApp> createState() => _BottomNavigationBarAppState();
@@ -12,8 +18,7 @@ class BottomNavigationBarApp extends StatefulWidget {
 
 class _BottomNavigationBarAppState extends State<BottomNavigationBarApp>
     with SingleTickerProviderStateMixin {
-  
-Widget _tabItem(Widget child,
+  Widget _tabItem(Widget child,
       {required String label, required int index, required Function onTap}) {
     return GestureDetector(
       onTap: onTap as void Function(),
@@ -26,7 +31,9 @@ Widget _tabItem(Widget child,
               ? null
               : BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: widget.indexScreen == index ? DesignSystemPaletterColorApp.secondaryColor : null,
+                  color: widget.indexScreen == index
+                      ? DesignSystemPaletterColorApp.secondaryColor
+                      : null,
                 ),
           child: Column(
             children: [
@@ -51,48 +58,45 @@ Widget _tabItem(Widget child,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _tabItem(
-                    Icon(
+                    const Icon(
                       Icons.home_outlined,
                       color: DesignSystemPaletterColorApp.secondaryColorWhite,
                     ),
                     label: LabelsApp.labelBottomNavigatonHome,
                     index: 0,
                     onTap: () {
-                      if(widget.indexScreen == 0) return;
+                      if (widget.indexScreen == 0) return;
                       Navigator.of(context).popUntil(ModalRoute.withName('/'));
                     },
                   ),
                   _tabItem(
-                    Icon(
+                    const Icon(
                       Icons.group,
                       color: DesignSystemPaletterColorApp.secondaryColorWhite,
                     ),
                     label: LabelsApp.labelBottomNavigatonInfluencers,
-                    index:  1,
+                    index: 1,
                     onTap: () {
-                     if(widget.indexScreen == 1) return;
+                      if (widget.indexScreen == 1) return;
                       Navigator.pushNamed(context, RoutesApp.InfluencerScreen);
                     },
                   ),
                   _tabItem(
-                    Icon(
+                    const Icon(
                       Icons.favorite,
                       color: DesignSystemPaletterColorApp.secondaryColorWhite,
                     ),
                     label: LabelsApp.labelBottomNavigatonFavoritos,
                     index: 2,
                     onTap: () {
-                      if(widget.indexScreen == 2) return;
+                      if (widget.indexScreen == 2) return;
                       Navigator.pushNamed(context, RoutesApp.FavoriteScreen);
                     },
                   ),
                 ],
-              )
-             
-              ),
+              )),
         ),
       ),
     );
   }
-
 }
