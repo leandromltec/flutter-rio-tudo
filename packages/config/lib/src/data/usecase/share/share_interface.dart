@@ -1,8 +1,3 @@
-
-
-
-
-
 /*import 'package:share_plus/share_plus.dart';
 
 abstract class ShareAppInterface{
@@ -11,3 +6,7 @@ abstract class ShareAppInterface{
 
     }
 }*/
+
+abstract class ShareAppInterface {
+  Future<void> handlerUri(String tip);
+}
