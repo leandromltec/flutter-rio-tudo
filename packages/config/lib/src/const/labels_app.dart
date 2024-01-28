@@ -22,7 +22,7 @@ class LabelsApp {
   //Category Search Screen
   static String textButtonSeeAll = 'Ver todos';
   static String textButtonSeeInstagram = 'Ver Instagram';
-  static String textDistrictNofound = '* Bairro não encontrado';
+  static String textDistrictNofound = '* Localidade não encontrada';
   static String textOrderDistric =
       '* Ordenadas por ordem alfabética crescente\n  pelo nome do bairro';
 

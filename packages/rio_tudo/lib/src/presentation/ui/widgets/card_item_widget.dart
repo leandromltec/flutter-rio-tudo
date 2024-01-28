@@ -132,31 +132,37 @@ class _CardItemState extends State<CardItem> {
                 ),
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
-                  decoration: const BoxDecoration(
-                      color: DesignSystemPaletterColorApp.cardColorButtonLink,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20))),
-                  width: 100,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/icons/icon_instagram.svg',
-                        semanticsLabel: LabelsApp.labelInstagram,
-                        colorFilter: const ColorFilter.mode(
-                            Colors.white, BlendMode.srcIn),
-                        width: 40,
-                        height: 40,
-                      ),
-                      Text(
-                        LabelsApp.textButtonSeeInstagram,
-                        textAlign: TextAlign.center,
-                      ).textButtonSeeInstagram(),
-                    ],
+                child: GestureDetector(
+                  onTap: () {
+                    UrlLancher()
+                        .openUrl(urlString: _itemSubcategory().urlInstagram!);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd4),
+                    decoration: const BoxDecoration(
+                        color: DesignSystemPaletterColorApp.cardColorButtonLink,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20))),
+                    width: 100,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/icons/icon_instagram.svg',
+                          semanticsLabel: LabelsApp.labelInstagram,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.white, BlendMode.srcIn),
+                          width: 40,
+                          height: 40,
+                        ),
+                        Text(
+                          LabelsApp.textButtonSeeInstagram,
+                          textAlign: TextAlign.center,
+                        ).textButtonSeeInstagram(),
+                      ],
+                    ),
                   ),
                 ),
               )
