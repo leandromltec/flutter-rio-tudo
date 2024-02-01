@@ -6,9 +6,13 @@ import 'exception.dart';
 class ValidateTypeException extends ValidateTypeExceptionInterface {
   @override
   typeException({response, error}) {
-    if (response == null || error.osError is OSError) {
+    if (response == null) {
+      if (error.osError != null) {
+        if (error.osError is OSError) {
+          throw TimeoutException;
+        }
+      }
       //Timeout (serviço fora do ar)
-      throw TimeoutException;
     }
 
     if (response.statusCode == 404) {
@@ -16,7 +20,8 @@ class ValidateTypeException extends ValidateTypeExceptionInterface {
       //Erro de acesso a API
       throw FormatException;
     }
-    if (response.statusCode == 200 && response.body == "[]") {
+    if (response.statusCode == 200 && response.body == "[]" ||
+        response.body == "") {
       print('Error Occurred ${error.message}');
       //Response retorna vazio (sem items no banco de dados)
       throw FormatException;
