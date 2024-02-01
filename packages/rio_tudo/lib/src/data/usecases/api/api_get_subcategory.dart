@@ -14,8 +14,9 @@ import '../../../domain/usecases/usecases.dart';
 
 class ApiGetSubCategory implements GetSubCategoryItems {
   final String baseUrl;
+  dynamic httpClient = http.Client();
 
-  ApiGetSubCategory({required this.baseUrl});
+  ApiGetSubCategory({required this.baseUrl, httpClient});
 
   @override
   Future<List<ItemSubCategoryEntity>?> call(
@@ -23,7 +24,8 @@ class ApiGetSubCategory implements GetSubCategoryItems {
     dynamic response;
 
     try {
-      response = await http.get(Uri.parse(baseUrl + params!.idSubCategory));
+      response =
+          await httpClient.get(Uri.parse(baseUrl + params!.idSubCategory));
 
       List<ItemSubCategoryModel>? listItemSubCategoryModel;
 

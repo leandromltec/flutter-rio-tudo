@@ -13,15 +13,16 @@ import '../../models/models.dart';
 
 class ApiGetAllCategories implements GetAllCategories {
   final String baseUrl;
+  dynamic httpClient = http.Client();
 
-  ApiGetAllCategories({required this.baseUrl});
+  ApiGetAllCategories({required this.baseUrl, httpClient});
 
   @override
-  Future<List<CategoryEntity>?>? call() async {
+  Future<List<CategoryEntity>?> call() async {
     dynamic response;
 
     try {
-      response = await http.get(Uri.parse(baseUrl));
+      response = await httpClient!.get(Uri.parse(baseUrl));
 
       List<CategoryModel>? listCategoryModel = [];
 
@@ -34,7 +35,6 @@ class ApiGetAllCategories implements GetAllCategories {
           .toList();
     } catch (error) {
       ValidateTypeException().typeException(response: response, error: error);
-      rethrow;
     }
   }
 }

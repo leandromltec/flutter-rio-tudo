@@ -13,15 +13,16 @@ import '../../../domain/usecases/usecases.dart';
 import '../../models/favorites_model.dart';
 
 class ApiGetFavorites extends GetFavorites {
-  String baserUrl;
+  String baseUrl;
+  dynamic httpClient = http.Client();
 
-  ApiGetFavorites({required this.baserUrl});
+  ApiGetFavorites({required this.baseUrl, httpClient});
 
   @override
   Future<FavoritesEntity?>? call() async {
     dynamic response;
     try {
-      response = await http.get(Uri.parse(baserUrl));
+      response = await httpClient.get(Uri.parse(baseUrl));
 
       FavoritesModel? favoritesModel;
 

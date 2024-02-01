@@ -14,15 +14,16 @@ import '../../models/info_model.dart';
 
 class ApiGetInfo extends GetInfo {
   String baserUrl;
+  dynamic httpClient = http.Client();
 
-  ApiGetInfo({required this.baserUrl});
+  ApiGetInfo({required this.baserUrl, httpClient});
 
   @override
   Future<InfoEntity?>? call() async {
     dynamic response;
 
     try {
-      response = await http.get(Uri.parse(baserUrl));
+      response = await httpClient.get(Uri.parse(baserUrl));
 
       InfoModel? infoModel;
 

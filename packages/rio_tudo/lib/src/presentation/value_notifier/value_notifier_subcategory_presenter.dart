@@ -14,14 +14,14 @@ import '../ui/screen/screens.dart';
 
 class ValueNotifierSubCategoryPresenter extends ChangeNotifier
     implements SubCategoryPresenter {
-  GetSubCategoryItems getItemsSubCategorySelected;
-  GetConfigsScreen getConfigsScreen;
-
-  final SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
+  GetSubCategoryItems? getItemsSubCategorySelected;
+  GetConfigsScreen? getConfigsScreen;
+  SharedPreferenceStorage? sharedPreference;
 
   ValueNotifierSubCategoryPresenter(
-      {required this.getItemsSubCategorySelected,
-      required this.getConfigsScreen});
+      {this.getItemsSubCategorySelected,
+      this.getConfigsScreen,
+      this.sharedPreference});
 
   @override
   ValueNotifier<List<ItemSubCategoryEntity>?>? listItemsSubCategoriesNotifier;
@@ -71,7 +71,7 @@ class ValueNotifierSubCategoryPresenter extends ChangeNotifier
   }
 
   _loadSharedPreferences() async {
-    await _sharedPreference.initializeInstance();
+    await sharedPreference!.initializeInstance();
   }
 
   @override
@@ -81,7 +81,7 @@ class ValueNotifierSubCategoryPresenter extends ChangeNotifier
     try {
       state!.value = UILoadingState();
 
-      configsScreenEntity = await getConfigsScreen();
+      configsScreenEntity = await getConfigsScreen!();
       _maxFavorites = configsScreenEntity!.maxFavorites!;
 
       state!.value = UISucessState(LabelsApp.sucessMessageFavoriteMax);
@@ -101,12 +101,13 @@ class ValueNotifierSubCategoryPresenter extends ChangeNotifier
     try {
       state!.value = UILoadingState();
 
-      _loadSharedPreferences();
+      await _loadSharedPreferences();
 
       listItemDistrictSelectedNotifier!.value = [];
 
-      listItemsSubCategoriesNotifier!.value = await getItemsSubCategorySelected(
-          GetSubCategoryParams(idSubCategory: idSubCategorySelected));
+      listItemsSubCategoriesNotifier!.value =
+          await getItemsSubCategorySelected!(
+              GetSubCategoryParams(idSubCategory: idSubCategorySelected));
 
       listItemsSubCategoriesNotifier!.value!
           .sort((a, b) => a.district!.compareTo(b.district!));
@@ -147,7 +148,7 @@ class ValueNotifierSubCategoryPresenter extends ChangeNotifier
     bool isFavorite = !itemSubCategory.isFavorite!;
 
     List<String>? listFavorites =
-        _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
+        sharedPreference!.getStringList(LabelsApp.nameFavoriteList);
 
     if (isFavorite) {
       if (listFavorites != null && listFavorites.isNotEmpty) {
@@ -173,26 +174,26 @@ class ValueNotifierSubCategoryPresenter extends ChangeNotifier
         if (listFavorites == null || listFavorites.isEmpty) {
           listFavorites = [];
           listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
-          _sharedPreference.setStringList(
-              LabelsApp.nameFavoriteList, listFavorites);
+          sharedPreference!
+              .setStringList(LabelsApp.nameFavoriteList, listFavorites);
         } else {
           listFavorites.add(jsonEncode(itemSubCategoryMap.toString()));
-          _sharedPreference.setStringList(
-              LabelsApp.nameFavoriteList, listFavorites);
+          sharedPreference!
+              .setStringList(LabelsApp.nameFavoriteList, listFavorites);
         }
       } else {
         listFavorites!.removeWhere(
             (element) => element.contains(itemSubCategoryMap['titleTip']));
 
-        _sharedPreference.setStringList(
-            LabelsApp.nameFavoriteList, listFavorites);
+        sharedPreference!
+            .setStringList(LabelsApp.nameFavoriteList, listFavorites);
       }
     }
   }
 
   @override
   List<String>? getListFavorites() {
-    return _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
+    return sharedPreference!.getStringList(LabelsApp.nameFavoriteList);
   }
 
   @override
