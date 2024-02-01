@@ -17,14 +17,15 @@ import '../../models/models.dart';
 
 class ApiGetConfigsScreen extends GetConfigsScreen {
   final String baseUrl;
+  dynamic httpClient = http.Client();
 
-  ApiGetConfigsScreen({required this.baseUrl});
+  ApiGetConfigsScreen({required this.baseUrl, httpClient});
 
   @override
   Future<ConfigsScreenEntity?>? call() async {
     dynamic response;
     try {
-      response = await http.get(Uri.parse(baseUrl));
+      response = await httpClient.get(Uri.parse(baseUrl));
 
       ConfigsScreenModel? configsScreenModel;
 

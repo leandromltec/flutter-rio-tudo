@@ -11,9 +11,9 @@ import '../base_presenter.dart';
 import '../ui/screen/screens.dart';
 
 class ValueNotifierInfoPresenter implements InfoPresenter {
-  GetInfo getInfo;
+  GetInfo? getInfo;
 
-  ValueNotifierInfoPresenter({required this.getInfo});
+  ValueNotifierInfoPresenter({this.getInfo});
 
   @override
   ValueNotifier<InfoEntity?>? infoEntityNotifier;
@@ -38,7 +38,7 @@ class ValueNotifierInfoPresenter implements InfoPresenter {
     try {
       state!.value = UILoadingState();
 
-      infoEntityNotifier!.value = await getInfo();
+      infoEntityNotifier!.value = await getInfo!();
 
       state!.value = UISucessState(LabelsApp.sucessMessageInfo);
 

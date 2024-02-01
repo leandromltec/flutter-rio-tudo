@@ -15,11 +15,9 @@ import '../base_presenter.dart';
 
 class ValueNotifierFavoritesPresenter extends ChangeNotifier
     implements FavoritesPresenter {
-  GetFavorites getFavorites;
-
-  final SharedPreferenceStorage _sharedPreference = SharedPreferenceStorage();
-
-  ValueNotifierFavoritesPresenter({required this.getFavorites});
+  GetFavorites? getFavorites;
+  SharedPreferenceStorage? sharedPreference;
+  ValueNotifierFavoritesPresenter({this.getFavorites, this.sharedPreference});
 
   @override
   ValueNotifier<FavoritesEntity?>? favoritesNotifier;
@@ -45,7 +43,7 @@ class ValueNotifierFavoritesPresenter extends ChangeNotifier
   }
 
   _loadSharedPreferences() async {
-    await _sharedPreference.initializeInstance();
+    await sharedPreference!.initializeInstance();
   }
 
   @override
@@ -53,7 +51,7 @@ class ValueNotifierFavoritesPresenter extends ChangeNotifier
     try {
       state!.value = UILoadingState();
 
-      favoritesNotifier!.value = await getFavorites();
+      favoritesNotifier!.value = await getFavorites!();
 
       state!.value = UISucessState(LabelsApp.sucessMessageFavorites);
     } catch (error) {
@@ -71,7 +69,7 @@ class ValueNotifierFavoritesPresenter extends ChangeNotifier
       await _loadSharedPreferences();
 
       List<String>? listFavoritesSharedPreferences =
-          _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
+          sharedPreference!.getStringList(LabelsApp.nameFavoriteList);
 
       if (listFavoritesSharedPreferences != null &&
           listFavoritesSharedPreferences.isNotEmpty) {
@@ -134,13 +132,13 @@ class ValueNotifierFavoritesPresenter extends ChangeNotifier
       };
 
       List<String>? listFavorites =
-          _sharedPreference.getStringList(LabelsApp.nameFavoriteList);
+          sharedPreference!.getStringList(LabelsApp.nameFavoriteList);
 
       listFavorites!.removeWhere(
           (element) => element.contains(itemSubCategoryMap['titleTip']));
 
-      _sharedPreference.setStringList(
-          LabelsApp.nameFavoriteList, listFavorites);
+      sharedPreference!
+          .setStringList(LabelsApp.nameFavoriteList, listFavorites);
 
       await getListFavorites();
 

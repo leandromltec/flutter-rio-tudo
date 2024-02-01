@@ -13,15 +13,16 @@ import '../../../domain/usecases/usecases.dart';
 import '../../models/models.dart';
 
 class ApiGetInfluencers extends GetInfluencers {
-  String urlBase;
+  String baseUrl;
+  dynamic httpClient = http.Client();
 
-  ApiGetInfluencers({required this.urlBase});
+  ApiGetInfluencers({required this.baseUrl, httpClient});
 
   @override
   Future<List<InfluencerEntity>?> call() async {
     dynamic response;
     try {
-      response = await http.get(Uri.parse(urlBase));
+      response = await httpClient.get(Uri.parse(baseUrl));
 
       List<InfluencerModel> listInfluencers = [];
 
