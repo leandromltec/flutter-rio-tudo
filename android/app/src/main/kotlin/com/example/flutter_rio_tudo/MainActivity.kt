@@ -1,4 +1,4 @@
-package com.example.flutter_rio_tudo
+package com.br.rio_tudo
 
 import io.flutter.embedding.android.FlutterActivity
 
