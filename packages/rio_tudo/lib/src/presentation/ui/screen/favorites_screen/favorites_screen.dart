@@ -34,6 +34,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
 
   @override
+  void dispose() {
+    widget.presenterFavorites.disposeNotifier();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: widget.presenterFavorites.state!,
@@ -133,7 +139,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 verticalOffset: 200,
                 child: FadeInAnimation(
                   child: CardItem(
-                    isFavoritesScreen: true,
+                    isFavoritesScreen: widget
+                        .presenterFavorites.isFavoriteScreenNotifier!.value,
                     presenter: widget.presenterFavorites,
                     indexItemSubCategory: index,
                   ),

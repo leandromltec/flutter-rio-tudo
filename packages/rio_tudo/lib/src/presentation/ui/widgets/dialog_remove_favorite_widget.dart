@@ -22,6 +22,7 @@ Future<void> showFavoriteDialogConfirmation(
           child: Text(LabelsApp.btnClose),
         ),
         TextButton(
+          key: Key('remove_favorite'),
           onPressed: onPressedRemoveFavorite as Function(),
           child: Text(LabelsApp.btnOk),
         ),

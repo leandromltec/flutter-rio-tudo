@@ -1,15 +1,10 @@
 /* Github - https://github.com/leandromltec */
 /* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
-import 'package:equatable/equatable.dart';
-
-class InfluencerEntity extends Equatable {
+class InfluencerEntity {
   final String titleInfluencer;
   final String urlLinkInfluencer;
 
   const InfluencerEntity(
       {required this.titleInfluencer, required this.urlLinkInfluencer});
-
-  @override
-  List<Object?> get props => [titleInfluencer, urlLinkInfluencer];
 }

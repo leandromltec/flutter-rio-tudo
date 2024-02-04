@@ -39,6 +39,7 @@ class _ErroDialogState extends State<ErrorDialog> {
             ),
             actions: [
               TextButton(
+                  key: Key('text_button_error_dialog'),
                   onPressed: widget.onPressedErrorDialog as Function(),
                   child: Text(LabelsApp.btnClose))
             ],

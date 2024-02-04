@@ -83,7 +83,6 @@ class _CardItemState extends State<CardItem> {
                               right: DesignSystemPaddingApp.pd10),
                           child: Row(
                             children: [
-                              ButtonShare(),
                               const SizedBox(
                                 width: 10,
                               ),

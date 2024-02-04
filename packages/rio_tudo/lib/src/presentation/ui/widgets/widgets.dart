@@ -4,7 +4,6 @@
 export 'base_content_widget.dart';
 export 'bottom_navigation_bar_widget.dart';
 export 'button_favorite_widget.dart';
-export 'button_share_widget.dart';
 export 'button_text_widget.dart';
 export 'card_item_widget.dart';
 export 'card_item_no_subtitle_widget.dart';

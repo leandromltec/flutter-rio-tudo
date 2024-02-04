@@ -64,6 +64,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
       valueListenable: widget.presenterSubCategory!.state!,
       builder: (_, __, ___) {
         return GestureDetector(
+          key: Key('close_texfield_district'),
           onTap: () {
             suggestionBoxController.close();
           },

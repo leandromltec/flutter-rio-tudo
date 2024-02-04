@@ -27,6 +27,7 @@ class _ItemSubCategoryWidgetState extends State<ItemSubCategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      key: Key('selected_subcategory'),
       onTap: () {
         InjectorGetIt.instance
                 .get<HomeScreenPresenter>()

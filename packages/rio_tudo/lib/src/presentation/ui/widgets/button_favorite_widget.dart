@@ -24,6 +24,7 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+        key: Key('selected_favorite'),
         onTap: widget.onTapFavorite as Function(),
         child: Icon(widget.isFavorite! ? Icons.favorite : Icons.favorite_border,
             color: widget.isFavorite!

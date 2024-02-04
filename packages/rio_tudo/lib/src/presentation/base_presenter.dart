@@ -10,7 +10,7 @@ abstract class BasePresenter {
   void disposeNotifier();
 }
 
-abstract class UIState extends Equatable {
+abstract class UIState {
   final String descriptionState;
   final TypeUsecase? typeUsecaseState;
   // ignore: prefer_const_constructors_in_immutables
@@ -20,25 +20,16 @@ abstract class UIState extends Equatable {
 class UIInitialState extends UIState {
   // ignore: prefer_const_constructors_in_immutables
   UIInitialState() : super('', null);
-
-  @override
-  List<Object> get props => [descriptionState];
 }
 
 class UILoadingState extends UIState {
   // ignore: prefer_const_constructors_in_immutables
   UILoadingState() : super('', null);
-
-  @override
-  List<Object> get props => [descriptionState];
 }
 
 class UISucessState extends UIState {
   // ignore: prefer_const_constructors_in_immutables
   UISucessState(String descriptionState) : super('', null);
-
-  @override
-  List<Object> get props => [descriptionState];
 }
 
 class UIErrorState extends UIState {
@@ -48,7 +39,4 @@ class UIErrorState extends UIState {
   // ignore: prefer_const_constructors_in_immutables
   UIErrorState(this.errorMessage, this.typeUsecase)
       : super(errorMessage, typeUsecase);
-
-  @override
-  List<Object> get props => [descriptionState, typeUsecase];
 }

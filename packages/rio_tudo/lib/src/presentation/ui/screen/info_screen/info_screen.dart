@@ -78,9 +78,11 @@ class _InfoScreenState extends State<InfoScreen> {
                                 if (_packageInfo != null)
                                   paddingText(
                                     doublePadding: 40.0,
-                                    text: Text(LabelsApp.versionApp +
-                                            _packageInfo.version)
-                                        .textInfoScreen(),
+                                    text: Text(
+                                      LabelsApp.versionApp +
+                                          _packageInfo.version,
+                                      key: Key('text_version_app'),
+                                    ).textInfoScreen(),
                                   ),
                                 if (info.developedBy != null ||
                                     info.developedBy != '')
@@ -182,6 +184,7 @@ class _InfoScreenState extends State<InfoScreen> {
               width: 10,
             ),
             GestureDetector(
+                key: Key('gesture_copy_contact'),
                 onTap: () async {
                   await Clipboard.setData(const ClipboardData(text: 'contato'))
                       .then((value) => {
@@ -223,6 +226,7 @@ class _InfoScreenState extends State<InfoScreen> {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: ((context, index) {
         return InkWell(
+          key: Key('button_link_open_image'),
           onTap: () {
             UrlLancher().openUrl(urlString: listImagesLink[index].urlImage!);
           },

@@ -3,13 +3,15 @@
 
 import 'dart:convert';
 
-import 'package:config/config.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 import '../../../domain/entities/entities.dart';
 import '../../../domain/usecases/usecases.dart';
 import '../../models/models.dart';
+
+import 'dart:async';
+import 'dart:io';
 
 class ApiGetAllCategories implements GetAllCategories {
   final String baseUrl;
@@ -34,7 +36,13 @@ class ApiGetAllCategories implements GetAllCategories {
           .map<CategoryEntity>((e) => e.toEntity())
           .toList();
     } catch (error) {
-      ValidateTypeException().typeException(response: response, error: error);
+      if (response == null) {
+        throw HttpException;
+      } else if (response.statusCode == 404) {
+        throw HttpException;
+      } else {
+        throw FormatException;
+      }
     }
   }
 }

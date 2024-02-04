@@ -50,6 +50,7 @@ class _BaseScreenWidgetState extends State<BaseScreenWidget> {
               ),
               actions: [
                 IconButton(
+                    key: Key('redirect_info_screen'),
                     onPressed: () {
                       Navigator.pushNamed(context, RoutesApp.InfoScreen);
                     },

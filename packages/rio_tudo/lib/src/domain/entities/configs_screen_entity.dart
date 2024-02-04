@@ -1,9 +1,7 @@
 /* Github - https://github.com/leandromltec */
 /* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
-import 'package:equatable/equatable.dart';
-
-class ConfigsScreenEntity extends Equatable {
+class ConfigsScreenEntity {
   final String? titleTopHome;
   final String? titleTopInfluencer;
   final String? titleTopFavorites;
@@ -14,8 +12,4 @@ class ConfigsScreenEntity extends Equatable {
       this.titleTopInfluencer,
       this.titleTopFavorites,
       this.maxFavorites});
-
-  @override
-  List<Object?> get props =>
-      [titleTopHome, titleTopInfluencer, titleTopFavorites, maxFavorites];
 }
