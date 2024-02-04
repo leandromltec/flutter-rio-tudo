@@ -46,6 +46,7 @@ class _InfluencersScreenState extends State<InfluencersScreen> {
       valueListenable: widget.presenterInfluencer.state!,
       builder: (_, __, ___) {
         return BaseScreenWidget(
+          isAutomaticallyImplyLeading: false,
           state: widget.presenterInfluencer.state,
           indexBottomNavigator: 1,
           widgetScreen: Column(
