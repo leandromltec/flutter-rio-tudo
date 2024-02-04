@@ -29,10 +29,14 @@ class ValueNotifierFavoritesPresenter extends ChangeNotifier
   ValueNotifier<UIState>? state;
 
   @override
+  ValueNotifier<bool>? isFavoriteScreenNotifier;
+
+  @override
   void init() {
     state = ValueNotifier(UIInitialState());
     favoritesNotifier = ValueNotifier(null);
     listItemsSubCategoriesNotifier = ValueNotifier(null);
+    isFavoriteScreenNotifier = ValueNotifier(true);
   }
 
   @override

@@ -66,17 +66,9 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
                             child: Text(widget.title).titleTipCard(),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
+                        const Padding(
+                          padding: EdgeInsets.only(
                               right: DesignSystemPaddingApp.pd10),
-                          child: Row(
-                            children: [
-                              ButtonShare(),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
                         ),
                       ],
                     ),
@@ -115,19 +107,6 @@ class _CardItemNoSubtitleState extends State<CardItemNoSubtitle> {
               )
             ],
           )),
-      //),
     );
-  }
-
-  Future<void> openUrl({required String urlString}) async {
-    /*try {
-      if (await canLaunchUrl(Uri.parse(urlString))) {
-        await launchUrl(Uri.parse(urlString),
-            mode: LaunchMode.externalApplication);
-      }
-    } catch (e) {
-      await launchUrl(Uri(scheme: 'http', path: urlString),
-          mode: LaunchMode.externalApplication);
-    }*/
   }
 }

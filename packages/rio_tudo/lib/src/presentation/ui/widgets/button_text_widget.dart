@@ -15,6 +15,7 @@ class ButtonText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+        key: Key('button_see_all'),
         onPressed: onPressedFunction as Function(),
         child: Container(
             decoration: BoxDecoration(

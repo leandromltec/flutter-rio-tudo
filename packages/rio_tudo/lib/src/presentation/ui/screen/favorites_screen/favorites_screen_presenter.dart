@@ -9,6 +9,7 @@ import '../../../base_presenter.dart';
 abstract class FavoritesPresenter extends BasePresenter {
   ValueNotifier<FavoritesEntity?>? favoritesNotifier;
   ValueNotifier<List<ItemSubCategoryEntity>?>? listItemsSubCategoriesNotifier;
+  ValueNotifier<bool>? isFavoriteScreenNotifier;
 
   Future<FavoritesEntity?>? getFavoritesText();
   Future<List<ItemSubCategoryEntity>?>? getListFavorites();

@@ -6,5 +6,5 @@ import 'package:config/config.dart';
 import '../../../data/usecases/api/api.dart';
 
 makeGetInfo() {
-  return ApiGetInfo(baserUrl: Urls.endPointInfo);
+  return ApiGetInfo(baseUrl: Urls.endPointInfo);
 }
