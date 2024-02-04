@@ -11,7 +11,7 @@ import '../../domain/usecases/usecases.dart';
 import '../base_presenter.dart';
 
 class ValueNotifierInfluencerPresenter implements InfluencerPresenter {
-  GetInfluencers getInfluencers;
+  GetInfluencers? getInfluencers;
 
   ValueNotifierInfluencerPresenter({required this.getInfluencers});
 
@@ -38,7 +38,7 @@ class ValueNotifierInfluencerPresenter implements InfluencerPresenter {
     try {
       state!.value = UILoadingState();
 
-      listInfluencersNotifier!.value = await getInfluencers();
+      listInfluencersNotifier!.value = await getInfluencers!();
 
       state!.value = UISucessState(LabelsApp.sucessMessageInfluencers);
 
