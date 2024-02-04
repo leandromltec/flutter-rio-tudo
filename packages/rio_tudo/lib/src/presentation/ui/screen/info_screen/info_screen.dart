@@ -44,6 +44,7 @@ class _InfoScreenState extends State<InfoScreen> {
         valueListenable: widget.presenterInfo.state!,
         builder: (_, __, ___) {
           return BaseScreenWidget(
+              isAutomaticallyImplyLeading: false,
               state: widget.presenterInfo.state!,
               indexBottomNavigator: 3,
               widgetScreen: Column(

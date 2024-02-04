@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       valueListenable: widget.presenterHomeScreen!.state!,
       builder: (_, __, ___) {
         return BaseScreenWidget(
+          isAutomaticallyImplyLeading: false,
           state: widget.presenterHomeScreen!.state,
           indexBottomNavigator: 0,
           widgetScreen: Column(

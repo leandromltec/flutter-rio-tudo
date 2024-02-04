@@ -44,37 +44,46 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return ValueListenableBuilder(
       valueListenable: widget.presenterFavorites.state!,
       builder: (_, __, ___) {
-        return BaseScreenWidget(
-          isAutomaticallyImplyLeading: false,
-          state: widget.presenterFavorites.state!,
-          indexBottomNavigator: 2,
-          widgetScreen: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
-                child: Text(
-                  LabelsApp.titleSeeUourFavoriteTips,
-                ).textTopPage(),
-              ),
-              BaseContent(
-                widgetContent: Container(
-                  width: MediaQuery.of(context).size.width,
+        return PopScope(
+          canPop: false,
+          onPopInvoked: (value) {
+            Future.delayed(Duration.zero, () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RoutesApp.HomeScreen, ModalRoute.withName('/'));
+            });
+          },
+          child: BaseScreenWidget(
+            isAutomaticallyImplyLeading: false,
+            state: widget.presenterFavorites.state!,
+            indexBottomNavigator: 2,
+            widgetScreen: Column(
+              children: [
+                Padding(
                   padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
-                  child: ValueListenableBuilder(
-                    valueListenable:
-                        widget.presenterFavorites.favoritesNotifier!,
-                    builder: (_, __, ___) {
-                      return SingleChildScrollView(
-                          child: widget.presenterFavorites.favoritesNotifier!
-                                      .value !=
-                                  null
-                              ? _textFavorites()
-                              : _listViewFavorites());
-                    },
-                  ),
+                  child: Text(
+                    LabelsApp.titleSeeUourFavoriteTips,
+                  ).textTopPage(),
                 ),
-              )
-            ],
+                BaseContent(
+                  widgetContent: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.all(DesignSystemPaddingApp.pd20),
+                    child: ValueListenableBuilder(
+                      valueListenable:
+                          widget.presenterFavorites.favoritesNotifier!,
+                      builder: (_, __, ___) {
+                        return SingleChildScrollView(
+                            child: widget.presenterFavorites.favoritesNotifier!
+                                        .value !=
+                                    null
+                                ? _textFavorites()
+                                : _listViewFavorites());
+                      },
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },
