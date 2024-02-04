@@ -1,11 +1,9 @@
 /* Github - https://github.com/leandromltec */
 /* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
-import 'package:equatable/equatable.dart';
-
 import 'entities.dart';
 
-class InfoEntity extends Equatable {
+class InfoEntity {
   final String? titleInfo;
   final String? firstDescription;
   final String? secondDescription;
@@ -36,22 +34,4 @@ class InfoEntity extends Equatable {
       this.contact,
       this.textSnackBarContact,
       this.listImages});
-
-  @override
-  List<Object?> get props => [
-        titleInfo,
-        firstDescription,
-        secondDescription,
-        observation,
-        titleDev,
-        devDescription,
-        copyRights,
-        developedBy,
-        firstDescriptionDev,
-        secondDescriptionDev,
-        titleContact,
-        contact,
-        textSnackBarContact,
-        listImages
-      ];
 }
