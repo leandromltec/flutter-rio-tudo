@@ -3,8 +3,8 @@
 /* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:config/config.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:rio_tudo/src/data/models/models.dart';
@@ -27,7 +27,7 @@ class ApiGetSubCategory implements GetSubCategoryItems {
       response =
           await httpClient.get(Uri.parse(baseUrl + params!.idSubCategory));
 
-      List<ItemSubCategoryModel>? listItemSubCategoryModel;
+      List<ItemSubCategoryModel>? listItemSubCategoryModel = [];
 
       listItemSubCategoryModel =
           (jsonDecode(response.body)['itemSubCategories'] as List)
@@ -38,8 +38,13 @@ class ApiGetSubCategory implements GetSubCategoryItems {
           .map<ItemSubCategoryEntity>((e) => e.toEntity())
           .toList();
     } catch (error) {
-      ValidateTypeException().typeException(response: response, error: error);
-      rethrow;
+      if (response == null) {
+        throw HttpException;
+      } else if (response.statusCode == 404) {
+        throw HttpException;
+      } else {
+        throw FormatException;
+      }
     }
   }
 }

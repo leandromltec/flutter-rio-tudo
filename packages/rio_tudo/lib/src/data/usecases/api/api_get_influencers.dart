@@ -3,8 +3,8 @@
 /* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:config/config.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
@@ -34,8 +34,13 @@ class ApiGetInfluencers extends GetInfluencers {
           .map<InfluencerEntity>((e) => e.toEntity())
           .toList();
     } catch (error) {
-      ValidateTypeException().typeException(response: response, error: error);
-      rethrow;
+      if (response == null) {
+        throw HttpException;
+      } else if (response.statusCode == 404) {
+        throw HttpException;
+      } else {
+        throw FormatException;
+      }
     }
   }
 }

@@ -3,8 +3,8 @@
 /* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:config/config.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
@@ -13,17 +13,17 @@ import '../../../domain/usecases/usecases.dart';
 import '../../models/info_model.dart';
 
 class ApiGetInfo extends GetInfo {
-  String baserUrl;
+  String baseUrl;
   dynamic httpClient = http.Client();
 
-  ApiGetInfo({required this.baserUrl, httpClient});
+  ApiGetInfo({required this.baseUrl, httpClient});
 
   @override
   Future<InfoEntity?>? call() async {
     dynamic response;
 
     try {
-      response = await httpClient.get(Uri.parse(baserUrl));
+      response = await httpClient.get(Uri.parse(baseUrl));
 
       InfoModel? infoModel;
 
@@ -31,8 +31,13 @@ class ApiGetInfo extends GetInfo {
 
       return infoModel.toEntity();
     } catch (error) {
-      ValidateTypeException().typeException(response: response, error: error);
-      rethrow;
+      if (response == null) {
+        throw HttpException;
+      } else if (response.statusCode == 404) {
+        throw HttpException;
+      } else {
+        throw FormatException;
+      }
     }
   }
 }
