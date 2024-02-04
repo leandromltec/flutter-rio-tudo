@@ -10,7 +10,7 @@ import 'package:config/config.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/usecases/usecases.dart';
 import '../base_presenter.dart';
-import '../ui/screen/screens.dart';
+import '../ui/screens/screens.dart';
 
 class ValueNotifierSubCategoryPresenter extends ChangeNotifier
     implements SubCategoryPresenter {

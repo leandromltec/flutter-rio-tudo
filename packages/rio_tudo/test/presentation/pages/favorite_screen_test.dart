@@ -6,17 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:config/config.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:rio_tudo/rio_tudo.dart';
 import 'package:rio_tudo/src/domain/entities/entities.dart';
 import 'package:rio_tudo/src/main/factories/screens/screens_factories.dart';
 import 'package:rio_tudo/src/presentation/value_notifier/value_notifier.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:config/src/service_locator/injector_getit.dart';
-
 import '../../mock/mock.dart';
+
+class NavigatorObserverMock extends Mock implements NavigatorObserver {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  NavigatorObserverMock? navigatorMock;
 
   var faker = Faker();
 
@@ -30,6 +33,8 @@ void main() {
 
   setUp(() async {
     getFavoritesMock = GetFavoritesMock();
+
+    navigatorMock = NavigatorObserverMock();
 
     sharedPreferenceStorageMock = SharedPreferenceStorage();
     SharedPreferences.setMockInitialValues({'key': 'value'});
@@ -58,6 +63,10 @@ void main() {
       home: FavoriteScreen(
         presenterFavorites: presenter!,
       ),
+      routes: {
+        RoutesApp.HomeScreen: (_) => const MaterialApp(),
+      },
+      navigatorObservers: [navigatorMock!],
     );
     await tester.pumpWidget(page, const Duration(seconds: 1));
   }
@@ -85,6 +94,14 @@ void main() {
       (tester) async {
     await loadPage(tester);
     await tester.pump(const Duration(seconds: 1));
+
+    PopScope? popScopeFavorite() =>
+        find.byKey(const Key('pop_scope_favorites')).evaluate().first.widget
+            as PopScope;
+
+    popScopeFavorite()!.onPopInvoked!(false);
+
+    await tester.pumpAndSettle();
   });
 
   testWidgets('Test Favorites Screen  with Shared Preferences', (tester) async {

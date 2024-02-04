@@ -10,7 +10,7 @@ import 'package:config/config.dart';
 import 'package:config/src/service_locator/injector_getit.dart';
 
 import 'main/factories/screens/screens_factories.dart';
-import 'presentation/ui/screen/screens.dart';
+import 'presentation/ui/screens/screens.dart';
 
 class RioTudoSetupModule implements SetupGetItInterface {
   @override

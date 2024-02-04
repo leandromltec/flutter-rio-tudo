@@ -8,7 +8,7 @@ import 'package:config/config.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/usecases/api_get_info_usecase.dart';
 import '../base_presenter.dart';
-import '../ui/screen/screens.dart';
+import '../ui/screens/screens.dart';
 
 class ValueNotifierInfoPresenter implements InfoPresenter {
   GetInfo? getInfo;

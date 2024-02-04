@@ -46,6 +46,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       builder: (_, __, ___) {
         return PopScope(
           canPop: false,
+          key: const Key('pop_scope_favorites'),
           onPopInvoked: (value) {
             Future.delayed(Duration.zero, () {
               Navigator.pushNamedAndRemoveUntil(

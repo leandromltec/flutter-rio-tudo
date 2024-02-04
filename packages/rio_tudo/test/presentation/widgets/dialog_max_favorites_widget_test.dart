@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:rio_tudo/src/main/factories/screens/screens_factories.dart';
-import 'package:rio_tudo/src/presentation/ui/screen/screens.dart';
+import 'package:rio_tudo/src/presentation/ui/screens/screens.dart';
 import 'package:rio_tudo/src/presentation/value_notifier/value_notifier.dart';
 import 'package:config/src/service_locator/injector_getit.dart';
 
