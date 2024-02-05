@@ -10,7 +10,7 @@ class MockListCategoryEntity {
 
     SubCategoryEntity subCategoryMock = SubCategoryEntity(
         title: faker.lorem.toString(),
-        idSubCategory: 'subcategory',
+        idSubCategory: 'almocovista',
         urlImage: faker.image.toString());
 
     mockListSub.add(subCategoryMock);
