@@ -53,7 +53,7 @@ void main() {
     getSubCategoryItemsMock = GetSubCategoryItemsMock();
     getConfigsScreen = GetConfigsScreenMock();
 
-    params = const GetSubCategoryParams(idSubCategory: 'subcategory');
+    params = const GetSubCategoryParams(idSubCategory: 'almocovista');
 
     getSubCategoryItemsMock!.mockResponse(
         MockListSubCategoryEntity.mockListSubCategoryEntity(), params);
