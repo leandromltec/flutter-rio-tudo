@@ -32,6 +32,7 @@ class ValueNotifierHomePresenter implements HomeScreenPresenter {
     state!.dispose();
     listAllCategoriesNotifier!.dispose();
     idSubCategorySelected!.dispose();
+    titleSubCategorySelected!.dispose();
   }
 
   @override
