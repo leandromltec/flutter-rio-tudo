@@ -1,6 +1,8 @@
 /* Github - https://github.com/leandromltec */
 /* Linkedin - https://www.linkedin.com/in/leandro-loureiro-dev/ */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:config/config.dart';
@@ -93,6 +95,17 @@ class _CardItemState extends State<CardItem> {
                                   return ButtonFavorite(
                                       onTapFavorite: () {
                                         if (widget.isFavoritesScreen) {
+                                          if (Platform.isIOS) {
+                                            showFavoriteDialogConfirmationIOS(
+                                              context: context,
+                                              titleTip:
+                                                  _itemSubcategory().titleTip!,
+                                              onPressedRemoveFavorite: () {
+                                                _removeFavorite();
+                                                Navigator.of(context).pop();
+                                              });
+                                          }
+                                          else{
                                           showFavoriteDialogConfirmation(
                                               context: context,
                                               titleTip:
@@ -101,6 +114,7 @@ class _CardItemState extends State<CardItem> {
                                                 _removeFavorite();
                                                 Navigator.of(context).pop();
                                               });
+                                          }
                                         } else {
                                           _validateFavorites();
                                         }
