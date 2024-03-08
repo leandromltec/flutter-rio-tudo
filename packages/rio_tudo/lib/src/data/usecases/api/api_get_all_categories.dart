@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 // ignore: depend_on_referenced_packages
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../domain/entities/entities.dart';
@@ -26,15 +27,9 @@ class ApiGetAllCategories implements GetAllCategories {
     try {
       response = await httpClient!.get(Uri.parse(baseUrl));
 
-      List<CategoryModel>? listCategoryModel = [];
+      return await compute((message) => _parseCategoryModel(response.body), response.body);
 
-      listCategoryModel = (jsonDecode(response.body) as List)
-          .map((e) => CategoryModel.fromJson(e))
-          .toList();
 
-      return listCategoryModel
-          .map<CategoryEntity>((e) => e.toEntity())
-          .toList();
     } catch (error) {
       if (response == null) {
         throw HttpException;
@@ -44,5 +39,17 @@ class ApiGetAllCategories implements GetAllCategories {
         throw FormatException;
       }
     }
+  }
+
+  static List<CategoryEntity>? _parseCategoryModel(String response) {
+     List<CategoryModel>? listCategoryModel = [];
+
+     listCategoryModel = (jsonDecode(response) as List)
+          .map((e) => CategoryModel.fromJson(e))
+          .toList();
+
+      return listCategoryModel
+          .map<CategoryEntity>((e) => e.toEntity())
+          .toList();
   }
 }
