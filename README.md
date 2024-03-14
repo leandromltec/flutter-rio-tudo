@@ -23,7 +23,7 @@ Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
 
 Apresentação do app:
 
-![til](./assets/images/app.gif)
+![til](./assets/images/aapp_rio_tudo.mp4)
 
 
 
