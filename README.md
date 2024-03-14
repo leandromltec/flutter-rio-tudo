@@ -10,9 +10,11 @@ Link do Rio Tudo na App Store -
 Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
 
  - Versão do Flutter 3.16.4 e Dart versão 3.23;
- - Estrutura do projeto Clean Architecture;
+ - Estrutura do projeto Clean Architecture (arquitetura aprendida com a experiência em empresas como Bradesco no app Next e app ClaroPay);
  - Projeto orientado a packages;
  - Design System definido para layout;
+ - Uso do compute isolate para executar tarefas grandes em diferentes threads;
+ - Conceito de SOLID Aberto/Fechado;
  -  Principais packages:
     - Shared Preferences - marcação de dicas favoritas 
     - Url Lancher - redirecionamento da dica para respectivo Instagram
@@ -29,3 +31,9 @@ https://github.com/leandromltec/flutter-rio-tudo/assets/39128248/f2e8f995-d463-4
 Estrutura de pastas do projeto (Clean Architecture):
 
 ![til](./assets/images/arquitetura.png)
+
+
+Exemplo do Conceito de SOLID Aberto/Fechado aplicado no projeto:
+
+![solid](https://github.com/leandromltec/flutter-rio-tudo/assets/39128248/ecddc45d-4d92-4b4d-8025-81779a69db44)
+
