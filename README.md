@@ -23,8 +23,7 @@ Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
 
 Apresentação do app:
 
-![til](./assets/images/aapp_rio_tudo.mp4)
-
+https://github.com/leandromltec/flutter-rio-tudo/assets/39128248/f2e8f995-d463-4ff7-a01a-694825407cff
 
 
 Estrutura de pastas do projeto (Clean Architecture):
