@@ -22,10 +22,10 @@ Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
 
 
 Apresentação do app:
+![til](./assets/images/app.gif)
 
 
 
-
-Estrutura de pastas do projeto:
+Estrutura de pastas do projeto (Clean Architecture):
 
 ![til](./assets/images/arquitetura.png)
