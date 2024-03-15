@@ -24,16 +24,22 @@ Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
 
 
 Apresentação do app:
-
 https://github.com/leandromltec/flutter-rio-tudo/assets/39128248/f2e8f995-d463-4ff7-a01a-694825407cff
 
 
 Estrutura de pastas do projeto (Clean Architecture):
-
 ![til](./assets/images/arquitetura.png)
 
 
 Exemplo do Conceito de SOLID Aberto/Fechado aplicado no projeto:
 
 ![solid](https://github.com/leandromltec/flutter-rio-tudo/assets/39128248/ecddc45d-4d92-4b4d-8025-81779a69db44)
+
+
+Relatório de testes unitários atingindo uma porcentagem de aprovação:
+![Captura de Tela 2024-03-15 às 08 59 20](https://github.com/leandromltec/flutter-rio-tudo/assets/39128248/220b4f59-a91f-4a0b-91ce-f11203ce9194)
+
+
+
+
 
