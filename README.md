@@ -6,6 +6,8 @@ O Rio Tudo é um aplicativo para celular que tem o objetivo de reunir dicas sobr
 
 [Abrir Rio Tudo na Play Store (Android)](https://play.google.com/store/apps/details?id=com.br.riotudo){:target="_blank" rel="noopener noreferrer"}
 
+<a href="www.google.com" target="_blank" rel="noopener noreferrer" >teste</a>
+
 <a href="https://play.google.com/store/apps/details?id=com.br.riotudo" rel="noopener">Abrir Rio Tudo na Play Store (Android)</a></p>
 
 
