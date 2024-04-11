@@ -4,7 +4,7 @@ O Rio Tudo é um aplicativo para celular que tem o objetivo de reunir dicas sobr
 
 **OBS: Não é permitido o uso do código para publicação ou uso da marca Rio Tudo porque o mesmo possui direitos reservados. Este repositório é para portfólio e estudo da tecnologia Flutter.**
 
-Link do Rio Tudo na Google Play -
+Link do Rio Tudo na Google Play - https://play.google.com/store/apps/details?id=com.br.riotudo
 Link do Rio Tudo na App Store - 
 
 Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
