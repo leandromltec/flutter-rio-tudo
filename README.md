@@ -1,10 +1,15 @@
 # Flutter Rio Tudo
 
-O Rio Tudo é um aplicativo para celular que tem o objetivo de reunir dicas sobre coisas para fazer no Rio de Janeiro. Desenvolvido em Flutter e disponível para Android e IOS. 
+O Rio Tudo é um aplicativo para celular que tem o objetivo de reunir dicas sobre o que fazer no Rio de Janeiro.  
 
-**OBS: Não é permitido o uso do código para publicação ou uso da marca Rio Tudo porque o mesmo possui direitos reservados. Este repositório é para portfólio e estudo da tecnologia Flutter.**
 
-<a href="https://play.google.com/store/apps/details?id=com.br.riotudo" rel="noopener">Abrir Rio Tudo na Play Store (Android)</a></p>
+🚀 Sobre o projeto
+Aplicativo desenvolvido em Flutter e disponível para Android (Play Store) e IOS (App Store).
+Para conhecer e baixar o aplicativo, acesse o link - <a href="https://riotudo.com.br" rel="noopener">https://riotudo.com.br</a></p>.
+Utilizada arquitetura Clean Architecture como foco em escalabilidade, manutenibilidade e boas práticas de desenvolvimento.
+
+📝 Licença
+Não é permitido o uso do código para publicação ou uso da marca Rio Tudo porque o mesmo possui direitos reservados. Este repositório é para portfólio e estudo da tecnologia Flutter.
 
 
 Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
