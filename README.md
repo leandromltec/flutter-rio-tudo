@@ -8,20 +8,18 @@ Para conhecer e baixar o aplicativo, acesse o link - <a href="https://riotudo.co
 Utilizada arquitetura Clean Architecture como foco em escalabilidade, manutenibilidade e boas práticas de desenvolvimento. <br />
 
 <h2>📝 Licença</h2>
-Não é permitido o uso do código para publicação ou uso da marca Rio Tudo porque o mesmo possui direitos reservados. Este repositório é para portfólio e estudo da tecnologia Flutter.<br />
+Não é permitido o uso do código para publicação ou uso da marca Rio Tudo, o mesmo possui direitos reservados.<br />
+Este repositório é para portfólio e estudo da tecnologia Flutter.<br />
 
-<h2>🏗️ Arquitetura<h2>
+<h2>🏗️ Arquitetura/<h2>
 O projeto segue Clean Architecture, como exemplificado neste repositório <a href="https://github.com/Flutterando/Clean-Dart?tab=readme-ov-file" rel="noopener">Clean Architecture Flutter</a>, possibilitando flexbilidade para remoção ou inclusão de novas features. <br />
+O Clean Architecture foi a arquitetura escolhinda com a experiência obtida em empresas como Bradesco no app Next e app ClaroPay. <br />
 
+<h2>🛠️ Tecnologias utilizadas/<h2>
 
-
-
-Model: Representa os dados e a lógica de negócios
-View: Interface do usuário e componentes visuais
-ViewModel: Gerencia o estado e a lógica de apresentação
-
-
-Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
+<ul>
+ <li>Versão inicial do Flutter 3.16.4 e Dart versão 3.23;</li>
+</ul>
 
  - Versão do Flutter 3.16.4 e Dart versão 3.23;
  - Estrutura do projeto Clean Architecture (arquitetura aprendida com a experiência em empresas como Bradesco no app Next e app ClaroPay);
