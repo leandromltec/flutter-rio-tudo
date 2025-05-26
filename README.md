@@ -4,11 +4,21 @@ O Rio Tudo é um aplicativo para celular que tem o objetivo de reunir dicas sobr
 
 <h2>🚀 Sobre o Projeto</h2>
 Aplicativo desenvolvido em Flutter e disponível para Android (Play Store) e IOS (App Store).<br />
-Para conhecer e baixar o aplicativo, acesse o link - <a href="https://riotudo.com.br" rel="noopener">https://riotudo.com.br</a></p>
-Utilizada arquitetura Clean Architecture como foco em escalabilidade, manutenibilidade e boas práticas de desenvolvimento.
+Para conhecer e baixar o aplicativo, acesse o link - <a href="https://riotudo.com.br" rel="noopener">https://riotudo.com.br</a>
+Utilizada arquitetura Clean Architecture como foco em escalabilidade, manutenibilidade e boas práticas de desenvolvimento. <br />
 
 <h2>📝 Licença</h2>
-Não é permitido o uso do código para publicação ou uso da marca Rio Tudo porque o mesmo possui direitos reservados. Este repositório é para portfólio e estudo da tecnologia Flutter.
+Não é permitido o uso do código para publicação ou uso da marca Rio Tudo porque o mesmo possui direitos reservados. Este repositório é para portfólio e estudo da tecnologia Flutter.<br />
+
+<h2>🏗️ Arquitetura<h2>
+O projeto segue Clean Architecture, como exemplificado neste repositório <a href="https://github.com/Flutterando/Clean-Dart?tab=readme-ov-file" rel="noopener">Clean Architecture Flutter</a>, possibilitando flexbilidade para remoção ou inclusão de novas features. <br />
+
+
+
+
+Model: Representa os dados e a lógica de negócios
+View: Interface do usuário e componentes visuais
+ViewModel: Gerencia o estado e a lógica de apresentação
 
 
 Abaixo pode ser analisado tudo que foi utilizado para a implementação do app.
