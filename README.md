@@ -31,7 +31,7 @@ O Clean Architecture foi a arquitetura escolhinda com a experiência obtida em e
  <li>Projeto orientado a packages;</li>
  <li>Design System definido para layout;</li>
  <li>Uso do compute isolate para executar tarefas grandes em diferentes threads;</li>
- <li>Conceito de SOLID Aberto/Fechado;</li>
+ <li>Conceito de SOLID;</li>
  <br />
 
 </ul>
